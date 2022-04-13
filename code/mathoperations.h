@@ -1,6 +1,6 @@
 /**
  * @file mathoperations.h
- * @author Adriana Frazão (you@domain.com); (colocar os nomes e gits dos restantes elementos do grupo)
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
  * @brief Este ficheiro possibilita o uso do mathoperations.c noutros módulos.
  * @version 0.1
  * @date 2022-04-07
