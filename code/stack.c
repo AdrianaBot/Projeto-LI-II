@@ -15,10 +15,6 @@ int push (STACK *s,int elem){
     s->stack[s->sp] = elem;
     return 0;
 }
-<<<<<<< HEAD
-}
-=======
->>>>>>> fd7d384c96bfb7788b25660aec49a42ff8618c59
 
 /**
 * @brief Função Pop:
