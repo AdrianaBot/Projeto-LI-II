@@ -24,7 +24,7 @@
 typedef struct {
 int stack[MAX];
 int sp;
-  
+
 } STACK;
 
 

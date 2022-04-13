@@ -7,6 +7,8 @@
  * @brief Definição da operação de soma (+).
  * 
  */
+
+
 void soma(STACK* s) {
     int x = pop(s), y = pop(s); 
     push(s, x + y);

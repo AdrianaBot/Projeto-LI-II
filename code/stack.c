@@ -18,9 +18,6 @@ return 0;
 }
 }
 
-
-
-
 /**
 * @brief Função Pop:
 */
