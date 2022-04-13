@@ -1,8 +1,28 @@
+/**
+ * @file mathoperations.c
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
+ * @brief Este ficheiro será a nossa main. Vai correr o programa na sua totalidade.
+ * @version 0.1
+ * @date 2022-04-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "stack.h"
 
+/**
+ * @brief A função executa identifica qual a operação que devera ser aplicada. 
+ * Caso não o seja simplesmente adiciona à stack.
+ * 
+ * @param s 
+ * @param c 
+ */
 void executa (STACK *s, char c[]) {
     if      (c[0] == '+') soma(s);
     else if (c[0] == '-') subtracao(s);
