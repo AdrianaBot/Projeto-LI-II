@@ -14,7 +14,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#define MAX 1000
+#include <stdio.h>
 
 
 /**
@@ -22,9 +22,8 @@
 */
 
 typedef struct {
-int stack[MAX];
-int sp;
-
+    int stack[BUFSIZ];
+    int sp;
 } STACK;
 
 
@@ -32,11 +31,12 @@ int sp;
 * @brief Utilização da Stack 
 */
 
-STACK *new_stack();
+STACK *newStack();
 
 void push(STACK *s, int elem);
 
 int pop(STACK *s);
+
 
 void soma(STACK *s);
 
