@@ -25,10 +25,10 @@ void executa (STACK *s, char c[]) {
 
 int main() {
     STACK *s = newStack();
-    char linha[MAX];
-    char token[MAX];
+    char linha[BUFSIZ];
+    char token[BUFSIZ];
 
-    if (fgets (linha, MAX, stdin) != NULL) {
+    if (fgets (linha, BUFSIZ, stdin) != NULL) {
         while (sscanf(linha, "%s%[^\n]", token, linha) == 2) { 
             executa(s, token);
         }
