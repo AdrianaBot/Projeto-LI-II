@@ -1,3 +1,13 @@
+/**
+ * @file mathoperations.c
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
+ * @brief Este irá correr todas as operações matematicas incluidas no primeiro guião.
+ * @version 0.1
+ * @date 2022-04-13
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 
 #include <stdio.h>
 #include <math.h>
@@ -5,7 +15,6 @@
 
 /**
  * @brief Definição da operação de soma (+).
- * 
  */
 void soma(STACK* s) {
     int x = pop(s), y = pop(s); 
@@ -13,8 +22,7 @@ void soma(STACK* s) {
 }
 
 /**
- * @brief Definição da operação de subtração (-).
- * 
+ * @brief Definição da operação de subtração (-). 
  */
 void subtracao(STACK* s) {
     int x = pop(s), y = pop(s); 
@@ -23,7 +31,6 @@ void subtracao(STACK* s) {
 
 /**
  * @brief Definição da operação de multiplicação (*).
- * 
  */
 void multiplicacao(STACK* s) {
     int x = pop(s), y = pop(s); 
@@ -32,7 +39,6 @@ void multiplicacao(STACK* s) {
 
 /**
  * @brief Definição da operação de divisão (/).
- * 
  */
 void divisao(STACK* s) {
     int x = pop(s), y = pop(s); 
