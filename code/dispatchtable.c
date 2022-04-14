@@ -2,7 +2,14 @@
 #include "mathoperations.h"
 #include "stack.h"
 
-void func (int x, int a, int b) {
+/**
+ * @brief Dispatch table
+ * 
+ * @param x 
+ * @param c 
+ */
+
+void func (STACK *x, char c) { //converter o carater num índice 
     int i;
     typedef int (*pointer) (STACK *x);
     pointer table[] = 
