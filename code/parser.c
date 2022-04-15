@@ -5,11 +5,13 @@
 #include "dispatchtable.h"
 
 /**
- * @brief A função executa identifica qual a operação que deverá ser aplicada. 
- * Caso não o seja, simplesmente adiciona à stack.
+ * @brief Parser
  * 
- * @param s 
- * @param c 
+ * A função,quando executada, identifica qual a operação que deverá ser aplicada. 
+ * Caso não seja uma operação, simplesmente adiciona à stack.
+ * 
+ * @param s -> pointer da stack
+ * @param c -> array de characteres
  */
 
 void executa (STACK *s, char c[]) {

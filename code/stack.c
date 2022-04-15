@@ -9,6 +9,8 @@
  * 
  */
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
@@ -16,6 +18,7 @@
 
 /**
  * @brief Definição da operação de soma (+).
+ *  
  */
 void soma(STACK* s) {
     int x;
@@ -157,7 +160,6 @@ STACK *newStack (){
 *
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
-
 
 int push (STACK *s,int elem){
     if (s->sp == BUFSIZ) return 1;
