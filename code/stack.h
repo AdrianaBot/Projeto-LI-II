@@ -33,10 +33,9 @@ typedef struct {
 
 STACK *newStack();
 
-void push(STACK *s, int elem);
+int push(STACK *s, int elem);
 
-int pop(STACK *s);
-
+int pop(STACK *s, int* x);
 
 void soma(STACK *s);
 
@@ -63,3 +62,4 @@ void xorBitwise(STACK *s);
 void notBitwise(STACK *s);
 
 #endif
+

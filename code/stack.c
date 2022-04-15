@@ -13,6 +13,141 @@
 #include <stdlib.h>
 #include "stack.h"
 
+
+/**
+ * @brief Definição da operação de soma (+).
+ */
+void soma(STACK* s) {
+    int x;
+    int y;
+    pop(s,x); 
+    pop(s,y); 
+    push(s, x + y);
+}
+
+/**
+ * @brief Definição da operação de subtração (-). 
+ */
+void subtracao(STACK* s) {
+    int x;
+    int y; 
+    pop(s,x);
+    pop(s,y); 
+    push(s, y - x);
+}
+
+/**
+ * @brief Definição da operação de multiplicação (*).
+ */
+void multiplicacao(STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y); 
+    push(s, x * y);
+}
+
+/**
+ * @brief Definição da operação de divisão (/).
+ */
+void divisao(STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y);
+    push(s, y / x);
+}
+
+/**
+ * @brief Definição da operação de decrementação ( ( ).
+ * A decrementação diminui o inteiro em 1.
+ */
+void decrementacao (STACK* s) {
+    int x;
+    pop(s,x); 
+    push(s, --x);
+}
+
+/**
+ * @brief Definição da operação de incrementação ( ) ).
+ * A incrementação aumenta em 1 valor.
+ */
+void incrementacao (STACK* s) {
+    int x;
+    pop(s,x); 
+    push(s, ++x);
+}
+
+/**
+ * @brief Definição da operação de módulo (%).
+ * O módulo é o resto da divisão inteira de x por y.
+ */
+void modulo (STACK* s) {
+    int x; 
+    int y;
+    pop(s,x);
+    pop(s,y); 
+    push(s, y % x);
+}
+
+/**
+ * @brief Definição da operação de exponenciação (#).
+ * 
+ */
+void exponenciacao (STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y);
+    push(s, pow (y, x));
+}
+
+/**
+ * @brief Definição da operação de "e" (bitwise) para inteiros (&).
+ * 
+ */
+void eBitwise (STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y);
+    push(s, x & y);
+}
+
+/**
+ * @brief Definição da operação de "ou" (bitwise) para inteiros (|).
+ * 
+ */
+void ouBitwise (STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y); 
+    push(s, x | y);
+}
+
+/**
+ * @brief Definição da operação de "xor" (bitwise) para inteiros (^).
+ * O xor é o ou exclusivo.
+ */
+void xorBitwise (STACK* s) {
+    int x;
+    int y;
+    pop(s,x);
+    pop(s,y);
+    push(s, x ^ y);
+}
+
+/**
+ * @brief Definição da operação de "not" (bitwise) para inteiros (~).
+ * 
+ */
+void notBitwise (STACK* s) {
+    int x;
+    pop(s, x); 
+    push(s, ~x);
+}
+
 STACK *newStack (){
     return (STACK *) malloc(sizeof(STACK));
 }
@@ -20,7 +155,7 @@ STACK *newStack (){
 /**
 * @brief Função Push
 *
-* @return faz push a um numero (caso dê erro retorna 1) 
+* @return faz push a um número (caso dê erro, retorna 1) 
 */
 
 
@@ -34,12 +169,13 @@ int push (STACK *s,int elem){
 /**
 * @brief Função Pop:
 *
-* @return faz pop a um numero (caso dê erro retorna 1) 
+* @return faz pop a um número (caso dê erro, retorna 1) 
 */
 
 int pop(STACK *s, int *x){
     if (s->sp == 0) return 1;   
     *x = s->stack[s->sp];
     s->sp--;
-    return 0; 
+    return 0;
 }
+

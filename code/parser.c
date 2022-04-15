@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "stack.h"
+#include "dispatchtable.h"
 
 /**
- * @brief A função executa identifica qual a operação que devera ser aplicada. 
+ * @brief A função executa identifica qual a operação que deverá ser aplicada. 
  * Caso não o seja, simplesmente adiciona à stack.
  * 
  * @param s 
@@ -30,3 +31,4 @@ void executa (STACK *s, char c[]) {
         push (s, val);
     }
 }
+

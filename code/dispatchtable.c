@@ -1,21 +1,27 @@
 #include <stdio.h>
-#include "mathoperations.h"
-#include "stack.h"
+#include "dispatchtable.h"
 
-/**
- * @brief Dispatch table
- * 
- * @param x 
- * @param c 
- */
 
-void func (STACK *x, char c) { //converter o carater num índice 
-    int i;
-    typedef int (*pointer) (STACK *x);
-    pointer table[] = 
-    {
-        soma, subtracao, multiplicacao, divisao, decrementacao, incrementacao, modulo, exponenciacao, eBitwise, ouBitwise, xorBitwise, notBitwise,
-    };
-    table[i] (x);
+void setupTable(){
+    table['+'] = soma;
+    table['-'] = subtracao;
+    table['*'] = multiplicacao;
+    table['/'] = divisao;
+    table['('] = decrementacao;
+    table[')'] = incrementacao;
+    table['%'] = modulo;
+    table['#'] = exponenciacao;
+    table['&'] = eBitwise;
+    table['|'] = ouBitwise;
+    table['^'] = xorBitwise;
+    table['~'] = notBitwise;
+}
+
+int func(STACK *x, char c) {
+    if(c > 126 || table[c] == NULL){
+        return 1;
+    }
+    table[c](x);
+    return 0;
 }
 
