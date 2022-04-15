@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include "stack.h"
 
-typedef int DispatchTable(STACK *x);
+typedef void (*DispatchFunc) (STACK*);
 
 void setupTable();
 
-int func(STACK *x, char c);
+int func(STACK *x, char c, DispatchFunc table[]);

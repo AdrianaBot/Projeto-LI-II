@@ -5,7 +5,7 @@
 #include "dispatchtable.h"
 
 int main() {
-    DispatchTable *table[127];
+    DispatchFunc *table[127];
     STACK *s = newStack();
     setupTable();
     char linha[BUFSIZ];
