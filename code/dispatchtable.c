@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "dispatchtable.h"
+#include "stack.h"
 
 /**
  * @brief Dispatch table.
@@ -22,7 +23,7 @@
 
 
 
-void setupTable(){
+void setupTable(DispatchTable table[]){
     table['+'] = soma;
     table['-'] = subtracao;
     table['*'] = multiplicacao;
@@ -37,11 +38,11 @@ void setupTable(){
     table['~'] = notBitwise;
 }
 
-int func(STACK *x, char c) {
+int func(STACK *x, char c, DispatchTable table[]) {
+    /*
     if(c > 126 || table[c] == NULL){
         return 1;
-    }
-    table[c](x);
+    }*/
+    table[(int) c](x);
     return 0;
 }
-

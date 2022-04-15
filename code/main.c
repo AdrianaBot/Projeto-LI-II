@@ -5,20 +5,25 @@
 #include "dispatchtable.h"
 
 int main() {
-    DispatchTable *table[127];
+    DispatchTable table[127];
     STACK *s = newStack();
-    setupTable();
-    char linha[BUFSIZ];
-    char token[BUFSIZ];
+    setupTable(table);
 
-    if (fgets (linha, BUFSIZ, stdin) != NULL) {
-        while (sscanf(linha, "%s%[^\n]", token, linha) == 2) { 
-            executa(s, token);
+    char line[BUFSIZ];
+    char h[BUFSIZ];
+
+    if (fgets (line, BUFSIZ, stdin) != NULL) {
+        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
+            int val;
+            if (sscanf(h, "%d", &val) == 1)
+                push (s, val);
+            else
+                func(s, h[0], table);
         }
-        executa(s, token);
+        func(s, h[0], table);
 
-        for (int j = 1; j <= s->sp; j++)
-            printf ("%d", s->stack[j]);
+        for (int i = 1; i <= s->sp; i++)
+            printf ("%d", s->stack[i]);
         putchar('\n'); 
     }
     return 0;
