@@ -41,4 +41,3 @@ void parser(STACK *s, DispatchFunc table[]) {
         func(s, h[0], table);
     }
 }
-
