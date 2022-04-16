@@ -31,13 +31,16 @@ void parser(STACK *s, DispatchFunc table[]) {
     char h[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
+        int val;
         while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
-            int val;
             if (sscanf(h, "%d", &val) == 1)
                 push (s, val);
             else
                 func(s, h[0], table);
         }
-        func(s, h[0], table);
+        if (sscanf(h, "%d", &val) == 1)
+            push (s, val);
+        else
+            func(s, h[0], table);
     }
 }

@@ -27,9 +27,9 @@ int main() {
     setupTable(table);
 
     parser(s, table);
-    for (int i = 1; i <= s->sp; i++) {
+    for (int i = 1; i <= s->sp; i++)
         printf ("%d", s->stack[i]);
-        putchar('\n'); 
-    }
+        
+    putchar('\n'); 
     return 0;
 }
