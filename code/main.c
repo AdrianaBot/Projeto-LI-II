@@ -18,14 +18,18 @@
 #include "dispatchtable.h"
 #include "parser.h"
 
+/**
+ * @brief A nossa Main 
+ */
 int main() {
     DispatchFunc table[127];
     STACK *s = newStack();
     setupTable(table);
 
     parser(s, table);
-    for (int i = 1; i <= s->sp; i++)
+    for (int i = 1; i <= s->sp; i++) {
         printf ("%d", s->stack[i]);
-    putchar('\n'); 
+        putchar('\n'); 
+    }
     return 0;
 }
