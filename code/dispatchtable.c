@@ -10,9 +10,7 @@
  */
 
 #include <stdio.h>
-#include "stack.h"
 #include "dispatchtable.h"
-#include "stack.h"
 
 /**
  * @brief Dispatch table.

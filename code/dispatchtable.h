@@ -1,6 +1,12 @@
 /**
  * @file dispatchtable.h
- * @author documentas Eduardo pwease ʕ•ᴥ•ʔ obrigada de nada ( Ill try my best!)
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @brief Header file for DispatchTable
+ * @version 0.1
+ * @date 2022-04-14
+ * /**
+ * @file dispatchtable.h
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
  * @brief Header file for DispatchTable
  * @version 0.1
  * @date 2022-04-14

@@ -1,4 +1,20 @@
-#include "parser.h"
+/**
+ * @file parser.c
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @brief Este ficheiro vai possibilitar utilizar o nosso parser.
+ * @version 0.1
+ * @date 2022-04-14
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "stack.h"
+#include "dispatchtable.h"
 
 /**
  * @brief Parser
