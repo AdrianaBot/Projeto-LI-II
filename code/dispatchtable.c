@@ -38,7 +38,7 @@ void setupTable(DispatchFunc table[]){
     table['~'] = notBitwise;
 }
 
-int func(STACK *x, char c, DispatchFunc table[]) {
+int func(STACK *x, unsigned char c, DispatchFunc table[]) {
     if(c > 126 || table[c] == NULL){
         return 1;
     }
@@ -46,6 +46,3 @@ int func(STACK *x, char c, DispatchFunc table[]) {
     return 0;
 }
 
-int main() {
-  STACK x = (STACK) { .sp = 0 };
-}

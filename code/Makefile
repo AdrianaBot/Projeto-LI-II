@@ -5,10 +5,10 @@ OBJS = main.o stack.o dispatchtable.o parser.o
 TARGET = main
 
 $(TARGET): $(OBJS)
-    $(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 run: $(TARGET)
-    ./main
+	./main
 
 clean:
-    @rm -f $(TARGET) $(OBJS)
+	@rm -f $(TARGET) $(OBJS)
