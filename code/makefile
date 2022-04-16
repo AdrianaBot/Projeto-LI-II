@@ -1,14 +1,14 @@
-	CC = gcc
-	CFLAGS = -Wall -Wextra -pedantic-errors -O2
-	LIBS = -lm
-	OBJS = main.o stack.o dispatchtable.o parser.o
-	TARGET = main
+CC = gcc
+CFLAGS = -Wall -Wextra -pedantic-errors -O2
+LIBS = -lm
+OBJS = main.o stack.o dispatchtable.o parser.o
+TARGET = main
 
-	$(TARGET): $(OBJS)
+$(TARGET): $(OBJS)
     $(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
-	run: $(TARGET)
+run: $(TARGET)
     ./main
 
-	clean:
+clean:
     @rm -f $(TARGET) $(OBJS)

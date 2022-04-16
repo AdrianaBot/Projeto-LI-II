@@ -9,19 +9,23 @@
  * 
  */
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "stack.h"
 
 
 /**
  * @brief Definição da operação de soma (+).
+ *  
  */
 void soma(STACK* s) {
-    int x;
-    int y;
-    pop(s,x); 
-    pop(s,y); 
+    int x = 0;
+    int y = 0;
+    pop(s,&x); 
+    pop(s,&y); 
     push(s, x + y);
 }
 
@@ -29,10 +33,10 @@ void soma(STACK* s) {
  * @brief Definição da operação de subtração (-). 
  */
 void subtracao(STACK* s) {
-    int x;
-    int y; 
-    pop(s,x);
-    pop(s,y); 
+    int x = 0;
+    int y = 0; 
+    pop(s,&x);
+    pop(s,&y); 
     push(s, y - x);
 }
 
@@ -40,10 +44,10 @@ void subtracao(STACK* s) {
  * @brief Definição da operação de multiplicação (*).
  */
 void multiplicacao(STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y); 
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y); 
     push(s, x * y);
 }
 
@@ -51,10 +55,10 @@ void multiplicacao(STACK* s) {
  * @brief Definição da operação de divisão (/).
  */
 void divisao(STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y);
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y);
     push(s, y / x);
 }
 
@@ -63,8 +67,8 @@ void divisao(STACK* s) {
  * A decrementação diminui o inteiro em 1.
  */
 void decrementacao (STACK* s) {
-    int x;
-    pop(s,x); 
+    int x = 0;
+    pop(s,&x); 
     push(s, --x);
 }
 
@@ -73,8 +77,8 @@ void decrementacao (STACK* s) {
  * A incrementação aumenta em 1 valor.
  */
 void incrementacao (STACK* s) {
-    int x;
-    pop(s,x); 
+    int x = 0;
+    pop(s,&x); 
     push(s, ++x);
 }
 
@@ -83,10 +87,10 @@ void incrementacao (STACK* s) {
  * O módulo é o resto da divisão inteira de x por y.
  */
 void modulo (STACK* s) {
-    int x; 
-    int y;
-    pop(s,x);
-    pop(s,y); 
+    int x = 0; 
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y); 
     push(s, y % x);
 }
 
@@ -95,10 +99,10 @@ void modulo (STACK* s) {
  * 
  */
 void exponenciacao (STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y);
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y);
     push(s, pow (y, x));
 }
 
@@ -107,10 +111,10 @@ void exponenciacao (STACK* s) {
  * 
  */
 void eBitwise (STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y);
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y);
     push(s, x & y);
 }
 
@@ -119,10 +123,10 @@ void eBitwise (STACK* s) {
  * 
  */
 void ouBitwise (STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y); 
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y); 
     push(s, x | y);
 }
 
@@ -131,10 +135,10 @@ void ouBitwise (STACK* s) {
  * O xor é o ou exclusivo.
  */
 void xorBitwise (STACK* s) {
-    int x;
-    int y;
-    pop(s,x);
-    pop(s,y);
+    int x = 0;
+    int y = 0;
+    pop(s,&x);
+    pop(s,&y);
     push(s, x ^ y);
 }
 
@@ -143,8 +147,8 @@ void xorBitwise (STACK* s) {
  * 
  */
 void notBitwise (STACK* s) {
-    int x;
-    pop(s, x); 
+    int x = 0;
+    pop(s, &x); 
     push(s, ~x);
 }
 
@@ -157,7 +161,6 @@ STACK *newStack (){
 *
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
-
 
 int push (STACK *s,int elem){
     if (s->sp == BUFSIZ) return 1;
@@ -178,4 +181,3 @@ int pop(STACK *s, int *x){
     s->sp--;
     return 0;
 }
-

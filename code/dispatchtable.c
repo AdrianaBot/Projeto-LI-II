@@ -1,6 +1,26 @@
+/**
+ * @file stack.h
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @brief Este ficheiro possibilita o uso do stack.c noutros módulos.
+ * @version 0.1
+ * @date 2022-04-08
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <stdio.h>
 #include "stack.h"
 #include "dispatchtable.h"
+#include "stack.h"
+
+/**
+ * @brief Dispatch table.
+ * 
+ * Esta função criada terá o propósito de tornar a escolha
+ * da operação o mais eficiente possivel.
+ * 
+ */
 
 
 void setupTable(DispatchFunc table[]){
@@ -22,7 +42,7 @@ int func(STACK *x, char c, DispatchFunc table[]) {
     if(c > 126 || table[c] == NULL){
         return 1;
     }
-    table[c](x);
+    table[(int) c](x);
     return 0;
 }
 
