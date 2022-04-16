@@ -16,6 +16,36 @@
 #include <math.h>
 #include "stack.h"
 
+STACK *newStack (){
+    return (STACK *) malloc(sizeof(STACK));
+}
+
+/**
+* @brief Função Push
+*
+* @return faz push a um número (caso dê erro, retorna 1) 
+*/
+
+int push (STACK *s,int elem){
+    if (s->sp == BUFSIZ) return 1;
+    s->sp++;
+    s->stack[s->sp] = elem;
+    return 0;
+}
+
+/**
+* @brief Função Pop:
+*
+* @return faz pop a um número (caso dê erro, retorna 1) 
+*/
+
+int pop(STACK *s, int *x){
+    if (s->sp == 0) return 1;   
+    *x = s->stack[s->sp];
+    s->sp--;
+    return 0;
+}
+
 
 /**
  * @brief Definição da operação de soma (+).
@@ -152,32 +182,3 @@ void notBitwise (STACK* s) {
     push(s, ~x);
 }
 
-STACK *newStack (){
-    return (STACK *) malloc(sizeof(STACK));
-}
-
-/**
-* @brief Função Push
-*
-* @return faz push a um número (caso dê erro, retorna 1) 
-*/
-
-int push (STACK *s,int elem){
-    if (s->sp == BUFSIZ) return 1;
-    s->sp++;
-    s->stack[s->sp] = elem;
-    return 0;
-}
-
-/**
-* @brief Função Pop:
-*
-* @return faz pop a um número (caso dê erro, retorna 1) 
-*/
-
-int pop(STACK *s, int *x){
-    if (s->sp == 0) return 1;   
-    *x = s->stack[s->sp];
-    s->sp--;
-    return 0;
-}

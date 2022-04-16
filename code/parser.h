@@ -4,4 +4,4 @@
 #include "stack.h"
 #include "dispatchtable.h"
 
-void parser(STACK *s, DispatchFunc table);
+void parser(STACK *s, DispatchFunc table[]);

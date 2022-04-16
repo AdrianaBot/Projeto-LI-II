@@ -10,7 +10,7 @@
  * @param c -> array de characteres
  */
 
-void parser(STACK *s, DispatchFunc table) {
+void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
     char h[BUFSIZ];
 
@@ -23,5 +23,6 @@ void parser(STACK *s, DispatchFunc table) {
                 func(s, h[0], table);
         }
         func(s, h[0], table);
+    }
 }
 
