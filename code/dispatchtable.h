@@ -15,4 +15,4 @@ typedef void (*DispatchFunc) (STACK*);
 
 void setupTable(DispatchFunc table[]);
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]);
+int func(STACK *x, char c, DispatchFunc table[]);
