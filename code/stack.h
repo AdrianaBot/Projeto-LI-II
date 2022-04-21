@@ -1,6 +1,6 @@
 /**
  * @file stack.h
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Este ficheiro possibilita o uso do stack.c noutros módulos.
  * @version 0.1
  * @date 2022-04-08
@@ -159,6 +159,51 @@ void xorBitwise(STACK *s);
  * @param s 
  */
 void notBitwise(STACK *s);
+
+/**
+ * @brief duplica
+ * 
+ * A função duplica vai duplicar 1 valor;
+ * 
+ * @param s
+ */
+void duplica(STACK *s);
+
+/**
+ * @brief swap
+ * 
+ * A função swap troca 2 valores;
+ * 
+ * @param s
+ */
+void swap(STACK *s);
+
+/**
+ * @brief roda3elementos
+ * 
+ * A função roda3elementos roda 3 elementos no topo da stack.
+ * 
+ * @param s
+ */
+void roda3elementos(STACK *s);
+
+/**
+ * @brief popp
+ * 
+ * A função popp faz um pop do elemento.
+ * 
+ * @param s
+ */
+void popp(STACK *s);
+
+/**
+ * @brief copy
+ * 
+ * A função copy copia o n-ésimo elemento para o topo da stack.
+ * 
+ * @param s
+ */
+//void copy(STACK *s);
 
 #endif
 

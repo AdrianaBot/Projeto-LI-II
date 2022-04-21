@@ -1,6 +1,6 @@
 /**
  * @file main.c
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Este ficheiro será o ficheiro onde se encontram todas as grandes operações deste projeto. A main.
  * @version 0.1
  * @date 2022-04-08

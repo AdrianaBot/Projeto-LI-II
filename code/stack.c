@@ -1,6 +1,6 @@
 /**
  * @file mathoperations.c
- * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Este ficheiro irá correr a stack, incluindo as defenições do pop e do push.
  * @version 0.1
  * @date 2022-04-13
@@ -182,3 +182,58 @@ void notBitwise (STACK* s) {
     push(s, ~x);
 }
 
+/**
+ * @brief Definição da operação "duplica" para inteiros.
+ *
+ */
+
+void duplica (STACK* s) {
+    int x = 0;
+    pop(s, &x);
+    push(s, x);
+    push(s, x);
+}
+
+/**
+ * @brief Definição da operação "troca" (swap) para inteiros.
+ * 
+ */
+void swap (STACK* s) {
+    int x = 0, y = 0;
+    pop(s, &x);
+    pop(s, &y);
+    push(s, x);
+    push(s, y);
+}
+
+
+/**
+ * @brief Definição da operação "roda3elementos" para inteiros. 
+ *
+ */
+void roda3elementos (STACK* s) {
+    int x = 0, y = 0, z = 0;
+    pop(s, &x);
+    pop(s, &y);
+    pop(s, &z);
+    push(s, y);
+    push(s, x);
+    push(s, z);
+}
+
+/**
+ * @brief Definição da operação de "pop" (popp) para inteiros. 
+ *  
+ */
+void popp(STACK *s) {
+    int x = 0;
+    pop(s, &x);
+}
+
+
+//FALTA TERMINAR A ÚLTIMA FUNÇÃO
+/*
+void copy(STACK *s) {
+
+}
+*/

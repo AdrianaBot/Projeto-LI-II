@@ -1,6 +1,6 @@
 /**
  * @file stack.h
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Este ficheiro possibilita o uso do stack.c noutros módulos.
  * @version 0.1
  * @date 2022-04-08
@@ -38,6 +38,11 @@ void setupTable(DispatchFunc table[]){
     table['|'] = ouBitwise;
     table['^'] = xorBitwise;
     table['~'] = notBitwise;
+    table['_'] = duplica;
+    table[';'] = popp;
+    table['\\'] = swap; 
+    table['@'] = roda3elementos;
+    //table['$'] = copy;
 }
 
 int func(STACK *x, char c, DispatchFunc table[]) {
