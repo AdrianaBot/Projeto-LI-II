@@ -26,7 +26,7 @@ STACK *newStack (){
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
 
-int push (STACK *s,int elem){
+int push (STACK *s, ELEMENT elem){
     if (s->sp == BUFSIZ) return 1;
     s->sp++;
     s->stack[s->sp] = elem;
@@ -39,7 +39,7 @@ int push (STACK *s,int elem){
 * @return faz pop a um número (caso dê erro, retorna 1) 
 */
 
-int pop(STACK *s, int *x){
+int pop(STACK *s, ELEMENT *x){
     if (s->sp == 0) return 1;   
     *x = s->stack[s->sp];
     s->sp--;
@@ -52,11 +52,80 @@ int pop(STACK *s, int *x){
  *  
  */
 void soma(STACK* s) {
-    int x = 0;
-    int y = 0;
+    ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y); 
-    push(s, x + y);
+
+    if (x.type == LONG && y.type == LONG) {
+        ELEMENT final;
+        final.type = LONG;
+
+        final.info.typeLong = x.info.typeLong + y.info.typeLong;
+        push (s, final);
+    }
+    if (x.type == LONG && y.type == DOUBLE) {
+        ELEMENT final;
+        final.type = DOUBLE;
+
+        final.info.typeDouble = x.info.typeLong +  y.info.typeDouble;
+        push (s, final);
+    }
+    if (x.type == DOUBLE && y.type == LONG) {
+        ELEMENT final;
+        final.type = DOUBLE;
+
+        final.info.typeDouble = x.info.typeDouble + y.info.typeLong;
+        push (s, final);
+    }
+    if (x.type == DOUBLE && y.type == DOUBLE) {
+        ELEMENT final;
+        final.type = DOUBLE;
+
+        final.info.typeDouble = x.info.typeDouble + y.info.typeDouble;
+        push (s, final);
+    }
+    if (x.type == LONG && y.type == CHAR) {
+        ELEMENT final;
+        final.type = LONG;
+
+        final.info.typeLong = x.info.typeLong + y.info.typeChar;
+        push (s, final);
+    }
+    if (x.type == DOUBLE && y.type == CHAR) {
+        ELEMENT final;
+        final.type = DOUBLE;
+
+        final.info.typeDouble = x.info.typeDouble + y.info.typeChar;
+        push (s, final);
+    }
+    if (x.type == CHAR && y.type == LONG) {
+        ELEMENT final;
+        final.type = LONG;
+
+        final.info.typeLong = x.info.typeChar + y.info.typeLong;
+        push (s, final);
+    }
+    if (x.type == CHAR && y.type == DOUBLE) {
+        ELEMENT final;
+        final.type = DOUBLE;
+
+        final.info.typeDouble = x.info.typeChar + y.info.typeDouble;
+        push (s, final);
+    }
+    if (x.type == CHAR && y.type == CHAR) {
+        ELEMENT final;
+        final.type = LONG;
+
+        final.info.typeLong = x.info.typeChar + y.info.typeChar;
+        push (s, final);
+    }
+    /* string - double;
+    string - long;
+    long - string;
+    double - string;
+    char - string;
+    string - char;
+    char - char; */
 }
 
 /**

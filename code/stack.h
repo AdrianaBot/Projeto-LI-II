@@ -24,6 +24,10 @@ typedef struct {
     ELEMENT sp;
 } STACK;
 
+/**
+ * @brief Definição e conversão de tipos.
+ * 
+ */
 typedef enum {
     LONG, 
     DOUBLE, 
@@ -56,7 +60,7 @@ STACK *newStack();
  * @return int 
  */
 
-int push(STACK *s, int elem);
+int push(STACK *s, ELEMENT elem);
 
 /**
  * @brief Função de pop
@@ -68,7 +72,7 @@ int push(STACK *s, int elem);
  * @return int
  */
 
-int pop(STACK *s, int* x);
+int pop(STACK *s, ELEMENT* x);
 
 /**
  * @brief Função da soma
