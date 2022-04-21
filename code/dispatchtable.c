@@ -1,6 +1,6 @@
 /**
  * @file stack.h
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Este ficheiro possibilita o uso do stack.c noutros módulos.
  * @version 0.1
  * @date 2022-04-08
@@ -10,9 +10,11 @@
  */
 
 #include <stdio.h>
-#include "stack.h"
+#include <string.h>
 #include "dispatchtable.h"
+#include "parser.h"
 #include "stack.h"
+
 
 /**
  * @brief Dispatch table.
@@ -36,13 +38,18 @@ void setupTable(DispatchFunc table[]){
     table['|'] = ouBitwise;
     table['^'] = xorBitwise;
     table['~'] = notBitwise;
+    table['_'] = duplicacao;
+    table[';'] = pop2;
+    table['\\'] = troca; 
+    table['@'] = roda;
+    table['$'] = copia;
 }
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]) {
-    if(c > 126 || table[c] == NULL){
+int func(STACK *x, char c, DispatchFunc table[]) {
+    if(c > 126 /*|| table[c] == NULL*/){
         return 1;
     }
+
     table[(int) c](x);
     return 0;
 }
-

@@ -1,10 +1,9 @@
 /**
  * @file dispatchtable.h
- * @author documentas Eduardo pwease ʕ•ᴥ•ʔ obrigada de nada ( Ill try my best!)
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
  * @brief Header file for DispatchTable
  * @version 0.1
  * @date 2022-04-14
- * 
  * @copyright Copyright (c) 2022
  * 
  */
@@ -16,4 +15,4 @@ typedef void (*DispatchFunc) (STACK*);
 
 void setupTable(DispatchFunc table[]);
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]);
+int func(STACK *x, char c, DispatchFunc table[]);
