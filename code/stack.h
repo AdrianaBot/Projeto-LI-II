@@ -20,10 +20,26 @@
 */
 
 typedef struct {
-    int stack[BUFSIZ];
-    int sp;
+    ELEMENT stack[BUFSIZ];
+    ELEMENT sp;
 } STACK;
 
+typedef enum {
+    LONG, 
+    DOUBLE, 
+    CHAR, 
+    STRING 
+} VARTYPE;
+
+typedef struct {
+    VARTYPE type;
+    union {
+        long typeLong;
+        double typeDouble;
+        char typeChar; 
+        char typeString[BUFSIZ]; 
+    } info;
+} ELEMENT;
 
 /**
 * @brief Utilização da Stack 

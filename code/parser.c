@@ -17,6 +17,13 @@
 #include "dispatchtable.h"
 
 
+/**
+ * @brief __readNewLine__ é a função de leitura do comando l - ler linha.
+ * 
+ * @param s 
+ * @param table 
+ */
+
 void readNewLine(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
     char h[BUFSIZ];
@@ -39,7 +46,7 @@ void readNewLine(STACK *s, DispatchFunc table[]) {
 /**
  * @brief Parser
  * 
- * A função,quando executada, identifica qual a operação que deverá ser aplicada. 
+ * A função __parser__,quando executada, identifica qual a operação que deverá ser aplicada. 
  * Caso não seja uma operação, simplesmente adiciona à stack.
  * 
  * @param s -> pointer da stack
