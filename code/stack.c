@@ -1,7 +1,7 @@
 /**
  * @file mathoperations.c
- * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
- * @brief Este ficheiro irá correr a stack, incluindo as defenições do pop e do push.
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); Flávio (); José Luís (); 
+ * @brief Este ficheiro irá correr a stack, incluindo as definições do pop e do push.
  * @version 0.1
  * @date 2022-04-13
  * 
@@ -181,3 +181,10 @@ int pop(STACK *s, int *x){
     s->sp--;
     return 0;
 }
+
+/**
+ * @brief Duplicação do topo da stack (_)
+ * 
+ */
+
+void duplica()
