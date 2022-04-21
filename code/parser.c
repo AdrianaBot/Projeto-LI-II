@@ -16,6 +16,26 @@
 #include "stack.h"
 #include "dispatchtable.h"
 
+
+void readNewLine(STACK *s, DispatchFunc table[]) {
+    char line[BUFSIZ];
+    char h[BUFSIZ];
+
+    if (fgets (line, BUFSIZ, stdin) != NULL) {
+        int val;
+        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
+            if (sscanf(h, "%d", &val) == 1)
+                push (s, val);
+            else
+                func(s, h[0], table);
+        }
+        if (sscanf(h, "%d", &val) == 1)
+            push (s, val);
+        else
+            func(s, h[0], table);
+    }
+}
+
 /**
  * @brief Parser
  * 
@@ -25,8 +45,6 @@
  * @param s -> pointer da stack
  * @param c -> array de characteres
  */
-
-
 void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
 
@@ -37,6 +55,8 @@ void parser(STACK *s, DispatchFunc table[]) {
         while (h != NULL) { 
             if (sscanf(h, "%d", &v) == 1)
                 push(s, v);
+            else if (h[0] == 'l')
+                readNewLine(s, table);
             else
                 func(s, h[0], table);
 

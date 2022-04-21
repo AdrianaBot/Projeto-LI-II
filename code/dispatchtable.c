@@ -41,18 +41,10 @@ void setupTable(DispatchFunc table[]){
 }
 
 int func(STACK *x, char c, DispatchFunc table[]) {
-    /*
-    if(c > 126 || table[c] == NULL){
+    if(c > 126 /*|| table[c] == NULL*/){
         return 1;
-    }*/
-    if (c == 'l') {
-        int a;
-        scanf("%d", &a);
-        push(x, a);
-        return 0;
     }
-    
+
     table[(int) c](x);
     return 0;
 }
-
