@@ -50,6 +50,6 @@ int func(STACK *x, char c, DispatchFunc table[]) {
         return 1;
     }
 
-    table[(int) c](x);
+    table[c](x);
     return 0;
 }

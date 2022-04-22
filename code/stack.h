@@ -14,16 +14,6 @@
 
 #include <stdio.h>
 
-
-/**
-* @brief Definição da Stack
-*/
-
-typedef struct {
-    ELEMENT stack[BUFSIZ];
-    ELEMENT sp;
-} STACK;
-
 /**
  * @brief Definição e conversão de tipos.
  * 
@@ -44,6 +34,15 @@ typedef struct {
         char typeString[BUFSIZ]; 
     } info;
 } ELEMENT;
+
+/**
+* @brief Definição da Stack
+*/
+
+typedef struct {
+    ELEMENT stack[BUFSIZ];
+    int sp;
+} STACK;
 
 /**
 * @brief Utilização da Stack 
