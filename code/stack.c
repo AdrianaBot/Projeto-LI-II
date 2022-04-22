@@ -1,6 +1,10 @@
 /**
  * @file stack.c
+<<<<<<< HEAD
  * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); Flávio Sousa (a100715@alunos.uminho.pt);
+=======
+ * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
+>>>>>>> 79ea54c (something)
  * @brief Este ficheiro irá correr a stack, incluindo as defenições do pop e do push.
  * @version 0.1
  * @date 2022-04-13
@@ -9,12 +13,208 @@
  * 
  */
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "stack.h"
+
+
+
+/**
+ * @brief Definição da operação de soma (+).
+ *  
+ * @param s -> Pointer da Stack
+ */
+void soma(STACK* s){
+    estrutura num1;    
+    estrutura num2;
+    OPS x,y;
+    
+    num1.tipo.x = pop(s,&x);  // have no fucking clue.  You have to change these
+    num2.tipo.x = pop(s,&y); 
+    
+    push(s ,num1 + num2); // double + double != Int + Int
+}
+
+/**
+ * @brief Definição da operação de subtração (-).
+ * 
+ * @param s -> Pointer da Stack 
+ */
+
+void subtracao(STACK* s){
+    estrutura num1;
+    estrutura num2;
+    estrutura t;
+    estrutura t2;
+    pop(s,&num1.tipo.x);
+    pop(s,&num2.tipo.x); 
+    push(s, num1.tipo.x - num2.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de multiplicação (*).
+ * 
+ * @param s -> Pointer da Stack
+ */
+void multiplicacao(STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    
+    pop(s,&num1);
+    pop(s,&num2); 
+    push(s, num1.tipo.x * num2.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de divisão (/).
+ * 
+ * @param s -> Pointer da Stack
+ */
+void divisao(STACK* s) {
+    estrutura num1; //x
+    estrutura num2; //y
+    
+    pop(s,&num1);
+    pop(s,&num2);
+    push(s,num2.tipo.x / num1.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de decrementação ( ( ).
+ * A decrementação diminui o inteiro em 1.
+ * 
+ * @param s -> Pointer da Stack
+ */
+void decrementacao (STACK* s) {
+    estrutura num1;
+    pop(s,&num1); 
+    push(s, --num1.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de incrementação ( ) ).
+ * A incrementação aumenta em 1 valor.
+ * 
+ * @param s -> Pointer da Stack
+ */
+void incrementacao (STACK* s) {
+    estrutura num1;
+    pop(s,&num1); 
+    push(s, ++num1.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de módulo (%).
+ * O módulo é o resto da divisão inteira de x por y.
+ * 
+ * @param s -> Pointer da Stack
+ */
+void modulo (STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    
+    pop(s,&num1);
+    pop(s,&num2); 
+    push(s, num2.tipo.x % num1.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de exponenciação (#).
+ * 
+ * @param s -> Pointer da Stack
+ */
+void exponenciacao (STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    pop(s,&num1);
+    pop(s,&num2);
+    push(s, pow (num2.tipo.x, num1.tipo.x));
+}
+
+/**
+ * @brief Definição da operação de "e" (bitwise) para inteiros (&).
+ * 
+ * @param s -> Pointer da Stack
+ * 
+ */
+void eBitwise (STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    pop(s,&num1);
+    pop(s,&num2);
+    push(s, num1.tipo.x & num2.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de "ou" (bitwise) para inteiros (|).
+ * 
+ * @param s -> Pointer da Stack
+ */
+void ouBitwise (STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    pop(s,&num1);
+    pop(s,&num2); 
+    push(s, num1.tipo.x | num2.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de "xor" (bitwise) para inteiros (^).
+ * O xor é o ou exclusivo.
+ * 
+ * @param s -> Pointer da Stack
+ */
+void xorBitwise (STACK* s) {
+    estrutura num1;
+    estrutura num2;
+    pop(s,&num1);
+    pop(s,&num2);
+    push(s, num1.tipo.x ^ num2.tipo.x);
+}
+
+/**
+ * @brief Definição da operação de "not" (bitwise) para inteiros (~).
+ * 
+ * @param s -> Pointer da Stack
+ */
+void notBitwise (STACK* s) {
+    estrutura num1;
+    pop(s, &num1); 
+    push(s, ~num1.tipo.x);
+}
+
+
+
+void convToInt (STACK *s){
+    estrutura num1;
+    pop(s, &num1);
+    int l = num1.tipo.x;
+    push(s, l);
+}
+
+void convToDouble (STACK *s){
+    estrutura num1;
+    pop(s ,&num1);
+    double l = num1.tipo.x;
+    push (s, l);
+}
+
+void convToChar (STACK *s){
+    estrutura num1;
+    pop(s,&num1);
+    char l= num1.tipo.x;
+    push (s,l);
+}
+
+void convToString (STACK *s){
+    estrutura num1;
+    char str[10];
+    pop(s,&num1);
+    sprintf(str,"%d", num1.tipo.x);
+    push(s, &str);
+}
+
 
 STACK *newStack (){
     return (STACK *) malloc(sizeof(STACK));
@@ -26,7 +226,11 @@ STACK *newStack (){
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
 
+<<<<<<< HEAD
 int push (STACK *s, ELEMENT elem){
+=======
+int push (STACK *s,estrutura elem){
+>>>>>>> 79ea54c (something)
     if (s->sp == BUFSIZ) return 1;
     s->sp++;
     s->stack[s->sp] = elem;
@@ -39,7 +243,11 @@ int push (STACK *s, ELEMENT elem){
 * @return faz pop a um número (caso dê erro, retorna 1) 
 */
 
+<<<<<<< HEAD
 int pop(STACK *s, ELEMENT *x){
+=======
+int pop(STACK *s, estrutura *x){
+>>>>>>> 79ea54c (something)
     if (s->sp == 0) return 1;   
     *x = s->stack[s->sp];
     s->sp--;
@@ -47,6 +255,7 @@ int pop(STACK *s, ELEMENT *x){
 }
 
 
+<<<<<<< HEAD
 /**
  * @brief Definição da operação de soma (+).
  *  
@@ -250,6 +459,8 @@ void notBitwise (STACK* s) {
     pop(s, &x); 
     push(s, ~x);
 }
+=======
+>>>>>>> 79ea54c (something)
 
 /**
  * @brief Definição da operação de duplicação (_).

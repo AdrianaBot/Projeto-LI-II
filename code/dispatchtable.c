@@ -38,11 +38,18 @@ void setupTable(DispatchFunc table[]){
     table['|'] = ouBitwise;
     table['^'] = xorBitwise;
     table['~'] = notBitwise;
+<<<<<<< HEAD
     table['_'] = duplicacao;
     table[';'] = pop2;
     table['\\'] = troca; 
     table['@'] = roda;
     table['$'] = copia;
+=======
+    table['i'] = convToInt;
+    table['f'] = convToDouble;
+    table['c'] = convToChar;
+    table['s'] =convToString;
+>>>>>>> 79ea54c (something)
 
 }
 

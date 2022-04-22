@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 
+<<<<<<< HEAD
 /**
  * @brief Definição e conversão de tipos.
  * 
@@ -34,33 +35,66 @@ typedef struct {
         char typeString[BUFSIZ]; 
     } info;
 } ELEMENT;
+=======
+typedef enum ops{ INT, DOUBLE, CHAR, STR} OPS;
+
+typedef struct ESTRUTURA{    
+    OPS type;
+    union tipo{             
+        int x,y;
+        double d;               //Shit, it don't work so well...check this later
+        char c;
+        char str[10];
+    }tipo;
+}estrutura;
+
+
+
+
+>>>>>>> 79ea54c (something)
 
 /**
 * @brief Definição da Stack
 */
 
+<<<<<<< HEAD
 typedef struct {
     ELEMENT stack[BUFSIZ];
+=======
+typedef struct{
+    estrutura stack[BUFSIZ];
+>>>>>>> 79ea54c (something)
     int sp;
-} STACK;
+}STACK;
+
 
 /**
-* @brief Utilização da Stack 
+* @brief Inicialização da Stack
 */
 
 STACK *newStack();
 /**
  * @brief Função de push.
  * 
+<<<<<<< HEAD
  * A função "push" "empurra" um elemento para o fundo da stack.
  * 
+=======
+ * A função de push vai **empurrar** qualquer que seja o valor que estamos a trabalhar
+ * para dentro da stack
+ * s
+>>>>>>> 79ea54c (something)
  * @param s 
  * @param elem 
  * @return int 
  */
+int push(STACK *s, OPS elem);
 
+<<<<<<< HEAD
 int push(STACK *s, ELEMENT elem);
 
+=======
+>>>>>>> 79ea54c (something)
 /**
  * @brief Função de pop
  * 
@@ -70,9 +104,13 @@ int push(STACK *s, ELEMENT elem);
  * @param x 
  * @return int
  */
+int pop(STACK *s, OPS *x);
 
+<<<<<<< HEAD
 int pop(STACK *s, ELEMENT* x);
 
+=======
+>>>>>>> 79ea54c (something)
 /**
  * @brief Função da soma
  * 
@@ -90,7 +128,6 @@ void soma(STACK *s);
  * 
  * @param s
  */
-
 void subtracao(STACK *s);
 
 /**
@@ -111,6 +148,7 @@ void multiplicacao(STACK *s);
  * @param s 
  */
 
+
 void divisao(STACK *s);
 
 /**
@@ -130,7 +168,6 @@ void decrementacao(STACK *s);
  * 
  * @param s 
  */
-
 void incrementacao(STACK *s);
 
 /**
@@ -140,7 +177,6 @@ void incrementacao(STACK *s);
  * 
  * @param s 
  */
-
 void modulo(STACK *s);
 
 /**
@@ -159,7 +195,6 @@ void exponenciacao(STACK *s);
  * 
  * @param s 
  */
-
 void eBitwise(STACK *s);
 
 /**
@@ -190,6 +225,7 @@ void xorBitwise(STACK *s);
  */
 void notBitwise(STACK *s);
 
+<<<<<<< HEAD
 /**
  * @brief Função de duplicação
  * 
@@ -244,5 +280,19 @@ void pop2(STACK *s);
 
 
 
+=======
+
+
+
+void convToInt(STACK *s);
+
+void convToDouble(STACK *s);
+
+void convToChar (STACK *s);
+
+void convToString(STACK *s);
+
+
+>>>>>>> 79ea54c (something)
 #endif
 

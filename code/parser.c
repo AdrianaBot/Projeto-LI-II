@@ -9,7 +9,6 @@
  * 
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,7 +28,7 @@ void readNewLine(STACK *s, DispatchFunc table[]) {
     char h[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        int val;
+        tipo val;
         while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
             if (sscanf(h, "%d", &val) == 1)
                 push (s, val);
