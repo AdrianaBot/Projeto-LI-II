@@ -1,6 +1,6 @@
 /**
  * @file parser.c
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
+ * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís
  * @brief Este ficheiro vai possibilitar utilizar o nosso parser.
  * @version 0.1
  * @date 2022-04-14
@@ -14,16 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "stack.h"
-#include "dispatchtable.h"
 
-
-
-/**
- * @brief __readNewLine__ é a função de leitura do comando l - ler linha.
- * 
- * @param s 
- * @param table 
- */
 
 void readType (STACK* s, char h[]) {
     ELEMENT x;
@@ -43,9 +34,29 @@ void readType (STACK* s, char h[]) {
     }
     else {
         x.type = STRING;
-        strcpy(x.info.typeString , h);
+        strcpy(x.info.typeString, h);
     }
     push(s, x);
+}
+
+
+/**
+ * @brief readline function
+ * 
+ * Lê uma linha
+ * 
+ * @param s 
+ */
+void readline(STACK *s) {
+    char line[BUFSIZ];
+    char h[BUFSIZ];
+
+    if (fgets (line, BUFSIZ, stdin) != NULL) {
+        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
+            readType(s, h);
+        }
+        readType(s, h);
+    }
 }
 
 /**
@@ -59,16 +70,32 @@ void readType (STACK* s, char h[]) {
  */
 void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
+    DispatchType funcType1[4][4];
+    DispatchType funcType2[4][4];
+    DispatchType funcType3[4][4];
+    DispatchType funcType4[4][4];
+
+
+setupSumArray(funcType1);
+setupSubArray(funcType2);
+setupMulArray(funcType3);
+setupDivArray(funcType4);
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
         char *h = strtok(line, " ");
 
-        while (h != NULL) { 
-            if (func(s, h[0], table) == 0);
-            else
-                readType (s, h);
+        while (h != NULL) {
+            if(h[0] == '+') soma(s, funcType1);
+            else if (h[0] == '-') subtracao(s, funcType2);
+            else if (h[0] == '*') multiplicacao(s, funcType3);
+            else if (h[0] == '/') divisao(s, funcType4);
+            else if (h[0] == 'l') readline(s);
+            else if (func(s, h[0], table) == 0);
+                else
+                    readType (s, h);
 
             h = strtok(NULL, " ");
         }
     }
 }
+

@@ -1,24 +1,6 @@
-/**
- * @file stack.h
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); José Luís; Flávio Sousa (a100715@alunos.uminho.pt);
- * @brief Este ficheiro possibilita o uso do stack.c noutros módulos.
- * @version 0.1
- * @date 2022-04-08
- * 
- * @copyright Copyright (c) 2022
- * 
- */
+#ifndef FLAVIO
+#define FLAVIO
 
-#ifndef STACK_H
-#define STACK_H
-
-#include <stdio.h>
-#include "dispatchtable.h"
-
-/**
- * @brief Definição e conversão de tipos.
- * 
- */
 typedef enum {
     LONG, 
     DOUBLE, 
@@ -37,6 +19,12 @@ typedef struct {
 } ELEMENT;
 
 /**
+ * @brief Definição e conversão de tipos.
+ * 
+ */
+
+
+/**
 * @brief Definição da Stack
 */
 
@@ -44,6 +32,19 @@ typedef struct {
     ELEMENT stack[BUFSIZ];
     int sp;
 } STACK;
+
+
+typedef void (*DispatchFunc) (STACK*);
+
+typedef void (*DispatchType) (STACK*, ELEMENT, ELEMENT);
+
+void setupTable(DispatchFunc table[]);
+
+int func(STACK *x, unsigned char c, DispatchFunc table[]);
+
+
+
+
 
 /**
 * @brief Utilização da Stack 
@@ -73,7 +74,6 @@ int push(STACK *s, ELEMENT elem);
  */
 
 int pop(STACK *s, ELEMENT* x);
-
 /**
  * @brief Função da soma
  * 
@@ -92,6 +92,7 @@ void somaDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharChar(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharDouble(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
+
 /**
  * @brief Função de subtração
  * 
@@ -257,7 +258,8 @@ void roda(STACK *s);
  * 
  * A função "nesimo" 
  */
-void nesimo (STACK *s, ELEMENT* x, int n);
+void nesimo (STACK *s, ELEMENT* x, long n);
+
 
 /**
  * @brief Função de cópia
@@ -304,6 +306,8 @@ void convToDouble(STACK *s);
  */
 void convToChar(STACK *s);
 
+
+
 /**
  * @brief Função convToString
  * 
@@ -311,6 +315,15 @@ void convToChar(STACK *s);
  * 
  * @param s 
  */
-//void convToString(STACK *s);
+void convToString(STACK *s);
 
-#endif
+
+void setupSumArray(DispatchType funcType[4][4]);
+
+void setupSubArray(DispatchType funcType[4][4]);
+
+void setupMulArray(DispatchType funcType[4][4]);
+
+void setupDivArray(DispatchType funcType[4][4]);
+
+#endif 
