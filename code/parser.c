@@ -25,24 +25,27 @@
  * @param table 
  */
 
-void readNewLine(STACK *s, DispatchFunc table[]) {
-    
-    char line[BUFSIZ];
-    char h[BUFSIZ];
+void readType (STACK* s, char h[]) {
+    ELEMENT x;
+    long l; double d; char c;
 
-    if (fgets (line, BUFSIZ, stdin) != NULL) {
-        ELEMENT val;
-        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
-            if (sscanf(h, "%d", &val) == 1)
-                push (s, val);
-            else
-                func(s, h[0], table);
-        }
-        if (sscanf(h, "%d", &val) == 1)
-            push (s, val);
-        else
-            func(s, h[0], table);
+    if (sscanf(h, "%ld", &l) == 1) {
+        x.type = LONG;
+        x.info.typeLong = l;
     }
+    else if (sscanf(h, "%lf", &d) == 1) {
+        x.type = DOUBLE;
+        x.info.typeDouble = d;
+    }
+    else if (sscanf(h, "%c", &c) == 1) {
+        x.type = CHAR;
+        x.info.typeChar = c;
+    }
+    else {
+        x.type = STRING;
+        strcpy(x.info.typeString , h);
+    }
+    push(s, x);
 }
 
 /**
@@ -58,16 +61,13 @@ void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        ELEMENT v;
+        int v;
         char *h = strtok(line, " ");
 
         while (h != NULL) { 
-            if (sscanf(h, "%d", &v) == 1)
-                push(s, v);
-            else if (h[0] == 'l')
-                readNewLine(s, table);
+            if (func(s, h[0], table) == 0);
             else
-                func(s, h[0], table);
+                readType (s, h);
 
             h = strtok(NULL, " ");
         }
