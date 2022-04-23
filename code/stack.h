@@ -14,16 +14,6 @@
 
 #include <stdio.h>
 
-
-/**
-* @brief Definição da Stack
-*/
-
-typedef struct {
-    ELEMENT stack[BUFSIZ];
-    ELEMENT sp;
-} STACK;
-
 /**
  * @brief Definição e conversão de tipos.
  * 
@@ -44,6 +34,15 @@ typedef struct {
         char typeString[BUFSIZ]; 
     } info;
 } ELEMENT;
+
+/**
+* @brief Definição da Stack
+*/
+
+typedef struct {
+    ELEMENT stack[BUFSIZ];
+    int sp;
+} STACK;
 
 /**
 * @brief Utilização da Stack 
@@ -82,8 +81,16 @@ int pop(STACK *s, ELEMENT* x);
  * @param s 
  */
 
-void soma(STACK *s);
-
+void soma (STACK *s);
+void somaLongLong(STACK *s);
+void somaLongDouble(STACK *s);
+void somaLongChar(STACK *s);
+void somaDoubleDouble(STACK *s);
+void somaDoubleLong(STACK *s);
+void somaDoubleChar(STACK *s);
+void somaCharChar(STACK *s);
+void somaCharDouble(STACK *s);
+void somaCharLong (STACK *s);
 /**
  * @brief Função de subtração
  * 
@@ -93,6 +100,15 @@ void soma(STACK *s);
  */
 
 void subtracao(STACK *s);
+void subtracaoLongLong(STACK *s);
+void subtracaoLongDouble(STACK *s);
+void subtracaoLongChar(STACK *s);
+void subtracaoDoubleDouble(STACK *s);
+void subtracaoDoubleLong(STACK *s);
+void subtracaoDoubleChar(STACK *s);
+void subtracaoCharChar(STACK *s);
+void subtracaoCharDouble(STACK *s);
+void subtracaoCharLong (STACK *s);;
 
 /**
  * @brief Função de multiplicação
@@ -103,6 +119,15 @@ void subtracao(STACK *s);
  */
 
 void multiplicacao(STACK *s);
+void multiplicacaoLongLong(STACK *s);
+void multiplicacaoLongDouble(STACK *s);
+void multiplicacaoLongChar(STACK *s);
+void multiplicacaoDoubleDouble(STACK *s);
+void multiplicacaoDoubleLong(STACK *s);
+void multiplicacaoDoubleChar(STACK *s);
+void multiplicacaoCharChar(STACK *s);
+void multiplicacaoCharDouble(STACK *s);
+void multiplicacaoCharLong (STACK *s);
 
 /**
  * @brief Função de divisão
@@ -111,8 +136,16 @@ void multiplicacao(STACK *s);
  * 
  * @param s 
  */
-
 void divisao(STACK *s);
+void divisaoLongLong(STACK *s);
+void divisaoLongDouble(STACK *s);
+void divisaoLongChar(STACK *s);
+void divisaoDoubleDouble(STACK *s);
+void divisaoDoubleLong(STACK *s);
+void divisaoDoubleChar(STACK *s);
+void divisaoCharChar(STACK *s);
+void divisaoCharDouble(STACK *s);
+void divisaoCharLong (STACK *s);
 
 /**
  * @brief Função de decrementação
@@ -223,7 +256,7 @@ void roda(STACK *s);
  * 
  * A função "nesimo" 
  */
-void nesimo (STACK *s, int* x, int n);
+void nesimo (STACK *s, ELEMENT* x, int n);
 
 /**
  * @brief Função de cópia
@@ -243,7 +276,9 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
-
+convToInt(STACK *s);
+convToDouble(STACK *s);
+convToChar(STACK *s);
+convToString(STACK *s);
 
 #endif
-

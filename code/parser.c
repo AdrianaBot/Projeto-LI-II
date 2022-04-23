@@ -17,6 +17,7 @@
 #include "dispatchtable.h"
 
 
+
 /**
  * @brief __readNewLine__ é a função de leitura do comando l - ler linha.
  * 
@@ -25,11 +26,12 @@
  */
 
 void readNewLine(STACK *s, DispatchFunc table[]) {
+    
     char line[BUFSIZ];
     char h[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        int val;
+        ELEMENT val;
         while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
             if (sscanf(h, "%d", &val) == 1)
                 push (s, val);
@@ -56,7 +58,7 @@ void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        int v;
+        ELEMENT v;
         char *h = strtok(line, " ");
 
         while (h != NULL) { 
