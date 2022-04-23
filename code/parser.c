@@ -9,11 +9,13 @@
  * 
  */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "stack.h"
 #include "dispatchtable.h"
+
 
 
 /**
@@ -28,7 +30,7 @@ void readNewLine(STACK *s, DispatchFunc table[]) {
     char h[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        tipo val;
+        int val;
         while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
             if (sscanf(h, "%d", &val) == 1)
                 push (s, val);

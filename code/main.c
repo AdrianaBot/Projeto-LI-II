@@ -9,16 +9,8 @@
  * 
  */
 
-<<<<<<< HEAD
 
 
-=======
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "stack.h"
-#include "dispatchtable.h"
->>>>>>> 79ea54c (something)
 #include "parser.h"
 
 /**

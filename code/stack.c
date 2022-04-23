@@ -1,10 +1,6 @@
 /**
  * @file stack.c
-<<<<<<< HEAD
  * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); Flávio Sousa (a100715@alunos.uminho.pt);
-=======
- * @author Adriana Frazão (you@domain.com); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt);
->>>>>>> 79ea54c (something)
  * @brief Este ficheiro irá correr a stack, incluindo as defenições do pop e do push.
  * @version 0.1
  * @date 2022-04-13
@@ -13,208 +9,12 @@
  * 
  */
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "stack.h"
-
-
-
-/**
- * @brief Definição da operação de soma (+).
- *  
- * @param s -> Pointer da Stack
- */
-void soma(STACK* s){
-    estrutura num1;    
-    estrutura num2;
-    OPS x,y;
-    
-    num1.tipo.x = pop(s,&x);  // have no fucking clue.  You have to change these
-    num2.tipo.x = pop(s,&y); 
-    
-    push(s ,num1 + num2); // double + double != Int + Int
-}
-
-/**
- * @brief Definição da operação de subtração (-).
- * 
- * @param s -> Pointer da Stack 
- */
-
-void subtracao(STACK* s){
-    estrutura num1;
-    estrutura num2;
-    estrutura t;
-    estrutura t2;
-    pop(s,&num1.tipo.x);
-    pop(s,&num2.tipo.x); 
-    push(s, num1.tipo.x - num2.tipo.x);
-}
-
-/**
- * @brief Definição da operação de multiplicação (*).
- * 
- * @param s -> Pointer da Stack
- */
-void multiplicacao(STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    
-    pop(s,&num1);
-    pop(s,&num2); 
-    push(s, num1.tipo.x * num2.tipo.x);
-}
-
-/**
- * @brief Definição da operação de divisão (/).
- * 
- * @param s -> Pointer da Stack
- */
-void divisao(STACK* s) {
-    estrutura num1; //x
-    estrutura num2; //y
-    
-    pop(s,&num1);
-    pop(s,&num2);
-    push(s,num2.tipo.x / num1.tipo.x);
-}
-
-/**
- * @brief Definição da operação de decrementação ( ( ).
- * A decrementação diminui o inteiro em 1.
- * 
- * @param s -> Pointer da Stack
- */
-void decrementacao (STACK* s) {
-    estrutura num1;
-    pop(s,&num1); 
-    push(s, --num1.tipo.x);
-}
-
-/**
- * @brief Definição da operação de incrementação ( ) ).
- * A incrementação aumenta em 1 valor.
- * 
- * @param s -> Pointer da Stack
- */
-void incrementacao (STACK* s) {
-    estrutura num1;
-    pop(s,&num1); 
-    push(s, ++num1.tipo.x);
-}
-
-/**
- * @brief Definição da operação de módulo (%).
- * O módulo é o resto da divisão inteira de x por y.
- * 
- * @param s -> Pointer da Stack
- */
-void modulo (STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    
-    pop(s,&num1);
-    pop(s,&num2); 
-    push(s, num2.tipo.x % num1.tipo.x);
-}
-
-/**
- * @brief Definição da operação de exponenciação (#).
- * 
- * @param s -> Pointer da Stack
- */
-void exponenciacao (STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    pop(s,&num1);
-    pop(s,&num2);
-    push(s, pow (num2.tipo.x, num1.tipo.x));
-}
-
-/**
- * @brief Definição da operação de "e" (bitwise) para inteiros (&).
- * 
- * @param s -> Pointer da Stack
- * 
- */
-void eBitwise (STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    pop(s,&num1);
-    pop(s,&num2);
-    push(s, num1.tipo.x & num2.tipo.x);
-}
-
-/**
- * @brief Definição da operação de "ou" (bitwise) para inteiros (|).
- * 
- * @param s -> Pointer da Stack
- */
-void ouBitwise (STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    pop(s,&num1);
-    pop(s,&num2); 
-    push(s, num1.tipo.x | num2.tipo.x);
-}
-
-/**
- * @brief Definição da operação de "xor" (bitwise) para inteiros (^).
- * O xor é o ou exclusivo.
- * 
- * @param s -> Pointer da Stack
- */
-void xorBitwise (STACK* s) {
-    estrutura num1;
-    estrutura num2;
-    pop(s,&num1);
-    pop(s,&num2);
-    push(s, num1.tipo.x ^ num2.tipo.x);
-}
-
-/**
- * @brief Definição da operação de "not" (bitwise) para inteiros (~).
- * 
- * @param s -> Pointer da Stack
- */
-void notBitwise (STACK* s) {
-    estrutura num1;
-    pop(s, &num1); 
-    push(s, ~num1.tipo.x);
-}
-
-
-
-void convToInt (STACK *s){
-    estrutura num1;
-    pop(s, &num1);
-    int l = num1.tipo.x;
-    push(s, l);
-}
-
-void convToDouble (STACK *s){
-    estrutura num1;
-    pop(s ,&num1);
-    double l = num1.tipo.x;
-    push (s, l);
-}
-
-void convToChar (STACK *s){
-    estrutura num1;
-    pop(s,&num1);
-    char l= num1.tipo.x;
-    push (s,l);
-}
-
-void convToString (STACK *s){
-    estrutura num1;
-    char str[10];
-    pop(s,&num1);
-    sprintf(str,"%d", num1.tipo.x);
-    push(s, &str);
-}
-
 
 STACK *newStack (){
     return (STACK *) malloc(sizeof(STACK));
@@ -226,11 +26,7 @@ STACK *newStack (){
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
 
-<<<<<<< HEAD
 int push (STACK *s, ELEMENT elem){
-=======
-int push (STACK *s,estrutura elem){
->>>>>>> 79ea54c (something)
     if (s->sp == BUFSIZ) return 1;
     s->sp++;
     s->stack[s->sp] = elem;
@@ -243,11 +39,7 @@ int push (STACK *s,estrutura elem){
 * @return faz pop a um número (caso dê erro, retorna 1) 
 */
 
-<<<<<<< HEAD
 int pop(STACK *s, ELEMENT *x){
-=======
-int pop(STACK *s, estrutura *x){
->>>>>>> 79ea54c (something)
     if (s->sp == 0) return 1;   
     *x = s->stack[s->sp];
     s->sp--;
@@ -255,7 +47,6 @@ int pop(STACK *s, estrutura *x){
 }
 
 
-<<<<<<< HEAD
 /**
  * @brief Definição da operação de soma (+).
  *  
@@ -263,111 +54,331 @@ int pop(STACK *s, estrutura *x){
 void soma(STACK* s) {
     ELEMENT x, y;
     pop(s,&x); 
-    pop(s,&y); 
-
-    if (x.type == LONG && y.type == LONG) {
-        ELEMENT final;
-        final.type = LONG;
-
-        final.info.typeLong = x.info.typeLong + y.info.typeLong;
-        push (s, final);
-    }
-    if (x.type == LONG && y.type == DOUBLE) {
-        ELEMENT final;
-        final.type = DOUBLE;
-
-        final.info.typeDouble = x.info.typeLong +  y.info.typeDouble;
-        push (s, final);
-    }
-    if (x.type == DOUBLE && y.type == LONG) {
-        ELEMENT final;
-        final.type = DOUBLE;
-
-        final.info.typeDouble = x.info.typeDouble + y.info.typeLong;
-        push (s, final);
-    }
-    if (x.type == DOUBLE && y.type == DOUBLE) {
-        ELEMENT final;
-        final.type = DOUBLE;
-
-        final.info.typeDouble = x.info.typeDouble + y.info.typeDouble;
-        push (s, final);
-    }
-    if (x.type == LONG && y.type == CHAR) {
-        ELEMENT final;
-        final.type = LONG;
-
-        final.info.typeLong = x.info.typeLong + y.info.typeChar;
-        push (s, final);
-    }
-    if (x.type == DOUBLE && y.type == CHAR) {
-        ELEMENT final;
-        final.type = DOUBLE;
-
-        final.info.typeDouble = x.info.typeDouble + y.info.typeChar;
-        push (s, final);
-    }
-    if (x.type == CHAR && y.type == LONG) {
-        ELEMENT final;
-        final.type = LONG;
-
-        final.info.typeLong = x.info.typeChar + y.info.typeLong;
-        push (s, final);
-    }
-    if (x.type == CHAR && y.type == DOUBLE) {
-        ELEMENT final;
-        final.type = DOUBLE;
-
-        final.info.typeDouble = x.info.typeChar + y.info.typeDouble;
-        push (s, final);
-    }
-    if (x.type == CHAR && y.type == CHAR) {
-        ELEMENT final;
-        final.type = LONG;
-
-        final.info.typeLong = x.info.typeChar + y.info.typeChar;
-        push (s, final);
-    }
-    /* string - double;
-    string - long;
-    long - string;
-    double - string;
-    char - string;
-    string - char;
-    char - char; */
-}
-
-/**
- * @brief Definição da operação de subtração (-). 
- */
-void subtracao(STACK* s) {
-    int x = 0;
-    int y = 0; 
-    pop(s,&x);
-    pop(s,&y); 
-    push(s, y - x);
-}
-
-/**
- * @brief Definição da operação de multiplicação (*).
- */
-void multiplicacao(STACK* s) {
-    int x = 0;
-    int y = 0;
-    pop(s,&x);
-    pop(s,&y); 
-    push(s, x * y);
-}
-
-/**
- * @brief Definição da operação de divisão (/).
- */
-void divisao(STACK* s) {
-    int x = 0;
-    int y = 0;
-    pop(s,&x);
     pop(s,&y);
-    push(s, y / x);
+}
+
+
+void somaLongLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);                 // HOW DOES ONE SIMPLY IMPLEMENT IFS?
+    pop (s,&y);
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong + y.info.typeLong;
+    push (s, final);
+    }
+
+void somaLongDouble(STACK *s){
+   ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeLong = x.info.typeLong + y.info.typeDouble;
+    push (s, final); 
+}
+
+void somaLongChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeLong + y.info.typeChar;
+    push (s,final);
+}
+
+void somaDoubleLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble + y.info.typeLong;
+    push (s,final);
+}
+
+void somaDoubleDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble + y.info.typeDouble;
+    push(s,final);
+} 
+
+void somaDoubleChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;              //Not sure;
+    final.info.typeChar = x.info.typeDouble + y.info.typeChar;
+}
+
+void somaCharLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar + y.info.typeLong;
+}
+
+void somaCharDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar + y.info.typeDouble;
+}
+
+void somaCharChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar + y.info.typeChar;
+}
+
+void subtracao(STACK *s){
+    ELEMENT x, y;
+    pop(s,&x); 
+    pop(s,&y);
+}
+
+void subtracaoLongLong(STACK *s) {
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong - y.info.typeLong;
+    push (s, final);
+    }
+
+void subtracaoLongDouble(STACK *s){
+   ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeLong = x.info.typeLong - y.info.typeDouble;
+    push (s, final); 
+}
+void subtracaoLongChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeLong - y.info.typeChar;
+    push (s,final);
+}
+void subtracaoDoubleLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble - y.info.typeLong;
+    push (s,final);
+}
+
+void subtracaoDoubleDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble - y.info.typeDouble;
+    push(s,final);
+} 
+
+void subtracaoDoubleChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;              //Not sure;
+    final.info.typeChar = x.info.typeDouble - y.info.typeChar;
+}
+
+void subtracaoCharLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar - y.info.typeLong;
+}
+
+void subtracaoCharDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar - y.info.typeDouble;
+}
+
+void subtracaoCharChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar - y.info.typeChar;
+}
+
+void multiplicacao(STACK *s){
+    ELEMENT x, y;
+    pop(s,&x); 
+    pop(s,&y);
+}
+
+void multiplicacaoLongLong(STACK *s) {
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong * y.info.typeLong;
+    push (s, final);
+    }
+
+void multiplicacaoLongDouble(STACK *s){
+   ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeLong = x.info.typeLong * y.info.typeDouble;
+    push (s, final); 
+}
+void multiplicaoLongChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeLong * y.info.typeChar;
+    push (s,final);
+}
+
+void multiplicacaoDoubleLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble * y.info.typeLong;
+    push (s,final);
+}
+
+void multiplicacaoDoubleDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeDouble * y.info.typeDouble;
+    push(s,final);
+} 
+
+void multiplicacaoDoubleChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;              //Not sure;
+    final.info.typeChar = x.info.typeDouble * y.info.typeChar;
+}
+
+void multiplicacaoCharLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar * y.info.typeLong;
+}
+
+void multiplicacaoCharDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar * y.info.typeDouble;
+}
+
+void multiplicacaoCharChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = x.info.typeChar * y.info.typeChar;
+}
+
+void divisao(STACK *s){
+    ELEMENT x, y;
+    pop(s,&x); 
+    pop(s,&y);
+}
+
+void divisaoLongLong(STACK *s) {
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = LONG;
+    final.info.typeLong = y.info.typeLong / x.info.typeLong;
+    push (s, final);
+    }
+
+void divisaoLongDouble(STACK *s){
+   ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeLong = y.info.typeDouble / x.info.typeLong;
+    push (s, final); 
+}
+
+void divisaoLongChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = y.info.typeChar / x.info.typeLong;
+    push (s,final);
+}
+
+void divisaoDoubleLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = y.info.typeLong / x.info.typeDouble;
+    push (s,final);
+}
+
+void divisaoDoubleDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = DOUBLE;
+    final.info.typeDouble = y.info.typeDouble / x.info.typeDouble;
+    push(s,final);
+} 
+
+void divisaoDoubleChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;              //Not sure;
+    final.info.typeChar = y.info.typeChar / x.info.typeDouble;
+}
+
+void divisaoCharLong(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = y.info.typeLong / x.info.typeChar;
+}
+
+void divisaoCharDouble(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = y.info.typeDouble / x.info.typeChar;
+}
+
+void divisaoCharChar(STACK *s){
+    ELEMENT x,y,final;
+    pop (s,&x);
+    pop (s,&y);
+    final.type = CHAR;
+    final.info.typeChar = y.info.typeChar / x.info.typeChar;
 }
 
 /**
@@ -375,9 +386,12 @@ void divisao(STACK* s) {
  * A decrementação diminui o inteiro em 1.
  */
 void decrementacao (STACK* s) {
-    int x = 0;
+    ELEMENT x,final;
+    x.type = LONG;
+    x.info.typeLong = 0;
+    final.info.typeLong = x.info.typeLong - 1;             //IDK if it's ok?
     pop(s,&x); 
-    push(s, --x);
+    push(s, final);
 }
 
 /**
@@ -385,9 +399,11 @@ void decrementacao (STACK* s) {
  * A incrementação aumenta o inteiro em 1.
  */
 void incrementacao (STACK* s) {
-    int x = 0;
-    pop(s,&x); 
-    push(s, ++x);
+    ELEMENT x,final;
+    x.type = LONG;                                      //IDK if it's Ok?
+    pop(s,&x);
+    final.info.typeLong = x.info.typeLong + 1;                    
+    push(s,final);
 }
 
 /**
@@ -395,11 +411,13 @@ void incrementacao (STACK* s) {
  * O módulo é o resto da divisão inteira de x por y.
  */
 void modulo (STACK* s) {
-    int x = 0; 
-    int y = 0;
+    ELEMENT x, y,final; 
+    x.type = LONG;
+    y.type = LONG;
     pop(s,&x);
     pop(s,&y); 
-    push(s, y % x);
+    final.info.typeLong = y.info.typeLong % x.info.typeLong;    //IDK IF ITS OK!
+    push(s,final);
 }
 
 /**
@@ -407,11 +425,13 @@ void modulo (STACK* s) {
  * 
  */
 void exponenciacao (STACK* s) {
-    int x = 0;
-    int y = 0;
+    ELEMENT x,y,final;
+    x.type = DOUBLE;
+    y.type = DOUBLE;
     pop(s,&x);
-    pop(s,&y);
-    push(s, pow (y, x));
+    pop(s,&y);         
+    final.info.typeDouble = pow (x.info.typeDouble,y.info.typeDouble);
+   push(s, final);
 }
 
 /**
@@ -419,11 +439,13 @@ void exponenciacao (STACK* s) {
  * 
  */
 void eBitwise (STACK* s) {
-    int x = 0;
-    int y = 0;
+    ELEMENT x,y,final;
+    x.type = LONG;
+    y.type = LONG;
     pop(s,&x);
     pop(s,&y);
-    push(s, x & y);
+    final.info.typeLong = x.info.typeLong; & y.info.typeLong;
+    push(s,final);
 }
 
 /**
@@ -431,11 +453,13 @@ void eBitwise (STACK* s) {
  * 
  */
 void ouBitwise (STACK* s) {
-    int x = 0;
-    int y = 0;
+    ELEMENT x,y,final;
+    x.type = LONG;
+    y.type = LONG;
     pop(s,&x);
     pop(s,&y); 
-    push(s, x | y);
+    final.info.typeLong = x.info.typeLong | y.info.typeLong;
+    push(s, final);
 }
 
 /**
@@ -443,11 +467,14 @@ void ouBitwise (STACK* s) {
  * O xor é o ou exclusivo.
  */
 void xorBitwise (STACK* s) {
-    int x = 0;
-    int y = 0;
+    ELEMENT x,y,final;
+    x.type = LONG;
+    y.type = LONG;
+     
     pop(s,&x);
     pop(s,&y);
-    push(s, x ^ y);
+    final.info.typeLong = x.info.typeLong ^ x.info.typeLong;
+    push(s,final);
 }
 
 /**
@@ -455,31 +482,50 @@ void xorBitwise (STACK* s) {
  * 
  */
 void notBitwise (STACK* s) {
-    int x = 0;
+    ELEMENT x,final;
+    x.type = LONG;
     pop(s, &x); 
-    push(s, ~x);
+    final.info.typeLong = ~ x.info.typeLong;
+    push(s, final);
 }
-=======
->>>>>>> 79ea54c (something)
 
 /**
  * @brief Definição da operação de duplicação (_).
  * 
  */
  
-void duplicacao (STACK* s) {
-    int x = 0;
+void duplicacao (STACK* s){
+    ELEMENT x;
+    if (x.type == LONG){
+    pop(s, &x);
+    push(s, x);                     //I think I can simplify this
+    push(s, x);}
+    if (x.type == CHAR){
+    pop(s, &x);
+    push(s, x);
+    push(s, x);  
+    }
+    if (x.type == DOUBLE){
     pop(s, &x);
     push(s, x);
     push(s, x);
+    }
+    if  (x.type == STRING){
+    pop(s, &x);
+    push(s, x);
+    push(s, x);
+    }
 }
-
+    //ELEMENT x;
+   // pop(s, &x);
+   // push(s, x);                     //I think I can simplify this, does only this work in the func?
+   // push(s, x);
 /**
  * @brief Definição da operação de troca de dois elementos no topo da stack (\).
  * 
  */
 void troca (STACK* s) {
-    int x = 0, y = 0;
+    ELEMENT x,y;
     pop(s, &x);
     pop(s, &y);
     push(s, x);
@@ -492,7 +538,7 @@ void troca (STACK* s) {
  *
  */
 void roda (STACK* s) {
-    int x = 0, y = 0, z = 0;
+    ELEMENT x,y,z;
     pop(s, &x);
     pop(s, &y);
     pop(s, &z);
@@ -505,8 +551,9 @@ void roda (STACK* s) {
  * @brief Definição de uma função auxiliar para a função "copia"
  * 
  */
-void nesimo (STACK *s, int* x, int n) {
-    *x = s->stack[n - 1];
+void nesimo(STACK *s, ELEMENT* x, int n) {
+    int *x;                                     //IDK IF THIS IS OK!
+    *x = s->stack[n - 1];   
 }
 
 /**
@@ -514,10 +561,11 @@ void nesimo (STACK *s, int* x, int n) {
  * 
  */
 void copia (STACK* s) {
-    int n = 0;
+    int n;                                              
     pop(s, &n);
-    int x;
-    nesimo(s, &x, n);
+    ELEMENT x;
+    x.type = LONG;              
+    nesimo(s, &x, n);           // IDK IF THIS IS OK!
     push(s, x);  
 }
 
@@ -529,4 +577,105 @@ void pop2(STACK *s) {
     int x = 0;
     pop(s, &x);
 }
+
+void convToInt(STACK *s){
+    ELEMENT x, converter;
+    pop(s,&x);
+    converter.type = LONG;
+    
+    
+    if (x.type == LONG){
+    converter.info.typeLong = x.info.typeLong; 
+    push (s,converter);
+    }
+
+    else if  (x.type == DOUBLE){
+    converter.info.typeLong=x.info.typeDouble;
+    push (s,converter);
+    }
+
+    else if (x.type == CHAR){
+    converter.info.typeLong=x.info.typeChar;
+    push(s,converter);
+    }
+
+    else if (x.type == STRING){
+
+//How does one do this...read the line and turn everything into long?
+    char str[BUFSIZ] = x.info.typeString;
+    for(int b = 0;str[b] != '\0';b++){
+
+    x.info.typeChar = str[b];    
+    converter.info.typeLong = x.info.typeChar;    
+
+    }
+ // THIS IS WRONG..I THINK!
+
+
+    push(s,converter);
+    }
+}
+
+void convToDouble(STACK *s){
+    ELEMENT x, converter;
+    pop(s,&x);
+    converter.type = DOUBLE;
+    
+    if (x.type == LONG){
+    converter.info.typeDouble = x.info.typeLong; 
+    push (s,converter);
+    }
+
+    else if  (x.type == DOUBLE){
+    converter.info.typeDouble = x.info.typeDouble;
+    push (s,converter);
+    }
+    else if (x.type == CHAR){
+    converter.info.typeDouble = x.info.typeChar;
+    push(s,converter);
+    }
+}
+
+void convToChar(STACK *s){
+    ELEMENT x, converter;
+    pop(s,&x);
+    converter.type = CHAR;
+
+    if (x.type == LONG){
+    converter.info.typeChar = x.info.typeLong; 
+    push (s,converter);
+    }
+
+    else if  (x.type == DOUBLE){
+    converter.info.typeChar = x.info.typeDouble;
+    push (s,converter); 
+    }
+    else if (x.type == CHAR){
+    converter.info.typeChar = x.info.typeChar;
+    push(s,converter);
+    }
+}
+
+
+void convToString(STACK *s){
+    ELEMENT x, converter;
+    pop(s,&x);
+    converter.type = STRING;
+
+    if (x.type == LONG){
+    sprintf(converter.info.typeString,"%li",x.info.typeDouble);
+    push (s,converter);
+    }
+
+    else if  (x.type == DOUBLE){
+    sprintf(converter.info.typeString,"%li",x.info.typeDouble);
+    push (s,converter);
+    }
+
+    else if (x.type == CHAR){
+    sprintf(converter.info.typeString,"%li",x.info.typeChar);
+    push(s,converter);
+    }   
+}
+
 

@@ -14,7 +14,6 @@
 
 #include <stdio.h>
 
-<<<<<<< HEAD
 /**
  * @brief Definição e conversão de tipos.
  * 
@@ -35,66 +34,33 @@ typedef struct {
         char typeString[BUFSIZ]; 
     } info;
 } ELEMENT;
-=======
-typedef enum ops{ INT, DOUBLE, CHAR, STR} OPS;
-
-typedef struct ESTRUTURA{    
-    OPS type;
-    union tipo{             
-        int x,y;
-        double d;               //Shit, it don't work so well...check this later
-        char c;
-        char str[10];
-    }tipo;
-}estrutura;
-
-
-
-
->>>>>>> 79ea54c (something)
 
 /**
 * @brief Definição da Stack
 */
 
-<<<<<<< HEAD
 typedef struct {
     ELEMENT stack[BUFSIZ];
-=======
-typedef struct{
-    estrutura stack[BUFSIZ];
->>>>>>> 79ea54c (something)
     int sp;
-}STACK;
-
+} STACK;
 
 /**
-* @brief Inicialização da Stack
+* @brief Utilização da Stack 
 */
 
 STACK *newStack();
 /**
  * @brief Função de push.
  * 
-<<<<<<< HEAD
  * A função "push" "empurra" um elemento para o fundo da stack.
  * 
-=======
- * A função de push vai **empurrar** qualquer que seja o valor que estamos a trabalhar
- * para dentro da stack
- * s
->>>>>>> 79ea54c (something)
  * @param s 
  * @param elem 
  * @return int 
  */
-int push(STACK *s, OPS elem);
 
-<<<<<<< HEAD
 int push(STACK *s, ELEMENT elem);
 
-=======
->>>>>>> 79ea54c (something)
 /**
  * @brief Função de pop
  * 
@@ -104,13 +70,9 @@ int push(STACK *s, ELEMENT elem);
  * @param x 
  * @return int
  */
-int pop(STACK *s, OPS *x);
 
-<<<<<<< HEAD
 int pop(STACK *s, ELEMENT* x);
 
-=======
->>>>>>> 79ea54c (something)
 /**
  * @brief Função da soma
  * 
@@ -119,8 +81,16 @@ int pop(STACK *s, ELEMENT* x);
  * @param s 
  */
 
-void soma(STACK *s);
-
+void soma (STACK *s);
+void somaLongLong(STACK *s);
+void somaLongDouble(STACK *s);
+void somaLongChar(STACK *s);
+void somaDoubleDouble(STACK *s);
+void somaDoubleLong(STACK *s);
+void somaDoubleChar(STACK *s);
+void somaCharChar(STACK *s);
+void somaCharDouble(STACK *s);
+void somaCharLong (STACK *s);
 /**
  * @brief Função de subtração
  * 
@@ -128,7 +98,17 @@ void soma(STACK *s);
  * 
  * @param s
  */
+
 void subtracao(STACK *s);
+void subtracaoLongLong(STACK *s);
+void subtracaoLongDouble(STACK *s);
+void subtracaoLongChar(STACK *s);
+void subtracaoDoubleDouble(STACK *s);
+void subtracaoDoubleLong(STACK *s);
+void subtracaoDoubleChar(STACK *s);
+void subtracaoCharChar(STACK *s);
+void subtracaoCharDouble(STACK *s);
+void subtracaoCharLong (STACK *s);;
 
 /**
  * @brief Função de multiplicação
@@ -139,6 +119,15 @@ void subtracao(STACK *s);
  */
 
 void multiplicacao(STACK *s);
+void multiplicacaoLongLong(STACK *s);
+void multiplicacaoLongDouble(STACK *s);
+void multiplicacaoLongChar(STACK *s);
+void multiplicacaoDoubleDouble(STACK *s);
+void multiplicacaoDoubleLong(STACK *s);
+void multiplicacaoDoubleChar(STACK *s);
+void multiplicacaoCharChar(STACK *s);
+void multiplicacaoCharDouble(STACK *s);
+void multiplicacaoCharLong (STACK *s);
 
 /**
  * @brief Função de divisão
@@ -147,9 +136,16 @@ void multiplicacao(STACK *s);
  * 
  * @param s 
  */
-
-
 void divisao(STACK *s);
+void divisaoLongLong(STACK *s);
+void divisaoLongDouble(STACK *s);
+void divisaoLongChar(STACK *s);
+void divisaoDoubleDouble(STACK *s);
+void divisaoDoubleLong(STACK *s);
+void divisaoDoubleChar(STACK *s);
+void divisaoCharChar(STACK *s);
+void divisaoCharDouble(STACK *s);
+void divisaoCharLong (STACK *s);
 
 /**
  * @brief Função de decrementação
@@ -168,6 +164,7 @@ void decrementacao(STACK *s);
  * 
  * @param s 
  */
+
 void incrementacao(STACK *s);
 
 /**
@@ -177,6 +174,7 @@ void incrementacao(STACK *s);
  * 
  * @param s 
  */
+
 void modulo(STACK *s);
 
 /**
@@ -195,6 +193,7 @@ void exponenciacao(STACK *s);
  * 
  * @param s 
  */
+
 void eBitwise(STACK *s);
 
 /**
@@ -225,7 +224,6 @@ void xorBitwise(STACK *s);
  */
 void notBitwise(STACK *s);
 
-<<<<<<< HEAD
 /**
  * @brief Função de duplicação
  * 
@@ -258,7 +256,7 @@ void roda(STACK *s);
  * 
  * A função "nesimo" 
  */
-void nesimo (STACK *s, int* x, int n);
+void nesimo (STACK *s, ELEMENT* x, int n);
 
 /**
  * @brief Função de cópia
@@ -278,21 +276,9 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
+convToInt(STACK *s);
+convToDouble(STACK *s);
+convToChar(STACK *s);
+convToString(STACK *s);
 
-
-=======
-
-
-
-void convToInt(STACK *s);
-
-void convToDouble(STACK *s);
-
-void convToChar (STACK *s);
-
-void convToString(STACK *s);
-
-
->>>>>>> 79ea54c (something)
 #endif
-
