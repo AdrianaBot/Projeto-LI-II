@@ -276,9 +276,40 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
-convToInt(STACK *s);
-convToDouble(STACK *s);
-convToChar(STACK *s);
-convToString(STACK *s);
+/**
+ * @brief Função convtoInt
+ * 
+ * A função converte um valor para Int
+ * 
+ * @param s 
+ */
+void convToInt(STACK *s);
+
+/**
+ * @brief Função convToDouble
+ * 
+ * A função converte um valor para Double
+ * 
+ * @param s 
+ */
+void convToDouble(STACK *s);
+
+/**
+ * @brief Função convToChar
+ * 
+ * A função converte um valor para Char
+ * 
+ * @param s 
+ */
+void convToChar(STACK *s);
+
+/**
+ * @brief Função convToString
+ * 
+ * A função converte um valor para String
+ * 
+ * @param s 
+ */
+void convToString(STACK *s);
 
 #endif
