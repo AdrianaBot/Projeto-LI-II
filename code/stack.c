@@ -703,7 +703,7 @@ void roda (STACK* s) {
  * @param s -> pointer da STACK 
  */
 void nesimo(STACK *s, ELEMENT* x, int n) {
-    int *x;                                     //IDK IF THIS IS OK!
+    ELEMENT *x;                                     //IDK IF THIS IS OK!
     *x = s->stack[n - 1];   
 }
 
