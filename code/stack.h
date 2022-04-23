@@ -108,7 +108,7 @@ void subtracaoDoubleLong(STACK *s);
 void subtracaoDoubleChar(STACK *s);
 void subtracaoCharChar(STACK *s);
 void subtracaoCharDouble(STACK *s);
-void subtracaoCharLong (STACK *s);;
+void subtracaoCharLong (STACK *s);
 
 /**
  * @brief Função de multiplicação
