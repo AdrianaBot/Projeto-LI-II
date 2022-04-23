@@ -660,30 +660,11 @@ void notBitwise (STACK* s) {
  
 void duplicacao (STACK* s){
     ELEMENT x;
-    if (x.type == LONG){
     pop(s, &x);
-    push(s, x);                     //I think I can simplify this
-    push(s, x);}
-    if (x.type == CHAR){
-    pop(s, &x);
+    push(s, x);                     
     push(s, x);
-    push(s, x);  
-    }
-    if (x.type == DOUBLE){
-    pop(s, &x);
-    push(s, x);
-    push(s, x);
-    }
-    if  (x.type == STRING){
-    pop(s, &x);
-    push(s, x);
-    push(s, x);
-    }
 }
-    //ELEMENT x;
-   // pop(s, &x);
-   // push(s, x);                     //I think I can simplify this, does only this work in the func?
-   // push(s, x);
+
 /**
  * @brief Definição da operação de troca de dois elementos no topo da stack (\).
  * 
