@@ -258,7 +258,7 @@ void roda(STACK *s);
  * 
  * A função "nesimo" 
  */
-void nesimo (STACK *s, ELEMENT* x, long n);
+void nesimo (STACK *s, ELEMENT* x, int n);
 
 
 /**
