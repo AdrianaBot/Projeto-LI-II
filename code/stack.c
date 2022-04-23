@@ -578,7 +578,15 @@ void pop2(STACK *s) {
     pop(s, &x);
 }
 
-void convToInt(STACK *s){
+/**
+ * @brief convToLong converte tipos para Long.
+ * 
+ * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
+ * elemento para Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void convToLong(STACK *s){
     ELEMENT x, converter;
     pop(s,&x);
     converter.type = LONG;
@@ -600,22 +608,25 @@ void convToInt(STACK *s){
     }
 
     else if (x.type == STRING){
-
-//How does one do this...read the line and turn everything into long?
-    char str[BUFSIZ] = x.info.typeString;
-    for(int b = 0;str[b] != '\0';b++){
-
-    x.info.typeChar = str[b];    
-    converter.info.typeLong = x.info.typeChar;    
-
-    }
- // THIS IS WRONG..I THINK!
-
+    char h[BUFSIZ] = x.info.typeString; 
+    long v;   
+    
+    
+    if (sscanf(h,"%ld",&v) == 1) return v;    
+    converter.info.typeLong = v; 
 
     push(s,converter);
     }
 }
 
+/**
+ * @brief convToDouble converte tipos para Double.
+ * 
+ * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
+ * elemento para Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void convToDouble(STACK *s){
     ELEMENT x, converter;
     pop(s,&x);
@@ -634,8 +645,27 @@ void convToDouble(STACK *s){
     converter.info.typeDouble = x.info.typeChar;
     push(s,converter);
     }
+
+    else if (x.type == STRING){
+    char h[BUFSIZ] = x.info.typeString; 
+    double v;   
+    
+    
+    if (sscanf(h,"%lf",&v) == 1) return v;    
+    converter.info.typeDouble = v; 
+
+    push(s,converter);
+    }
 }
 
+/**
+ * @brief convToChar converte tipos para Char.
+ * 
+ * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
+ * elemento para Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void convToChar(STACK *s){
     ELEMENT x, converter;
     pop(s,&x);
@@ -654,9 +684,27 @@ void convToChar(STACK *s){
     converter.info.typeChar = x.info.typeChar;
     push(s,converter);
     }
+
+    else if (x.type == STRING){
+    char h[BUFSIZ] = x.info.typeString; 
+    double v;   
+    
+    
+    if (sscanf(h,"%c",&v) == 1) return v;    
+    converter.info.typeChar = v; 
+
+    push(s,converter);
+    }
 }
 
-
+/**
+ * @brief convToString converte tipos para String.
+ * 
+ * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
+ * elemento para String.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void convToString(STACK *s){
     ELEMENT x, converter;
     pop(s,&x);
