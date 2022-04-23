@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "stack.h"
+#include "dispatchtable.h"
 
 STACK *newStack (){
     return (STACK *) malloc(sizeof(STACK));
@@ -56,10 +57,11 @@ int pop(STACK *s, ELEMENT *x){
  *  
  * @param s -> pointer da STACK 
  */
-void soma(STACK* s) {
+void soma(STACK* s, DispatchType somaArray[4][4]) {
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
+    somaArray[x.type][y.type](s,x,y);
 }
 
 /**
@@ -67,10 +69,8 @@ void soma(STACK* s) {
  * 
  * @param s -> pointer da STACK 
  */
-void somaLongLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);                 // HOW DOES ONE SIMPLY IMPLEMENT IFS?
-    pop (s,&y);
+void somaLongLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = LONG;
     final.info.typeLong = x.info.typeLong + y.info.typeLong;
     push (s, final);
@@ -81,12 +81,10 @@ void somaLongLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaLongDouble(STACK *s){
-   ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void somaLongDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeLong = x.info.typeLong + y.info.typeDouble;
+    final.info.typeDouble = x.info.typeLong + y.info.typeDouble;
     push (s, final); 
 }
 
@@ -95,12 +93,10 @@ void somaLongDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaLongChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeLong + y.info.typeChar;
+void somaLongChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong + y.info.typeChar;
     push (s,final);
 }
 
@@ -109,10 +105,8 @@ void somaLongChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaDoubleLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void somaDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble + y.info.typeLong;
     push (s,final);
@@ -123,10 +117,8 @@ void somaDoubleLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaDoubleDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void somaDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble + y.info.typeDouble;
     push(s,final);
@@ -137,12 +129,11 @@ void somaDoubleDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaDoubleChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;              //Not sure;
-    final.info.typeChar = x.info.typeDouble + y.info.typeChar;
+void somaDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;              
+    final.info.typeDouble = x.info.typeDouble + y.info.typeChar;
+    push(s, final);
 }
 
 /**
@@ -150,12 +141,11 @@ void somaDoubleChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaCharLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar + y.info.typeLong;
+void somaCharLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeChar + y.info.typeLong;
+    push(s, final);
 }
 
 /**
@@ -163,12 +153,11 @@ void somaCharLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaCharDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar + y.info.typeDouble;
+void somaCharDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeChar + y.info.typeDouble;
+    push(s,final);
 }
 
 /**
@@ -176,12 +165,11 @@ void somaCharDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void somaCharChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void somaCharChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = CHAR;
     final.info.typeChar = x.info.typeChar + y.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -189,10 +177,11 @@ void somaCharChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracao(STACK *s){
+void subtracao(STACK *s, DispatchType subtracaoArray[4][4]){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
+    subtracaoArray[x.type][y.type] (s,x,y);
 }
 
 /**
@@ -200,10 +189,8 @@ void subtracao(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoLongLong(STACK *s) {
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void subtracaoLongLong(STACK *s, ELEMENT x, ELEMENT y) {
+    ELEMENT final;
     final.type = LONG;
     final.info.typeLong = x.info.typeLong - y.info.typeLong;
     push (s, final);
@@ -214,12 +201,10 @@ void subtracaoLongLong(STACK *s) {
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoLongDouble(STACK *s){
-   ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void subtracaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeLong = x.info.typeLong - y.info.typeDouble;
+    final.info.typeDouble = x.info.typeLong - y.info.typeDouble;
     push (s, final); 
 }
 
@@ -228,12 +213,10 @@ void subtracaoLongDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoLongChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeLong - y.info.typeChar;
+void subtracaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong - y.info.typeChar;
     push (s,final);
 }
 
@@ -242,10 +225,8 @@ void subtracaoLongChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoDoubleLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void subtracaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble - y.info.typeLong;
     push (s,final);
@@ -256,10 +237,8 @@ void subtracaoDoubleLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoDoubleDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void subtracaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble - y.info.typeDouble;
     push(s,final);
@@ -270,12 +249,11 @@ void subtracaoDoubleDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoDoubleChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;              //Not sure;
-    final.info.typeChar = x.info.typeDouble - y.info.typeChar;
+void subtracaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;              
+    final.info.typeDouble = x.info.typeDouble - y.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -283,12 +261,11 @@ void subtracaoDoubleChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoCharLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar - y.info.typeLong;
+void subtracaoCharLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeChar - y.info.typeLong;
+    push(s,final);
 }
 
 /**
@@ -296,12 +273,11 @@ void subtracaoCharLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoCharDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar - y.info.typeDouble;
+void subtracaoCharDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeChar - y.info.typeDouble;
+    push(s,final);
 }
 
 /**
@@ -309,12 +285,11 @@ void subtracaoCharDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void subtracaoCharChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void subtracaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = CHAR;
     final.info.typeChar = x.info.typeChar - y.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -322,10 +297,11 @@ void subtracaoCharChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacao(STACK *s){
+void multiplicacao(STACK *s, DispatchType multiplicacaoArray[4][4]){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
+    multiplicacaoArray[x.type][y.type] (s,x,y);
 }
 
 /**
@@ -333,10 +309,8 @@ void multiplicacao(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoLongLong(STACK *s) {
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void multiplicacaoLongLong(STACK *s, ELEMENT x, ELEMENT y) {
+    ELEMENT final;
     final.type = LONG;
     final.info.typeLong = x.info.typeLong * y.info.typeLong;
     push (s, final);
@@ -347,12 +321,10 @@ void multiplicacaoLongLong(STACK *s) {
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoLongDouble(STACK *s){
-   ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void multiplicacaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeLong = x.info.typeLong * y.info.typeDouble;
+    final.info.typeDouble = x.info.typeLong * y.info.typeDouble;
     push (s, final); 
 }
 
@@ -361,12 +333,10 @@ void multiplicacaoLongDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicaoLongChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeLong * y.info.typeChar;
+void multiplicaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeLong * y.info.typeChar;
     push (s,final);
 }
 
@@ -375,10 +345,8 @@ void multiplicaoLongChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoDoubleLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void multiplicacaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble * y.info.typeLong;
     push (s,final);
@@ -389,10 +357,8 @@ void multiplicacaoDoubleLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoDoubleDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void multiplicacaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = x.info.typeDouble * y.info.typeDouble;
     push(s,final);
@@ -403,12 +369,11 @@ void multiplicacaoDoubleDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoDoubleChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;              //Not sure;
-    final.info.typeChar = x.info.typeDouble * y.info.typeChar;
+void multiplicacaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;            
+    final.info.typeDouble = x.info.typeDouble * y.info.typeChar;
+    push(s, final);
 }
 
 /**
@@ -416,12 +381,11 @@ void multiplicacaoDoubleChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoCharLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar * y.info.typeLong;
+void multiplicacaoCharLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = x.info.typeChar * y.info.typeLong;
+    push(s, final);
 }
 
 /**
@@ -429,12 +393,11 @@ void multiplicacaoCharLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoCharDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = x.info.typeChar * y.info.typeDouble;
+void multiplicacaoCharDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = x.info.typeChar * y.info.typeDouble;
+    push(s, final);
 }
 
 /**
@@ -442,12 +405,11 @@ void multiplicacaoCharDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacaoCharChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = CHAR;
     final.info.typeChar = x.info.typeChar * y.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -455,10 +417,11 @@ void multiplicacaoCharChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisao(STACK *s){
+void divisao(STACK *s, DispatchType divisaoArray[4][4]){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
+    divisaoArray[x.type][y.type] (s,x,y);
 }
 
 /**
@@ -466,10 +429,8 @@ void divisao(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoLongLong(STACK *s) {
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void divisaoLongLong(STACK *s, ELEMENT x, ELEMENT y) {
+    ELEMENT final;
     final.type = LONG;
     final.info.typeLong = y.info.typeLong / x.info.typeLong;
     push (s, final);
@@ -480,12 +441,10 @@ void divisaoLongLong(STACK *s) {
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoLongDouble(STACK *s){
-   ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void divisaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeLong = y.info.typeDouble / x.info.typeLong;
+    final.info.typeDouble = y.info.typeDouble / x.info.typeLong;
     push (s, final); 
 }
 
@@ -494,12 +453,10 @@ void divisaoLongDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoLongChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = y.info.typeChar / x.info.typeLong;
+void divisaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = y.info.typeChar / x.info.typeLong;
     push (s,final);
 }
 
@@ -508,10 +465,8 @@ void divisaoLongChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoDoubleLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void divisaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = y.info.typeLong / x.info.typeDouble;
     push (s,final);
@@ -522,10 +477,8 @@ void divisaoDoubleLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoDoubleDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void divisaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = DOUBLE;
     final.info.typeDouble = y.info.typeDouble / x.info.typeDouble;
     push(s,final);
@@ -536,12 +489,11 @@ void divisaoDoubleDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoDoubleChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;              //Not sure;
-    final.info.typeChar = y.info.typeChar / x.info.typeDouble;
+void divisaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;           
+    final.info.typeDouble = y.info.typeChar / x.info.typeDouble;
+    push(s,final);
 }
 
 /**
@@ -549,12 +501,11 @@ void divisaoDoubleChar(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoCharLong(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = y.info.typeLong / x.info.typeChar;
+void divisaoCharLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = y.info.typeLong / x.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -562,12 +513,11 @@ void divisaoCharLong(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoCharDouble(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
-    final.type = CHAR;
-    final.info.typeChar = y.info.typeDouble / x.info.typeChar;
+void divisaoCharDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = y.info.typeDouble / x.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -575,12 +525,11 @@ void divisaoCharDouble(STACK *s){
  * 
  * @param s -> pointer da STACK 
  */
-void divisaoCharChar(STACK *s){
-    ELEMENT x,y,final;
-    pop (s,&x);
-    pop (s,&y);
+void divisaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
     final.type = CHAR;
     final.info.typeChar = y.info.typeChar / x.info.typeChar;
+    push(s,final);
 }
 
 /**
@@ -931,7 +880,7 @@ void convToString(STACK *s){
     converter.type = STRING;
 
     if (x.type == LONG){
-    sprintf(converter.info.typeString,"%li",x.info.typeDouble);
+    sprintf(converter.info.typeString,"%li",x.info.typeLong);
     push (s,converter);
     }
 

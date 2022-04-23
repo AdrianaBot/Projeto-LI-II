@@ -13,7 +13,7 @@
 
 typedef void (*DispatchFunc) (STACK*);
 
-typedef void (DispatchType) (STACK, ELEMENT, ELEMENT);
+typedef void (*DispatchType) (STACK*, ELEMENT, ELEMENT);
 
 void setupTable(DispatchFunc table[]);
 

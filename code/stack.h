@@ -13,6 +13,7 @@
 #define STACK_H
 
 #include <stdio.h>
+#include "dispatchtable.h"
 
 /**
  * @brief Definição e conversão de tipos.
@@ -81,16 +82,16 @@ int pop(STACK *s, ELEMENT* x);
  * @param s 
  */
 
-void soma (STACK *s);
-void somaLongLong(STACK *s);
-void somaLongDouble(STACK *s);
-void somaLongChar(STACK *s);
-void somaDoubleDouble(STACK *s);
-void somaDoubleLong(STACK *s);
-void somaDoubleChar(STACK *s);
-void somaCharChar(STACK *s);
-void somaCharDouble(STACK *s);
-void somaCharLong (STACK *s);
+void soma (STACK *s, DispatchType somaArray[4][4]);
+void somaLongLong(STACK *s, ELEMENT x, ELEMENT y);
+void somaLongDouble(STACK *s, ELEMENT x, ELEMENT y);
+void somaLongChar(STACK *s, ELEMENT x, ELEMENT y);
+void somaDoubleDouble(STACK *s, ELEMENT x, ELEMENT y);
+void somaDoubleLong(STACK *s, ELEMENT x, ELEMENT y);
+void somaDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
+void somaCharChar(STACK *s, ELEMENT x, ELEMENT y);
+void somaCharDouble(STACK *s, ELEMENT x, ELEMENT y);
+void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
 /**
  * @brief Função de subtração
  * 
@@ -99,16 +100,16 @@ void somaCharLong (STACK *s);
  * @param s
  */
 
-void subtracao(STACK *s);
-void subtracaoLongLong(STACK *s);
-void subtracaoLongDouble(STACK *s);
-void subtracaoLongChar(STACK *s);
-void subtracaoDoubleDouble(STACK *s);
-void subtracaoDoubleLong(STACK *s);
-void subtracaoDoubleChar(STACK *s);
-void subtracaoCharChar(STACK *s);
-void subtracaoCharDouble(STACK *s);
-void subtracaoCharLong (STACK *s);
+void subtracao(STACK *s, DispatchType subtracaoArray[4][4]);
+void subtracaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoCharChar(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
+void subtracaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de multiplicação
@@ -118,16 +119,16 @@ void subtracaoCharLong (STACK *s);
  * @param s 
  */
 
-void multiplicacao(STACK *s);
-void multiplicacaoLongLong(STACK *s);
-void multiplicacaoLongDouble(STACK *s);
-void multiplicacaoLongChar(STACK *s);
-void multiplicacaoDoubleDouble(STACK *s);
-void multiplicacaoDoubleLong(STACK *s);
-void multiplicacaoDoubleChar(STACK *s);
-void multiplicacaoCharChar(STACK *s);
-void multiplicacaoCharDouble(STACK *s);
-void multiplicacaoCharLong (STACK *s);
+void multiplicacao(STACK *s, DispatchType multiplicacaoArray[4][4]);
+void multiplicacaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de divisão
@@ -136,16 +137,16 @@ void multiplicacaoCharLong (STACK *s);
  * 
  * @param s 
  */
-void divisao(STACK *s);
-void divisaoLongLong(STACK *s);
-void divisaoLongDouble(STACK *s);
-void divisaoLongChar(STACK *s);
-void divisaoDoubleDouble(STACK *s);
-void divisaoDoubleLong(STACK *s);
-void divisaoDoubleChar(STACK *s);
-void divisaoCharChar(STACK *s);
-void divisaoCharDouble(STACK *s);
-void divisaoCharLong (STACK *s);
+void divisao(STACK *s, DispatchType divisaoArray[4][4]);
+void divisaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoCharChar(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
+void divisaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de decrementação
