@@ -654,7 +654,7 @@ void eBitwise (STACK* s) {
     y.type = LONG;
     pop(s,&x);
     pop(s,&y);
-    final.info.typeLong = x.info.typeLong; & y.info.typeLong;
+    final.info.typeLong = x.info.typeLong & y.info.typeLong;
     push(s,final);
 }
 

@@ -61,7 +61,6 @@ void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
-        int v;
         char *h = strtok(line, " ");
 
         while (h != NULL) { 
