@@ -7,8 +7,10 @@
 #include <string.h>
 #include "stack.h"
 
-
-
+/**
+ * @brief Parser
+ * 
+ * @param s 
+ * @param table 
+ */
 void parser(STACK *s, DispatchFunc table[]);
-
-#endif

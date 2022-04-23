@@ -39,23 +39,27 @@ void readType (STACK* s, char h[]) {
 }
 
 
-/**
- * @brief readline function
- * 
- * Lê uma linha
- * 
- * @param s 
- */
-void readline(STACK *s) {
-    char line[BUFSIZ];
-    char h[BUFSIZ];
+void readType (STACK* s, char h[]) {
+    ELEMENT x;
+    long l; double d; char c;
 
-    if (fgets (line, BUFSIZ, stdin) != NULL) {
-        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
-            readType(s, h);
-        }
-        readType(s, h);
+    if (sscanf(h, "%ld", &l) == 1) {
+        x.type = LONG;
+        x.info.typeLong = l;
     }
+    else if (sscanf(h, "%lf", &d) == 1) {
+        x.type = DOUBLE;
+        x.info.typeDouble = d;
+    }
+    else if (sscanf(h, "%c", &c) == 1) {
+        x.type = CHAR;
+        x.info.typeChar = c;
+    }
+    else {
+        x.type = STRING;
+        x.info.typeString = h;
+    }
+    push(s, x);
 }
 
 /**
