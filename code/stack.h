@@ -276,9 +276,9 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
-convToInt(STACK *s);
-convToDouble(STACK *s);
-convToChar(STACK *s);
-convToString(STACK *s);
+void convToInt(STACK *s);
+void convToDouble(STACK *s);
+void convToChar(STACK *s);
+void convToString(STACK *s);
 
 #endif
