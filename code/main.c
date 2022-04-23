@@ -17,7 +17,7 @@
  * @brief A nossa Main 
  */
 int main() {
-    DispatchFunc table[127];
+    DispatchFunc table = calloc(127, sizeof(DispatchFunc));
     STACK *s = newStack();
     setupTable(table);
 

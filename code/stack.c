@@ -23,6 +23,8 @@ STACK *newStack (){
 /**
 * @brief Função Push
 *
+* @param s -> pointer da STACK 
+*
 * @return faz push a um número (caso dê erro, retorna 1) 
 */
 
@@ -35,6 +37,8 @@ int push (STACK *s, ELEMENT elem){
 
 /**
 * @brief Função Pop:
+*
+* @param s -> pointer da STACK 
 *
 * @return faz pop a um número (caso dê erro, retorna 1) 
 */
@@ -50,6 +54,7 @@ int pop(STACK *s, ELEMENT *x){
 /**
  * @brief Definição da operação de soma (+).
  *  
+ * @param s -> pointer da STACK 
  */
 void soma(STACK* s) {
     ELEMENT x, y;
@@ -57,7 +62,11 @@ void soma(STACK* s) {
     pop(s,&y);
 }
 
-
+/**
+ * @brief Definição da operação de soma (+) para Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaLongLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);                 // HOW DOES ONE SIMPLY IMPLEMENT IFS?
@@ -67,6 +76,11 @@ void somaLongLong(STACK *s){
     push (s, final);
     }
 
+/**
+ * @brief Definição da operação de soma (+) entre Long e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaLongDouble(STACK *s){
    ELEMENT x,y,final;
     pop (s,&x);
@@ -76,6 +90,11 @@ void somaLongDouble(STACK *s){
     push (s, final); 
 }
 
+/**
+ * @brief Definição da operação de soma (+) entre Lonbg e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaLongChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -85,6 +104,11 @@ void somaLongChar(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de soma (+) entre Double e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaDoubleLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -94,6 +118,11 @@ void somaDoubleLong(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de soma (+) entre Doubles.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaDoubleDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -103,6 +132,11 @@ void somaDoubleDouble(STACK *s){
     push(s,final);
 } 
 
+/**
+ * @brief Definição da operação de soma (+) entre Double e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaDoubleChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -111,6 +145,11 @@ void somaDoubleChar(STACK *s){
     final.info.typeChar = x.info.typeDouble + y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de soma (+) entre Char e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaCharLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -119,6 +158,11 @@ void somaCharLong(STACK *s){
     final.info.typeChar = x.info.typeChar + y.info.typeLong;
 }
 
+/**
+ * @brief Definição da operação de soma (+) entre Char e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaCharDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -127,6 +171,11 @@ void somaCharDouble(STACK *s){
     final.info.typeChar = x.info.typeChar + y.info.typeDouble;
 }
 
+/**
+ * @brief Definição da operação de soma (+) Entre Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void somaCharChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -135,12 +184,22 @@ void somaCharChar(STACK *s){
     final.info.typeChar = x.info.typeChar + y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de subtração (-).
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracao(STACK *s){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
 }
 
+/**
+ * @brief Definição da operação de subtração (-) entre Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoLongLong(STACK *s) {
     ELEMENT x,y,final;
     pop (s,&x);
@@ -150,6 +209,11 @@ void subtracaoLongLong(STACK *s) {
     push (s, final);
     }
 
+/**
+ * @brief Definição da operação de subtração (-) entre Long e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoLongDouble(STACK *s){
    ELEMENT x,y,final;
     pop (s,&x);
@@ -158,6 +222,12 @@ void subtracaoLongDouble(STACK *s){
     final.info.typeLong = x.info.typeLong - y.info.typeDouble;
     push (s, final); 
 }
+
+/**
+ * @brief Definição da operação de subtração (-) entre Long e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoLongChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -166,6 +236,12 @@ void subtracaoLongChar(STACK *s){
     final.info.typeChar = x.info.typeLong - y.info.typeChar;
     push (s,final);
 }
+
+/**
+ * @brief Definição da operação de subtração (-) entre Double e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoDoubleLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -175,6 +251,11 @@ void subtracaoDoubleLong(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de subtração (-) entre Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoDoubleDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -184,6 +265,11 @@ void subtracaoDoubleDouble(STACK *s){
     push(s,final);
 } 
 
+/**
+ * @brief Definição da operação de subtração (-) entre Double e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoDoubleChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -192,6 +278,11 @@ void subtracaoDoubleChar(STACK *s){
     final.info.typeChar = x.info.typeDouble - y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de subtração (-) Entre Char e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoCharLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -200,6 +291,11 @@ void subtracaoCharLong(STACK *s){
     final.info.typeChar = x.info.typeChar - y.info.typeLong;
 }
 
+/**
+ * @brief Definição da operação de subtração (-) entre Char e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoCharDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -208,6 +304,11 @@ void subtracaoCharDouble(STACK *s){
     final.info.typeChar = x.info.typeChar - y.info.typeDouble;
 }
 
+/**
+ * @brief Definição da operação de subtração (-) entre Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void subtracaoCharChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -216,12 +317,22 @@ void subtracaoCharChar(STACK *s){
     final.info.typeChar = x.info.typeChar - y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*).
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacao(STACK *s){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoLongLong(STACK *s) {
     ELEMENT x,y,final;
     pop (s,&x);
@@ -231,6 +342,11 @@ void multiplicacaoLongLong(STACK *s) {
     push (s, final);
     }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Long e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoLongDouble(STACK *s){
    ELEMENT x,y,final;
     pop (s,&x);
@@ -239,6 +355,12 @@ void multiplicacaoLongDouble(STACK *s){
     final.info.typeLong = x.info.typeLong * y.info.typeDouble;
     push (s, final); 
 }
+
+/**
+ * @brief Definição da operação de multiplicação(*) entre Long e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicaoLongChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -248,6 +370,11 @@ void multiplicaoLongChar(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Double e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoDoubleLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -257,6 +384,11 @@ void multiplicacaoDoubleLong(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoDoubleDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -266,6 +398,11 @@ void multiplicacaoDoubleDouble(STACK *s){
     push(s,final);
 } 
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Double e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoDoubleChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -274,6 +411,11 @@ void multiplicacaoDoubleChar(STACK *s){
     final.info.typeChar = x.info.typeDouble * y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Char e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoCharLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -282,6 +424,11 @@ void multiplicacaoCharLong(STACK *s){
     final.info.typeChar = x.info.typeChar * y.info.typeLong;
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Char e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoCharDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -290,6 +437,11 @@ void multiplicacaoCharDouble(STACK *s){
     final.info.typeChar = x.info.typeChar * y.info.typeDouble;
 }
 
+/**
+ * @brief Definição da operação de multiplicação(*) entre Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void multiplicacaoCharChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -298,12 +450,22 @@ void multiplicacaoCharChar(STACK *s){
     final.info.typeChar = x.info.typeChar * y.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de divisão(/).
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisao(STACK *s){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoLongLong(STACK *s) {
     ELEMENT x,y,final;
     pop (s,&x);
@@ -313,6 +475,11 @@ void divisaoLongLong(STACK *s) {
     push (s, final);
     }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Long e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoLongDouble(STACK *s){
    ELEMENT x,y,final;
     pop (s,&x);
@@ -322,6 +489,11 @@ void divisaoLongDouble(STACK *s){
     push (s, final); 
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Long e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoLongChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -331,6 +503,11 @@ void divisaoLongChar(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Double e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoDoubleLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -340,6 +517,11 @@ void divisaoDoubleLong(STACK *s){
     push (s,final);
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoDoubleDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -349,6 +531,11 @@ void divisaoDoubleDouble(STACK *s){
     push(s,final);
 } 
 
+/**
+ * @brief Definição da operação de divisão(/) entre Double e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoDoubleChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -357,6 +544,11 @@ void divisaoDoubleChar(STACK *s){
     final.info.typeChar = y.info.typeChar / x.info.typeDouble;
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Char e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoCharLong(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -365,6 +557,11 @@ void divisaoCharLong(STACK *s){
     final.info.typeChar = y.info.typeLong / x.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Char e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoCharDouble(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -373,6 +570,11 @@ void divisaoCharDouble(STACK *s){
     final.info.typeChar = y.info.typeDouble / x.info.typeChar;
 }
 
+/**
+ * @brief Definição da operação de divisão(/) entre Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
 void divisaoCharChar(STACK *s){
     ELEMENT x,y,final;
     pop (s,&x);
@@ -384,6 +586,8 @@ void divisaoCharChar(STACK *s){
 /**
  * @brief Definição da operação de decrementação ( ( ).
  * A decrementação diminui o inteiro em 1.
+ * 
+ * @param s -> pointer da STACK 
  */
 void decrementacao (STACK* s) {
     ELEMENT x,final;
@@ -397,6 +601,8 @@ void decrementacao (STACK* s) {
 /**
  * @brief Definição da operação de incrementação ( ) ).
  * A incrementação aumenta o inteiro em 1.
+ * 
+ * @param s -> pointer da STACK 
  */
 void incrementacao (STACK* s) {
     ELEMENT x,final;
@@ -409,6 +615,8 @@ void incrementacao (STACK* s) {
 /**
  * @brief Definição da operação de módulo (%).
  * O módulo é o resto da divisão inteira de x por y.
+ * 
+ * @param s -> pointer da STACK 
  */
 void modulo (STACK* s) {
     ELEMENT x, y,final; 
@@ -423,6 +631,7 @@ void modulo (STACK* s) {
 /**
  * @brief Definição da operação de exponenciação (#).
  * 
+ * @param s -> pointer da STACK 
  */
 void exponenciacao (STACK* s) {
     ELEMENT x,y,final;
@@ -437,6 +646,7 @@ void exponenciacao (STACK* s) {
 /**
  * @brief Definição da operação de "e" (bitwise) para inteiros (&).
  * 
+ * @param s -> pointer da STACK 
  */
 void eBitwise (STACK* s) {
     ELEMENT x,y,final;
@@ -451,6 +661,7 @@ void eBitwise (STACK* s) {
 /**
  * @brief Definição da operação de "ou" (bitwise) para inteiros (|).
  * 
+ * @param s -> pointer da STACK 
  */
 void ouBitwise (STACK* s) {
     ELEMENT x,y,final;
@@ -465,6 +676,8 @@ void ouBitwise (STACK* s) {
 /**
  * @brief Definição da operação de "xor" (bitwise) para inteiros (^).
  * O xor é o ou exclusivo.
+ * 
+ * @param s -> pointer da STACK 
  */
 void xorBitwise (STACK* s) {
     ELEMENT x,y,final;
@@ -480,6 +693,7 @@ void xorBitwise (STACK* s) {
 /**
  * @brief Definição da operação de "not" (bitwise) para inteiros (~).
  * 
+ * @param s -> pointer da STACK 
  */
 void notBitwise (STACK* s) {
     ELEMENT x,final;
@@ -492,6 +706,7 @@ void notBitwise (STACK* s) {
 /**
  * @brief Definição da operação de duplicação (_).
  * 
+ * @param s -> pointer da STACK 
  */
  
 void duplicacao (STACK* s){
@@ -523,6 +738,7 @@ void duplicacao (STACK* s){
 /**
  * @brief Definição da operação de troca de dois elementos no topo da stack (\).
  * 
+ * @param s -> pointer da STACK 
  */
 void troca (STACK* s) {
     ELEMENT x,y;
@@ -536,6 +752,7 @@ void troca (STACK* s) {
 /**
  * @brief Definição da operação de rodagem de três elementos no topo da stack (@).
  *
+ * @param s -> pointer da STACK 
  */
 void roda (STACK* s) {
     ELEMENT x,y,z;
@@ -550,6 +767,7 @@ void roda (STACK* s) {
 /**
  * @brief Definição de uma função auxiliar para a função "copia"
  * 
+ * @param s -> pointer da STACK 
  */
 void nesimo(STACK *s, ELEMENT* x, int n) {
     int *x;                                     //IDK IF THIS IS OK!
@@ -559,6 +777,7 @@ void nesimo(STACK *s, ELEMENT* x, int n) {
 /**
  * @brief Definição da operação de cópia do n-ésimo elemento para o topo da stack, no qual 0 é o topo da stack (n $, em que n é a posição na stack).
  * 
+ * @param s -> pointer da STACK 
  */
 void copia (STACK* s) {
     int n;                                              
@@ -572,6 +791,7 @@ void copia (STACK* s) {
 /**
  * @brief Definição da operação de pop sem salvaguarda de valores (;).
  *  
+ * @param s -> pointer da STACK 
  */
 void pop2(STACK *s) {
     int x = 0;

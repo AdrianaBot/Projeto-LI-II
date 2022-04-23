@@ -18,4 +18,10 @@
 #include "stack.h"
 #include "dispatchtable.h"
 
+/**
+ * @brief Ṕarser
+ * 
+ * @param s 
+ * @param table 
+ */
 void parser(STACK *s, DispatchFunc table[]);

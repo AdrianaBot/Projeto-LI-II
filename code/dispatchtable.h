@@ -13,6 +13,8 @@
 
 typedef void (*DispatchFunc) (STACK*);
 
+typedef void (DispatchType) (STACK, ELEMENT, ELEMENT);
+
 void setupTable(DispatchFunc table[]);
 
 int func(STACK *x, char c, DispatchFunc table[]);
