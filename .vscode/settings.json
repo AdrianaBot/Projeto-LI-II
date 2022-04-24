@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "dispatchtable.h": "c",
+        "stdio.h": "c"
+    }
+}

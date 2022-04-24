@@ -1,21 +1,8 @@
-/**
- * @file stack.c
- * @author Adriana Frazão (https://github.com/AdrianaBot); Eduardo José Gonçalves dos Reis (a100819@alunos.uminho.pt); Flávio Sousa (a100715@alunos.uminho.pt);
- * @brief Este ficheiro irá correr a stack, incluindo as defenições do pop e do push.
- * @version 0.1
- * @date 2022-04-13
- * 
- * @copyright Copyright (c) 2022
- * 
- */
-
-
-
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 #include "stack.h"
-#include "dispatchtable.h"
+
 
 STACK *newStack (){
     return (STACK *) malloc(sizeof(STACK));
@@ -333,7 +320,7 @@ void multiplicacaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
+void multiplicacaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = LONG;
     final.info.typeLong = x.info.typeLong * y.info.typeChar;
@@ -542,7 +529,7 @@ void decrementacao (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
     x.info.typeLong = 0;
-    final.info.typeLong = x.info.typeLong - 1;             //IDK if it's ok?
+    final.info.typeLong = x.info.typeLong - 1;           
     pop(s,&x); 
     push(s, final);
 }
@@ -555,7 +542,8 @@ void decrementacao (STACK* s) {
  */
 void incrementacao (STACK* s) {
     ELEMENT x,final;
-    x.type = LONG;                                      //IDK if it's Ok?
+    x.type = LONG;
+    x.info.typeLong = 0;                              
     pop(s,&x);
     final.info.typeLong = x.info.typeLong + 1;                    
     push(s,final);
@@ -570,7 +558,9 @@ void incrementacao (STACK* s) {
 void modulo (STACK* s) {
     ELEMENT x, y,final; 
     x.type = LONG;
+    x.info.typeLong = 0;
     y.type = LONG;
+    y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y); 
     final.info.typeLong = y.info.typeLong % x.info.typeLong;    //IDK IF ITS OK!
@@ -585,7 +575,9 @@ void modulo (STACK* s) {
 void exponenciacao (STACK* s) {
     ELEMENT x,y,final;
     x.type = DOUBLE;
+    x.info.typeDouble = 0;
     y.type = DOUBLE;
+    y.info.typeDouble = 0;
     pop(s,&x);
     pop(s,&y);         
     final.info.typeDouble = pow (x.info.typeDouble,y.info.typeDouble);
@@ -600,7 +592,9 @@ void exponenciacao (STACK* s) {
 void eBitwise (STACK* s) {
     ELEMENT x,y,final;
     x.type = LONG;
+    x.info.typeLong = 0;
     y.type = LONG;
+    y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y);
     final.info.typeLong = x.info.typeLong & y.info.typeLong;
@@ -615,7 +609,9 @@ void eBitwise (STACK* s) {
 void ouBitwise (STACK* s) {
     ELEMENT x,y,final;
     x.type = LONG;
+    x.info.typeLong = 0;
     y.type = LONG;
+    y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y); 
     final.info.typeLong = x.info.typeLong | y.info.typeLong;
@@ -647,6 +643,7 @@ void xorBitwise (STACK* s) {
 void notBitwise (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
+    x.info.typeLong = 0;
     pop(s, &x); 
     final.info.typeLong = ~ x.info.typeLong;
     push(s, final);
@@ -660,6 +657,7 @@ void notBitwise (STACK* s) {
  
 void duplicacao (STACK* s){
     ELEMENT x;
+    x.info.typeLong = 0;
     pop(s, &x);
     push(s, x);                     
     push(s, x);
@@ -672,6 +670,8 @@ void duplicacao (STACK* s){
  */
 void troca (STACK* s) {
     ELEMENT x,y;
+    x.info.typeLong = 0;
+    y.info.typeLong = 0;
     pop(s, &x);
     pop(s, &y);
     push(s, x);
@@ -686,6 +686,9 @@ void troca (STACK* s) {
  */
 void roda (STACK* s) {
     ELEMENT x,y,z;
+    x.info.typeLong = 0;
+    y.info.typeLong = 0;
+    z.info.typeLong = 0;
     pop(s, &x);
     pop(s, &y);
     pop(s, &z);
@@ -699,8 +702,7 @@ void roda (STACK* s) {
  * 
  * @param s -> pointer da STACK 
  */
-void nesimo(STACK *s, ELEMENT* x, int n) {
-    int *x;                                     //IDK IF THIS IS OK!
+void nesimo(STACK *s, ELEMENT* x, long n){                                      
     *x = s->stack[n - 1];   
 }
 
@@ -710,13 +712,16 @@ void nesimo(STACK *s, ELEMENT* x, int n) {
  * @param s -> pointer da STACK 
  */
 void copia (STACK* s) {
-    int n;                                              
+    ELEMENT n;
+    n.info.typeLong = 0;                                              
     pop(s, &n);
     ELEMENT x;
-    x.type = LONG;              
-    nesimo(s, &x, n);           // IDK IF THIS IS OK!
+    x.type = LONG;
+    x.info.typeLong = 0;              
+    nesimo(s, &x, n.info.typeLong);           // IDK IF THIS IS OK!
     push(s, x);  
 }
+
 
 /**
  * @brief Definição da operação de pop sem salvaguarda de valores (;).
@@ -724,7 +729,8 @@ void copia (STACK* s) {
  * @param s -> pointer da STACK 
  */
 void pop2(STACK *s) {
-    int x = 0;
+    ELEMENT x;
+    x.info.typeLong = 0;
     pop(s, &x);
 }
 
@@ -738,6 +744,8 @@ void pop2(STACK *s) {
  */
 void convToLong(STACK *s){
     ELEMENT x, converter;
+    x.type = LONG;
+    x.info.typeLong = 0;
     pop(s,&x);
     converter.type = LONG;
     
@@ -758,17 +766,15 @@ void convToLong(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ] = x.info.typeString; 
+    char h[BUFSIZ]; 
     long v;   
     
     
-    if (sscanf(h,"%ld",&v) == 1) return v;    
-    converter.info.typeLong = v; 
+    if (sscanf(h,"%ld",&v) == 1) converter.info.typeLong = v; 
 
     push(s,converter);
     }
 }
-
 /**
  * @brief convToDouble converte tipos para Double.
  * 
@@ -779,6 +785,8 @@ void convToLong(STACK *s){
  */
 void convToDouble(STACK *s){
     ELEMENT x, converter;
+    x.type = LONG;
+    x.info.typeLong = 0;
     pop(s,&x);
     converter.type = DOUBLE;
     
@@ -797,12 +805,11 @@ void convToDouble(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ] = x.info.typeString; 
+    char h[BUFSIZ]; 
     double v;   
     
     
-    if (sscanf(h,"%lf",&v) == 1) return v;    
-    converter.info.typeDouble = v; 
+    if (sscanf(h,"%lf",&v) == 1) converter.info.typeDouble = v; 
 
     push(s,converter);
     }
@@ -818,10 +825,13 @@ void convToDouble(STACK *s){
  */
 void convToChar(STACK *s){
     ELEMENT x, converter;
+    x.type = LONG;
+    x.info.typeLong = 0;
     pop(s,&x);
     converter.type = CHAR;
 
     if (x.type == LONG){
+
     converter.info.typeChar = x.info.typeLong; 
     push (s,converter);
     }
@@ -836,12 +846,11 @@ void convToChar(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ] = x.info.typeString; 
-    double v;   
+    char h[BUFSIZ]; 
+    long v;   
     
     
-    if (sscanf(h,"%c",&v) == 1) return v;    
-    converter.info.typeChar = v; 
+    if (sscanf(h,"%ld",&v) == 1)    converter.info.typeChar = v; 
 
     push(s,converter);
     }
@@ -857,23 +866,22 @@ void convToChar(STACK *s){
  */
 void convToString(STACK *s){
     ELEMENT x, converter;
+    x.type = LONG;
     pop(s,&x);
     converter.type = STRING;
 
     if (x.type == LONG){
-    sprintf(converter.info.typeString,"%li",x.info.typeLong);
+    sprintf(converter.info.typeString,"%ld",x.info.typeLong);
     push (s,converter);
     }
 
-    else if  (x.type == DOUBLE){
-    sprintf(converter.info.typeString,"%li",x.info.typeDouble);
+    else if (x.type == DOUBLE){
+    sprintf(converter.info.typeString,"%lf",x.info.typeDouble);
     push (s,converter);
     }
 
     else if (x.type == CHAR){
-    sprintf(converter.info.typeString,"%li",x.info.typeChar);
+    sprintf(converter.info.typeString,"%c",x.info.typeChar);
     push(s,converter);
     }   
 }
-
-
