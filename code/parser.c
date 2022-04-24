@@ -17,26 +17,25 @@
 
 
 void readType (STACK* s, char h[]) {
-    ELEMENT x;
-    long l; double d; char c;
-
-    if (sscanf(h, "%ld", &l) == 1) {
-        x.type = LONG;
-        x.info.typeLong = l;
+    char* endptr;
+    long num = strtol(h,&endptr,10);
+    if (*endptr == '\0') {
+        ELEMENT a = {
+            .type = LONG, 
+            .info.typeLong = num,
+        };
+        push(s,a);
+        return;
     }
-    else if (sscanf(h, "%lf", &d) == 1) {
-        x.type = DOUBLE;
-        x.info.typeDouble = d;
+    double b = strtod(h,&endptr);
+    if (*endptr == '\0') {
+        ELEMENT a = {
+            .type = DOUBLE, 
+            .info.typeDouble = b,
+        };
+        push(s,a);
+        return;
     }
-    else if (sscanf(h, "%c", &c) == 1) {
-        x.type = CHAR;
-        x.info.typeChar = c;
-    }
-    else {
-        x.type = STRING;
-        strcpy(x.info.typeString, h);
-    }
-    push(s, x);
 }
 
 
@@ -82,18 +81,23 @@ setupMulArray(funcType3);
 setupDivArray(funcType4);
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
+        for (int i = 0; line[i] != '\0'; i++) {
+            if (line[i] == '\n') {
+                line[i] = '\0';
+            }
+        }
         char *h = strtok(line, " ");
 
         while (h != NULL) {
-            if(h[0] == '+') soma(s, funcType1);
-            else if (h[0] == '-') subtracao(s, funcType2);
-            else if (h[0] == '*') multiplicacao(s, funcType3);
-            else if (h[0] == '/') divisao(s, funcType4);
-            else if (h[0] == 'l') readline(s);
+            if(h[0] == '+' && h[1] == '\0') soma(s, funcType1);
+            else if (h[0] == '-' && h[1] == '\0') subtracao(s, funcType2);
+            else if (h[0] == '*' && h[1] == '\0') multiplicacao(s, funcType3);
+            else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
+            else if (h[0] == 'l' && h[1] == '\0') readline(s);
             else if (func(s, h[0], table) == 0);
                 else
                     readType (s, h);
-
+            psd(s);
             h = strtok(NULL, " ");
         }
     }

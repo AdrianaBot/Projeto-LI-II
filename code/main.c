@@ -17,24 +17,34 @@
 #include "stack.h"
 #include "parser.h"
 
+/**
+ * @brief 
+ * 
+ */
+void woopsie (STACK *s) {
+    fprintf(stderr,"kay ");
+    psd(s);
+    abort();
+}
 
 /**
  * @brief A nossa Main 
  */
 int main() {
-    DispatchFunc table[127];
+    DispatchFunc table[127] = {0}; 
     STACK *s = newStack();
     setupTable(table);
 
     parser(s, table);
-    for (int i = 1; i <= s->sp; i++) {
+    for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
 
         if (x.type == LONG) printf ("%ld", x.info.typeLong);
-        else if (x.type == DOUBLE) printf ("%lf", x.info.typeDouble);
+        else if (x.type == DOUBLE) printf ("%.1lf", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
         else if (x.type == STRING) printf ("%s", x.info.typeString); 
     }
     putchar('\n'); 
+    free(s);
     return 0;
 }

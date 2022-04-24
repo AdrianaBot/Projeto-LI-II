@@ -5,7 +5,7 @@
 
 
 STACK *newStack (){
-    return (STACK *) malloc(sizeof(STACK));
+    return calloc(sizeof(STACK),1);
 }
 
 /**
@@ -17,9 +17,9 @@ STACK *newStack (){
 */
 
 int push (STACK *s, ELEMENT elem){
-    if (s->sp == BUFSIZ) return 1;
-    s->sp++;
+    if (s->sp == BUFSIZ) abort();
     s->stack[s->sp] = elem;
+    s->sp++;
     return 0;
 }
 
@@ -32,9 +32,9 @@ int push (STACK *s, ELEMENT elem){
 */
 
 int pop(STACK *s, ELEMENT *x){
-    if (s->sp == 0) return 1;   
+    if (s->sp == 0) abort();    
+    s->sp--;   
     *x = s->stack[s->sp];
-    s->sp--;
     return 0;
 }
 
@@ -168,7 +168,7 @@ void subtracao(STACK *s, DispatchType subtracaoArray[4][4]){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
-    subtracaoArray[x.type][y.type] (s,x,y);
+    subtracaoArray[y.type][x.type] (s,y,x);
 }
 
 /**
@@ -408,7 +408,7 @@ void divisao(STACK *s, DispatchType divisaoArray[4][4]){
     ELEMENT x, y;
     pop(s,&x); 
     pop(s,&y);
-    divisaoArray[x.type][y.type] (s,x,y);
+    divisaoArray[y.type][x.type] (s,y,x);
 }
 
 /**
@@ -884,4 +884,16 @@ void convToString(STACK *s){
     sprintf(converter.info.typeString,"%c",x.info.typeChar);
     push(s,converter);
     }   
+}
+
+void psd (STACK *s) {
+     for (int i = 0; i < s->sp; i++) {
+        ELEMENT x = s->stack[i];
+
+        if (x.type == LONG) printf ("l: %ld ", x.info.typeLong);
+        else if (x.type == DOUBLE) printf ("f: %.1lf ", x.info.typeDouble);
+        else if (x.type == CHAR) printf ("c: %c ", x.info.typeChar);
+        else if (x.type == STRING) printf ("s: '%s' ", x.info.typeString); 
+    }
+    putchar('\n'); 
 }

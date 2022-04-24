@@ -326,4 +326,6 @@ void setupMulArray(DispatchType funcType[4][4]);
 
 void setupDivArray(DispatchType funcType[4][4]);
 
+void psd(STACK *s);
+
 #endif 
