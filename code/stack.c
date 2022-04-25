@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "stack.h"
+#include <string.h>
 
 /*Indice da Stack
 line 14 -> 51, STACK
@@ -977,3 +978,19 @@ void psd (STACK *s) {
     putchar('\n'); 
 }
 
+void igual (STACK *s) {
+ELEMENT x, y;
+ELEMENT f, v;
+f.info.typeLong = 0;
+v.info.typeLong = 1;
+
+pop(s,&x);
+pop(s,&y);
+
+if(x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) push(s,v);
+else if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) push(s,v);
+else if(x.type == LONG &&   y.type == LONG && x.info.typeLong == y.info.typeLong) push(s,v);
+else if(x.type == STRING && y.type == STRING && x.info.typeString == y.info.typeString) push(s,v);
+else push(s,f); 
+
+}
