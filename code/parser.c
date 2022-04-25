@@ -16,6 +16,7 @@
 #include "stack.h"
 
 
+<<<<<<< HEAD
 void readType (STACK* s, char h[]) {
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -39,6 +40,8 @@ void readType (STACK* s, char h[]) {
 }
 
 
+=======
+>>>>>>> 115fd54 (Hello)
 void readType (STACK* s, char h[]) {
     ELEMENT x;
     long l; double d; char c;
@@ -57,7 +60,7 @@ void readType (STACK* s, char h[]) {
     }
     else {
         x.type = STRING;
-        x.info.typeString = h;
+        strcpy(x.info.typeString , h);
     }
     push(s, x);
 }

@@ -702,7 +702,7 @@ void roda (STACK* s) {
  * 
  * @param s -> pointer da STACK 
  */
-void nesimo(STACK *s, ELEMENT *x, int n) {
+void nesimo(STACK *s, ELEMENT* x, int n) {
     int *x;                                     //IDK IF THIS IS OK!
     *x = s->stack[n - 1];   
 }
@@ -835,7 +835,7 @@ void convToChar(STACK *s){
 
     converter.info.typeChar = x.info.typeLong; 
     push (s,converter);
-    }   
+    }
 
     else if  (x.type == DOUBLE){
     converter.info.typeChar = x.info.typeDouble;
@@ -887,6 +887,7 @@ void convToString(STACK *s){
     }   
 }
 
+<<<<<<< HEAD
 void psd (STACK *s) {
      for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
@@ -898,3 +899,5 @@ void psd (STACK *s) {
     }
     putchar('\n'); 
 }
+=======
+>>>>>>> 115fd54 (Hello)

@@ -33,21 +33,28 @@ void setupTable(DispatchFunc table[]){
     table['f'] = convToDouble;
     table['c'] = convToChar;
     table['s'] = convToString;
+<<<<<<< HEAD
     table['_'] = duplicacao;
     table[';'] = pop2;
     table['\\'] = troca;
     table['@'] = roda;
     table['$'] = copia;
+=======
+>>>>>>> 115fd54 (Hello)
 
 }
 
 
+<<<<<<< HEAD
 /**
  * @brief Setup Array para a Soma
  * 
  * @param funcType 
  */
 void setupSumArray(DispatchType funcType[4][4]) {
+=======
+void setupArray(DispatchFunc funcType[4][4]) {
+>>>>>>> 115fd54 (Hello)
     funcType[LONG][LONG] = somaLongLong;
     funcType[LONG][DOUBLE] = somaLongDouble;
     funcType[LONG][CHAR] = somaLongChar;
@@ -59,12 +66,16 @@ void setupSumArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = somaCharChar;
 }
 
+<<<<<<< HEAD
 /**
  * @brief Setup Array para a Subtração
  * 
  * @param funcType 
  */
 void setupSubArray(DispatchType funcType[4][4]) {
+=======
+void setupArray(DispatchFunc funcType[4][4]) {
+>>>>>>> 115fd54 (Hello)
     funcType[LONG][LONG] = subtracaoLongLong;
     funcType[LONG][DOUBLE] = subtracaoLongDouble;
     funcType[LONG][CHAR] = subtracaoLongChar;
@@ -76,12 +87,16 @@ void setupSubArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = subtracaoCharChar;
 }
 
+<<<<<<< HEAD
 /**
  * @brief Setup Array para a Multiplicação
  * 
  * @param funcType 
  */
 void setupMulArray(DispatchType funcType[4][4]) {
+=======
+void setupArray(DispatchFunc funcType[4][4]) {
+>>>>>>> 115fd54 (Hello)
     funcType[LONG][LONG] = multiplicacaoLongLong;
     funcType[LONG][DOUBLE] = multiplicacaoLongDouble;
     funcType[LONG][CHAR] = multiplicacaoLongChar;
@@ -93,12 +108,16 @@ void setupMulArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = multiplicacaoCharChar;
 }
 
+<<<<<<< HEAD
 /**
  * @brief Setup Array para a Divisão
  * 
  * @param funcType 
  */
 void setupDivArray(DispatchType funcType[4][4]) {
+=======
+void setupArray(DispatchFunc funcType[4][4]) {
+>>>>>>> 115fd54 (Hello)
     funcType[LONG][LONG] = divisaoLongLong;
     funcType[LONG][DOUBLE] = divisaoLongDouble;
     funcType[LONG][CHAR] = divisaoLongChar;
@@ -110,8 +129,13 @@ void setupDivArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = divisaoCharChar;
 }
 
+<<<<<<< HEAD
 int func(STACK *x, unsigned char c, DispatchFunc table[]) {
     if(c > 126 || table[c] == 0){
+=======
+int func(STACK *x, char c, DispatchFunc table[]) {
+    if(c > 126 /*|| table[c] == NULL*/){
+>>>>>>> 115fd54 (Hello)
         return 1;
     }
 
