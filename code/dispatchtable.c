@@ -49,6 +49,7 @@ void setupTable(DispatchFunc table[]){
     table['X'] = pushX;
     table['Y'] = pushY;
     table['Z'] = pushZ;
+    table['='] = igual;
 }
 /**
  * @brief Setup Array para a Soma

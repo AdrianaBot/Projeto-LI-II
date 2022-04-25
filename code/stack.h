@@ -330,6 +330,19 @@ void convToChar(STACK *s);
 void convToString(STACK *s);
 
 
+
+
+/**
+ * @brief Função Igual
+ * 
+ * A função compara ambos os valores e returna 0 caso sejam diferentes e != 0 caso sejam iguais 
+ * 
+ * @param s 
+ */
+void igual(STACK *s);
+
+
+
 void setupSumArray(DispatchType funcType[4][4]);
 
 void setupSubArray(DispatchType funcType[4][4]);
@@ -339,5 +352,7 @@ void setupMulArray(DispatchType funcType[4][4]);
 void setupDivArray(DispatchType funcType[4][4]);
 
 void psd(STACK *s);
+
+
 
 #endif 
