@@ -575,7 +575,7 @@ void modulo (STACK* s) {
     y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y); 
-    final.info.typeLong = y.info.typeLong % x.info.typeLong;    //IDK IF ITS OK!
+    final.info.typeLong = y.info.typeLong % x.info.typeLong;    
     push(s,final);
 }
 
@@ -770,7 +770,7 @@ void pushD (STACK *s){
     push(s,x);
 }
 
-void pushE (STACK *s){
+void owushE (STACK *s){
     ELEMENT x;
     x.info.typeLong = 14;
     push(s,x);

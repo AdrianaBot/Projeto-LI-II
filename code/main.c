@@ -17,15 +17,6 @@
 #include "stack.h"
 #include "parser.h"
 
-/**
- * @brief 
- * 
- */
-void woopsie (STACK *s) {
-    fprintf(stderr,"kay ");
-    psd(s);
-    abort();
-}
 
 /**
  * @brief A nossa Main 
