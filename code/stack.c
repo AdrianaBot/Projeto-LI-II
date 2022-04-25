@@ -3,6 +3,15 @@
 #include <math.h>
 #include "stack.h"
 
+/*Indice da Stack
+line 14 -> 51, STACK
+lin 52 -> 752 ,MATH OPS
+line 753 -> End, conversões.
+*/
+
+
+
+// STACK
 
 STACK *newStack (){
     return calloc(sizeof(STACK),1);
@@ -38,6 +47,9 @@ int pop(STACK *s, ELEMENT *x){
     return 0;
 }
 
+
+
+// MATHS
 
 /**
  * @brief Definição da operação de soma (+).
@@ -734,6 +746,75 @@ void pop2(STACK *s) {
     pop(s, &x);
 }
 
+void pushA (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 10;
+    push(s,x);
+}
+
+void pushB (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 11;
+    push(s,x);
+}
+
+void pushC (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 12;
+    push(s,x);
+}
+
+void pushD (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 13;
+    push(s,x);
+}
+
+void pushE (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 14;
+    push(s,x);
+}
+
+void pushF (STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 15;
+    push(s,x);
+}
+
+void pushN (STACK *s){
+    ELEMENT x;
+    x.info.typeChar = '\n';
+    push(s,x);
+}
+
+void pushS (STACK *s){
+    ELEMENT x;
+    x.info.typeChar = ' ';
+    push(s,x);
+}
+
+void pushX(STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 0;
+    push (s,x);
+}
+
+void pushY(STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 1;
+    push(s,x);
+}
+
+void pushZ(STACK *s){
+    ELEMENT x;
+    x.info.typeLong = 2;
+    push(s,x);
+}
+
+//CONVERSÕES
+
+
 /**
  * @brief convToLong converte tipos para Long.
  * 
@@ -766,10 +847,8 @@ void convToLong(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ]; 
     long v;   
-    
-    
+    char h[BUFSIZ];
     if (sscanf(h,"%ld",&v) == 1) converter.info.typeLong = v; 
 
     push(s,converter);
@@ -897,3 +976,4 @@ void psd (STACK *s) {
     }
     putchar('\n'); 
 }
+

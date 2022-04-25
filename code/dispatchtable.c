@@ -38,10 +38,18 @@ void setupTable(DispatchFunc table[]){
     table['\\'] = troca;
     table['@'] = roda;
     table['$'] = copia;
-
+    table['A'] = pushA;
+    table['B'] = pushB;
+    table['C'] = pushC;
+    table['D'] = pushD;
+    table['E'] = pushE;
+    table['F'] = pushF;
+    table['N'] = pushN;
+    table['S'] = pushS;
+    table['X'] = pushX;
+    table['Y'] = pushY;
+    table['Z'] = pushZ;
 }
-
-
 /**
  * @brief Setup Array para a Soma
  * 

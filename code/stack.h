@@ -279,6 +279,18 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
+void pushA (STACK *s);
+void pushB (STACK *s);
+void pushC (STACK *s);
+void pushD (STACK *s);
+void pushE (STACK *s);
+void pushF (STACK *s);
+void pushN (STACK *s);
+void pushS (STACK *s);
+void pushX (STACK *s);
+void pushY (STACK *s);
+void pushZ (STACK *s);
+
 /**
  * @brief Função convtoLong
  * 
