@@ -16,7 +16,6 @@
 #include "stack.h"
 
 
-<<<<<<< HEAD
 void readType (STACK* s, char h[]) {
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -40,29 +39,23 @@ void readType (STACK* s, char h[]) {
 }
 
 
-=======
->>>>>>> 115fd54 (Hello)
-void readType (STACK* s, char h[]) {
-    ELEMENT x;
-    long l; double d; char c;
+/**
+ * @brief readline function
+ * 
+ * Lê uma linha
+ * 
+ * @param s 
+ */
+void readline(STACK *s) {
+    char line[BUFSIZ];
+    char h[BUFSIZ];
 
-    if (sscanf(h, "%ld", &l) == 1) {
-        x.type = LONG;
-        x.info.typeLong = l;
+    if (fgets (line, BUFSIZ, stdin) != NULL) {
+        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
+            readType(s, h);
+        }
+        readType(s, h);
     }
-    else if (sscanf(h, "%lf", &d) == 1) {
-        x.type = DOUBLE;
-        x.info.typeDouble = d;
-    }
-    else if (sscanf(h, "%c", &c) == 1) {
-        x.type = CHAR;
-        x.info.typeChar = c;
-    }
-    else {
-        x.type = STRING;
-        strcpy(x.info.typeString , h);
-    }
-    push(s, x);
 }
 
 /**
@@ -109,4 +102,3 @@ setupDivArray(funcType4);
         }
     }
 }
-

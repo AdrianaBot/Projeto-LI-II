@@ -101,7 +101,6 @@ void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
  * @param s
  */
 
-<<<<<<< HEAD
 void subtracao(STACK *s, DispatchType subtracaoArray[4][4]);
 void subtracaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
@@ -112,18 +111,6 @@ void subtracaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoCharChar(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
-=======
-void subtracao(STACK *s);
-void subtracaoLongLong(STACK *s);
-void subtracaoLongDouble(STACK *s);
-void subtracaoLongChar(STACK *s);
-void subtracaoDoubleDouble(STACK *s);
-void subtracaoDoubleLong(STACK *s);
-void subtracaoDoubleChar(STACK *s);
-void subtracaoCharChar(STACK *s);
-void subtracaoCharDouble(STACK *s);
-void subtracaoCharLong (STACK *s);;
->>>>>>> 115fd54 (Hello)
 
 /**
  * @brief Função de multiplicação
@@ -271,7 +258,7 @@ void roda(STACK *s);
  * 
  * A função "nesimo" 
  */
-void nesimo (STACK *s, ELEMENT* x, int n);
+void nesimo (STACK *s, ELEMENT* x, long n);
 
 
 /**
@@ -292,10 +279,32 @@ void copia(STACK *s);
  */
 void pop2(STACK *s);
 
+/**
+ * @brief Função convtoLong
+ * 
+ * A função converte um valor para Long
+ * 
+ * @param s 
+ */
 void convToLong(STACK *s);
+
+/**
+ * @brief Função convToDouble
+ * 
+ * A função converte um valor para Double
+ * 
+ * @param s 
+ */
 void convToDouble(STACK *s);
+
+/**
+ * @brief Função convToChar
+ * 
+ * A função converte um valor para Char
+ * 
+ * @param s 
+ */
 void convToChar(STACK *s);
-<<<<<<< HEAD
 
 
 
@@ -306,8 +315,6 @@ void convToChar(STACK *s);
  * 
  * @param s 
  */
-=======
->>>>>>> 115fd54 (Hello)
 void convToString(STACK *s);
 
 
