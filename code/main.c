@@ -31,7 +31,7 @@ int main() {
         ELEMENT x = s->stack[i];
 
         if (x.type == LONG) printf ("%ld", x.info.typeLong);
-        else if (x.type == DOUBLE) printf ("%.1lf", x.info.typeDouble);
+        else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
         else if (x.type == STRING) printf ("%s", x.info.typeString); 
     }

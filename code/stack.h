@@ -150,6 +150,24 @@ void divisaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
 void divisaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
 
 /**
+ * @brief Função de exponenciação
+ * 
+ * A função "exponenciacao" dá a exponencial de um valor.
+ * 
+ * @param s 
+ */
+void exponenciacao(STACK *s, DispatchType divisaoArray[4][4]);
+void expLongLong(STACK *s, ELEMENT x, ELEMENT y);
+void expLongDouble(STACK *s, ELEMENT x, ELEMENT y);
+void expLongChar(STACK *s, ELEMENT x, ELEMENT y);
+void expDoubleDouble(STACK *s, ELEMENT x, ELEMENT y);
+void expDoubleLong(STACK *s, ELEMENT x, ELEMENT y);
+void expDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
+void expCharChar(STACK *s, ELEMENT x, ELEMENT y);
+void expCharDouble(STACK *s, ELEMENT x, ELEMENT y);
+void expCharLong (STACK *s, ELEMENT x, ELEMENT y);
+
+/**
  * @brief Função de decrementação
  *
  * A função "decrementacao" decrementa um número em um valor. 
@@ -178,15 +196,6 @@ void incrementacao(STACK *s);
  */
 
 void modulo(STACK *s);
-
-/**
- * @brief Função de exponenciação
- * 
- * A função "exponenciacao" dá a exponencial de um valor.
- * 
- * @param s 
- */
-void exponenciacao(STACK *s);
 
 /**
  * @brief Função lógica "e" - conjunção
@@ -362,6 +371,8 @@ void setupSubArray(DispatchType funcType[4][4]);
 void setupMulArray(DispatchType funcType[4][4]);
 
 void setupDivArray(DispatchType funcType[4][4]);
+
+void setupExpArray(DispatchType funcType[4][4]);
 
 void psd(STACK *s);
 

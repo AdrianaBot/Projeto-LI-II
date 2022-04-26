@@ -73,12 +73,14 @@ void parser(STACK *s, DispatchFunc table[]) {
     DispatchType funcType2[4][4];
     DispatchType funcType3[4][4];
     DispatchType funcType4[4][4];
+    DispatchType funcType5[4][4];
 
 
-setupSumArray(funcType1);
-setupSubArray(funcType2);
-setupMulArray(funcType3);
-setupDivArray(funcType4);
+    setupSumArray(funcType1);
+    setupSubArray(funcType2);
+    setupMulArray(funcType3);
+    setupDivArray(funcType4);
+    setupExpArray(funcType5);
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
         for (int i = 0; line[i] != '\0'; i++) {
@@ -93,10 +95,11 @@ setupDivArray(funcType4);
             else if (h[0] == '-' && h[1] == '\0') subtracao(s, funcType2);
             else if (h[0] == '*' && h[1] == '\0') multiplicacao(s, funcType3);
             else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
+            else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == 'l' && h[1] == '\0') readline(s);
             else if (func(s, h[0], table) == 0);
-                else
-                    readType (s, h);
+            else
+                readType (s, h);
             psd(s);
             h = strtok(NULL, " ");
         }

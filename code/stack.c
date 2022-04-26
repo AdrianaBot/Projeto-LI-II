@@ -432,7 +432,7 @@ void divisao(STACK *s, DispatchType divisaoArray[4][4]){
 void divisaoLongLong(STACK *s, ELEMENT x, ELEMENT y) {
     ELEMENT final;
     final.type = LONG;
-    final.info.typeLong = y.info.typeLong / x.info.typeLong;
+    final.info.typeLong = x.info.typeLong / y.info.typeLong;
     push (s, final);
     }
 
@@ -444,7 +444,7 @@ void divisaoLongLong(STACK *s, ELEMENT x, ELEMENT y) {
 void divisaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeDouble = y.info.typeDouble / x.info.typeLong;
+    final.info.typeDouble = x.info.typeLong / y.info.typeDouble;
     push (s, final); 
 }
 
@@ -456,7 +456,7 @@ void divisaoLongDouble(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = LONG;
-    final.info.typeLong = y.info.typeChar / x.info.typeLong;
+    final.info.typeLong = x.info.typeLong / y.info.typeChar;
     push (s,final);
 }
 
@@ -468,7 +468,7 @@ void divisaoLongChar(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeDouble = y.info.typeLong / x.info.typeDouble;
+    final.info.typeDouble = x.info.typeDouble / y.info.typeLong;
     push (s,final);
 }
 
@@ -480,7 +480,7 @@ void divisaoDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeDouble = y.info.typeDouble / x.info.typeDouble;
+    final.info.typeDouble = x.info.typeDouble / y.info.typeDouble;
     push(s,final);
 } 
 
@@ -492,7 +492,7 @@ void divisaoDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = DOUBLE;           
-    final.info.typeDouble = y.info.typeChar / x.info.typeDouble;
+    final.info.typeDouble = x.info.typeDouble / y.info.typeChar;
     push(s,final);
 }
 
@@ -504,7 +504,7 @@ void divisaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoCharLong(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = LONG;
-    final.info.typeLong = y.info.typeLong / x.info.typeChar;
+    final.info.typeLong = x.info.typeChar / y.info.typeLong;
     push(s,final);
 }
 
@@ -516,7 +516,7 @@ void divisaoCharLong(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoCharDouble(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = DOUBLE;
-    final.info.typeDouble = y.info.typeDouble / x.info.typeChar;
+    final.info.typeDouble = x.info.typeChar / y.info.typeDouble;
     push(s,final);
 }
 
@@ -528,7 +528,7 @@ void divisaoCharDouble(STACK *s, ELEMENT x, ELEMENT y){
 void divisaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT final;
     final.type = CHAR;
-    final.info.typeChar = y.info.typeChar / x.info.typeChar;
+    final.info.typeChar = x.info.typeChar / y.info.typeChar;
     push(s,final);
 }
 
@@ -542,8 +542,8 @@ void decrementacao (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
     x.info.typeLong = 0;
+    pop(s,&x);
     final.info.typeLong = x.info.typeLong - 1;           
-    pop(s,&x); 
     push(s, final);
 }
 
@@ -585,17 +585,121 @@ void modulo (STACK* s) {
  * 
  * @param s -> pointer da STACK 
  */
-void exponenciacao (STACK* s) {
-    ELEMENT x,y,final;
-    x.type = DOUBLE;
-    x.info.typeDouble = 0;
-    y.type = DOUBLE;
-    y.info.typeDouble = 0;
-    pop(s,&x);
-    pop(s,&y);         
-    final.info.typeDouble = pow (x.info.typeDouble,y.info.typeDouble);
-   push(s, final);
+void exponenciacao(STACK* s, DispatchType expArray[4][4]) {
+    ELEMENT x, y;
+    pop(s,&x); 
+    pop(s,&y);
+    expArray[y.type][x.type](s,y,x);
 }
+
+/**
+ * @brief Definição da operação de soma (+) para Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expLongLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = pow (x.info.typeLong , y.info.typeLong);
+    push (s, final);
+    }
+
+/**
+ * @brief Definição da operação de soma (+) entre Long e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expLongDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = pow (x.info.typeLong , y.info.typeDouble);
+    push (s, final); 
+}
+
+/**
+ * @brief Definição da operação de soma (+) entre Lonbg e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expLongChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = pow (x.info.typeLong , y.info.typeChar);
+    push (s,final);
+}
+
+/**
+ * @brief Definição da operação de soma (+) entre Double e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expDoubleLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = pow (x.info.typeDouble , y.info.typeLong);
+    push (s,final);
+}
+
+/**
+ * @brief Definição da operação de soma (+) entre Doubles.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expDoubleDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = pow (x.info.typeDouble , y.info.typeDouble);
+    push(s,final);
+} 
+
+/**
+ * @brief Definição da operação de soma (+) entre Double e Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expDoubleChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;              
+    final.info.typeDouble = pow (x.info.typeDouble , y.info.typeChar);
+    push(s, final);  
+}
+
+/**
+ * @brief Definição da operação de soma (+) entre Char e Long.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expCharLong(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = LONG;
+    final.info.typeLong = pow (x.info.typeChar , y.info.typeLong);
+    push(s, final);
+}
+
+/**
+ * @brief Definição da operação de soma (+) entre Char e Double.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expCharDouble(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = DOUBLE;
+    final.info.typeDouble = pow (x.info.typeChar , y.info.typeDouble);
+    push(s,final);
+}
+
+/**
+ * @brief Definição da operação de soma (+) Entre Char.
+ * 
+ * @param s -> pointer da STACK 
+ */
+void expCharChar(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT final;
+    final.type = CHAR;
+    final.info.typeChar = pow (x.info.typeChar , y.info.typeChar);
+    push(s,final);
+}
+
 
 /**
  * @brief Definição da operação de "e" (bitwise) para inteiros (&).
@@ -716,7 +820,7 @@ void roda (STACK* s) {
  * @param s -> pointer da STACK 
  */
 void nesimo(STACK *s, ELEMENT* x, long n){                                      
-    *x = s->stack[n - 1];   
+    *x = s->stack[s->sp - n - 1];   
 }
 
 /**
@@ -849,7 +953,7 @@ void convToLong(STACK *s){
 
     else if (x.type == STRING){
     long v;   
-    char h[BUFSIZ];
+    char h[BUFSIZ] = "";
     if (sscanf(h,"%ld",&v) == 1) converter.info.typeLong = v; 
 
     push(s,converter);
@@ -885,7 +989,7 @@ void convToDouble(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ]; 
+    char h[BUFSIZ] = ""; 
     double v;   
     
     
@@ -904,6 +1008,7 @@ void convToDouble(STACK *s){
  * @param s -> pointer da STACK 
  */
 void convToChar(STACK *s){
+    
     ELEMENT x, converter;
     x.type = LONG;
     x.info.typeLong = 0;
@@ -926,7 +1031,7 @@ void convToChar(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ]; 
+    char h[BUFSIZ] = ""; 
     long v;   
     
     

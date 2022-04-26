@@ -24,7 +24,6 @@ void setupTable(DispatchFunc table[]){
     table['('] = decrementacao;
     table[')'] = incrementacao;
     table['%'] = modulo;
-    table['#'] = exponenciacao;
     table['&'] = eBitwise;
     table['|'] = ouBitwise;
     table['^'] = xorBitwise;
@@ -124,6 +123,18 @@ void setupDivArray(DispatchType funcType[4][4]) {
     funcType[CHAR][LONG] = divisaoCharLong;
     funcType[CHAR][DOUBLE] = divisaoCharDouble;
     funcType[CHAR][CHAR] = divisaoCharChar;
+}
+
+void setupExpArray(DispatchType funcType[4][4]) {
+    funcType[LONG][LONG] = expLongLong;
+    funcType[LONG][DOUBLE] =expLongDouble;
+    funcType[LONG][CHAR] = expLongChar;
+    funcType[DOUBLE][LONG] = expDoubleLong;
+    funcType[DOUBLE][DOUBLE] = expDoubleDouble;
+    funcType[DOUBLE][CHAR] = expDoubleChar;
+    funcType[CHAR][LONG] = expCharLong;
+    funcType[CHAR][DOUBLE] = expCharDouble;
+    funcType[CHAR][CHAR] = expCharChar;
 }
 
 int func(STACK *x, unsigned char c, DispatchFunc table[]) {
