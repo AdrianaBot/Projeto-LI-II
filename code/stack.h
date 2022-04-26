@@ -341,7 +341,19 @@ void convToString(STACK *s);
  */
 void igual(STACK *s);
 
+//assinaturas das funções do Flávio
 
+void nao (STACK *s );
+
+void eShortcut (STACK *s);
+
+void ouShortcut (STACK *s);
+
+void menorDoisValores (STACK *s);
+
+void maiorDoisValores (STACK *s); 
+
+void ifThenElse (STACK *s);
 
 void setupSumArray(DispatchType funcType[4][4]);
 
@@ -352,7 +364,6 @@ void setupMulArray(DispatchType funcType[4][4]);
 void setupDivArray(DispatchType funcType[4][4]);
 
 void psd(STACK *s);
-
 
 
 #endif 

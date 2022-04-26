@@ -50,6 +50,13 @@ void setupTable(DispatchFunc table[]){
     table['Y'] = pushY;
     table['Z'] = pushZ;
     table['='] = igual;
+    //table - funções do Flávio
+    table['!'] = nao;
+    table['e&'] = eShortcut;
+    table['e|'] = ouShortcut;
+    table['e<'] = menorDoisValores;
+    table['e>'] = maiorDoisValores;
+    table['?'] = ifThenElse;
 }
 /**
  * @brief Setup Array para a Soma

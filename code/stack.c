@@ -979,18 +979,135 @@ void psd (STACK *s) {
 }
 
 void igual (STACK *s) {
-ELEMENT x, y;
-ELEMENT f, v;
-f.info.typeLong = 0;
-v.info.typeLong = 1;
+    ELEMENT x, y;
+    ELEMENT f, v;
+    f.info.typeLong = 0;
+    v.info.typeLong = 1;
 
-pop(s,&x);
-pop(s,&y);
+    pop(s,&x);
+    pop(s,&y);
 
-if(x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) push(s,v);
-else if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) push(s,v);
-else if(x.type == LONG &&   y.type == LONG && x.info.typeLong == y.info.typeLong) push(s,v);
-else if(x.type == STRING && y.type == STRING && x.info.typeString == y.info.typeString) push(s,v);
-else push(s,f); 
+    if(x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) {
+        push(s,v);
+    }
+    else if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) {
+        push(s,v); 
+    }
+    else if(x.type == LONG &&   y.type == LONG && x.info.typeLong == y.info.typeLong) {
+        push(s,v);
+    }
+    else if(x.type == STRING && y.type == STRING && x.info.typeString == y.info.typeString) {
+        push(s,v);
+    }
+    else push(s,f); 
+}
 
+//falta apenas as funções do Flávio :p
+/**
+ * @brief Função de negação lógica (!): devolve o valor booleano oposto à declaração inicial
+ * 
+ * @param s 
+ */
+void nao (STACK *s) {
+    ELEMENT x, f, v;
+    f.info.typeLong = 0;
+    v.info.typeLong = 1;
+
+    pop(s, &x);
+
+    if (x.type == 0) {
+        push(s,v);
+    }
+    else push(s,f);
+}
+/**
+ * @brief Função de conjunção lógica com shortcut (e&):
+ * 
+ * @param s 
+ */
+void eShortcut (STACK *s) {
+    ELEMENT x, y, final;
+
+/*void eBitwise (STACK* s) {
+    ELEMENT x,y,final;
+    x.type = LONG;
+    x.info.typeLong = 0;
+    y.type = LONG;
+    y.info.typeLong = 0;
+    pop(s,&x);
+    pop(s,&y);
+    final.info.typeLong = x.info.typeLong & y.info.typeLong;
+    push(s,final);
+
+void ouBitwise (STACK* s) {
+    ELEMENT x,y,final;
+    x.type = LONG;
+    x.info.typeLong = 0;
+    y.type = LONG;
+    y.info.typeLong = 0;
+    pop(s,&x);
+    pop(s,&y); 
+    final.info.typeLong = x.info.typeLong | y.info.typeLong;
+    push(s, final);*/
+}
+
+/**
+ * @brief Função de disjunção lógica com shortcut (e|):
+ * 
+ * @param s 
+ */
+void ouShortcut (STACK *s) {
+    ELEMENT x,y,final;
+}
+
+/**
+ * @brief Função que coloca o menor de dois valores na stack (e<).
+ * 
+ * @param s 
+ */
+void menorDoisValores (STACK *s) {
+    ELEMENT x,y;
+
+    pop(s,&x);
+    pop(s,&y);
+
+    if (x.type > y.type) {
+        push (s,y);
+    }
+    else push(s,x);
+}
+
+/**
+ * @brief Função que coloca o maior de dois valores na stack (e>).
+ * 
+ * @param s 
+ */
+void maiorDoisValores (STACK *s) {
+    ELEMENT x,y;
+
+    pop(s,&x);
+    pop(s,&y);
+
+    if (x.type > y.type) {
+        push (s,x);
+    }
+    else push(s,y);
+}
+
+/**
+ * @brief Função if-then-else (se-então-de_outra_forma) (?) que, caso o primeiro elemento seja verdade (if), devolve o segundo (then). Caso contrário, dá o terceiro (else).
+ * 
+ * @param s 
+ */
+void ifThenElse (STACK *s) {
+    ELEMENT x,y,z;
+
+    pop(s,&x);
+    pop(s,&y);
+    pop(s,&z);
+
+    if (x.type == 0) {
+        push(s,y);
+    }
+    else push(s,z);
 }
