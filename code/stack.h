@@ -40,7 +40,7 @@ typedef void (*DispatchType) (STACK*, ELEMENT, ELEMENT);
 
 void setupTable(DispatchFunc table[]);
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]);
+int func(STACK *x, char* c, DispatchFunc table[]);
 
 
 
@@ -352,7 +352,7 @@ void igual(STACK *s);
 
 //assinaturas das funções do Flávio
 
-void nao (STACK *s );
+void nao (STACK *s);
 
 void eShortcut (STACK *s);
 

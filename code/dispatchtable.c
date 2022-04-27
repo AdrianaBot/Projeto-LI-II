@@ -10,8 +10,8 @@
  */
 
 #include <stdio.h>
-
 #include "stack.h"
+#include <string.h> 
 
 /**
  * @brief Dispatch table.
@@ -51,10 +51,10 @@ void setupTable(DispatchFunc table[]){
     table['='] = igual;
     //table - funções do Flávio
     table['!'] = nao;
-    table['e&'] = eShortcut;
-    table['e|'] = ouShortcut;
-    table['e<'] = menorDoisValores;
-    table['e>'] = maiorDoisValores;
+    table[139] = eShortcut;
+    table[225] = ouShortcut;
+    table[161] = menorDoisValores;
+    table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
 }
 /**
@@ -137,11 +137,23 @@ void setupExpArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = expCharChar;
 }
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]) {
-    if(c > 126 || table[c] == 0){
-        return 1;
-    }
+int func(STACK *x, char* c, DispatchFunc table[]) {
+    if (strlen(c) == 1) {
+        unsigned char a = c[0];
+        
+        if(a > 126 || table[a] == NULL) {
+            return 1;
+        }
 
-    table[c](x);
+        table[a](x);
+    }
+    else if (strlen(c) == 2) {
+        unsigned char b = c[0] + c[1];
+
+        if (b > 225 || table[b] == NULL) {
+            return 1;
+        }
+        table[b](x);
+    }
     return 0;
 }

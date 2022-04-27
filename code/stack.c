@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include "stack.h"
 #include <string.h>
+#include "stack.h"
+
 
 /*Indice da Stack
 line 14 -> 51, STACK
@@ -835,7 +836,7 @@ void copia (STACK* s) {
     ELEMENT x;
     x.type = LONG;
     x.info.typeLong = 0;              
-    nesimo(s, &x, n.info.typeLong);           // IDK IF THIS IS OK!
+    nesimo(s, &x, n.info.typeLong);           
     push(s, x);  
 }
 
@@ -875,7 +876,7 @@ void pushD (STACK *s){
     push(s,x);
 }
 
-void owushE (STACK *s){
+void pushE (STACK *s){
     ELEMENT x;
     x.info.typeLong = 14;
     push(s,x);
@@ -1121,6 +1122,7 @@ void nao (STACK *s) {
 
     pop(s, &x);
 
+
     if ((x.info.typeLong || x.info.typeDouble) == 0) {
         push(s,v);
     }
@@ -1136,10 +1138,10 @@ void eShortcut (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if ((x.info.typeLong || x.info.typeDouble) == 0) {
-        push(s,x);
+    if ((y.info.typeLong || y.info.typeDouble) == 0) {
+        push(s,y);
     }
-    else push(s,y);
+    else push(s,x);
 
 }
 
@@ -1154,10 +1156,10 @@ void ouShortcut (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if ((x.info.typeLong || x.info.typeDouble) == 0) {
-        push(s,y);
+    if ((y.info.typeLong || y.info.typeDouble) == 0) {
+        push(s,x);
     }
-    else push(s,x);
+    else push(s,y);
 }
 
 /**
@@ -1171,10 +1173,10 @@ void menorDoisValores (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if ((x.info.typeLong || x.info.typeDouble) > (y.info.typeLong || y.info.typeDouble)) {
-        push (s,y);
+    if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
+        push (s,x);
     }
-    else push(s,x);
+    else push(s,y);
 }
 
 /**
@@ -1188,10 +1190,10 @@ void maiorDoisValores (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if ((x.info.typeLong || x.info.typeDouble) > (y.info.typeLong || y.info.typeDouble)) {
-        push (s,x);
+    if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
+        push (s,y);
     }
-    else push(s,y);
+    else push(s,x);
 }
 
 /**
@@ -1206,9 +1208,9 @@ void ifThenElse (STACK *s) {
     pop(s,&y);
     pop(s,&z);
 
-    if ((x.info.typeLong || x.info.typeDouble) == 0) {
-        push(s,y);
+    if ((z.info.typeLong || z.info.typeDouble) == 0) {
+        push(s,x);
     }
-    else push(s,z);
+    else push(s,y);
 }
 

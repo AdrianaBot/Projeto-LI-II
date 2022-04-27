@@ -13,10 +13,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h> 
 #include "stack.h"
 
-
 void readType (STACK* s, char h[]) {
+    if (isalpha(h[0]) != 0 && h[1] == '\0') {
+        ELEMENT a = {
+            .type = CHAR, 
+            .info.typeChar = h[0],
+        };
+        push(s,a);
+        return;
+    }
     char* endptr;
     long num = strtol(h,&endptr,10);
     if (*endptr == '\0') {
@@ -36,6 +44,10 @@ void readType (STACK* s, char h[]) {
         push(s,a);
         return;
     }
+    ELEMENT a;
+    a.type = STRING; 
+    strcpy (a.info.typeString, h);
+    push(s,a);
 }
 
 
@@ -97,7 +109,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == 'l' && h[1] == '\0') readline(s);
-            else if (func(s, h[0], table) == 0);
+            else if (func(s, h, table) == 0);
             else
                 readType (s, h);
             psd(s);
@@ -105,3 +117,4 @@ void parser(STACK *s, DispatchFunc table[]) {
         }
     }
 }
+
