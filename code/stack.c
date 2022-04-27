@@ -1108,6 +1108,7 @@ void igual (STACK *s) {
 }
 
 //falta apenas as funções do Flávio :p
+
 /**
  * @brief Função de negação lógica (!): devolve o valor booleano oposto à declaração inicial
  * 
@@ -1126,43 +1127,37 @@ void nao (STACK *s) {
     else push(s,f);
 }
 /**
- * @brief Função de conjunção lógica com shortcut (e&):
- * 
+ * @brief Função de conjunção lógica com shortcut (e&): caso o primeiro elemento seja falso (0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
  * @param s 
  */
 void eShortcut (STACK *s) {
-    ELEMENT x, y, final;
+    ELEMENT x, y;
 
-/*void eBitwise (STACK* s) {
-    ELEMENT x,y,final;
-    x.type = LONG;
-    x.info.typeLong = 0;
-    y.type = LONG;
-    y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y);
-    final.info.typeLong = x.info.typeLong & y.info.typeLong;
-    push(s,final);
 
-void ouBitwise (STACK* s) {
-    ELEMENT x,y,final;
-    x.type = LONG;
-    x.info.typeLong = 0;
-    y.type = LONG;
-    y.info.typeLong = 0;
-    pop(s,&x);
-    pop(s,&y); 
-    final.info.typeLong = x.info.typeLong | y.info.typeLong;
-    push(s, final);*/
+    if ((x.info.typeLong || x.info.typeDouble) == 0) {
+        push(s,x);
+    }
+    else push(s,y);
+
 }
 
 /**
- * @brief Função de disjunção lógica com shortcut (e|):
+ * @brief Função de disjunção lógica com shortcut (e|): caso o primeiro seja verdadeiro (diferente de 0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
  * 
  * @param s 
  */
 void ouShortcut (STACK *s) {
-    ELEMENT x,y,final;
+    ELEMENT x,y;
+
+    pop(s,&x);
+    pop(s,&y);
+
+    if ((x.info.typeLong || x.info.typeDouble) == 0) {
+        push(s,y);
+    }
+    else push(s,x);
 }
 
 /**
@@ -1176,7 +1171,7 @@ void menorDoisValores (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if (x.type > y.type) {
+    if ((x.info.typeLong || x.info.typeDouble) > (y.info.typeLong || y.info.typeDouble)) {
         push (s,y);
     }
     else push(s,x);
@@ -1193,7 +1188,7 @@ void maiorDoisValores (STACK *s) {
     pop(s,&x);
     pop(s,&y);
 
-    if (x.type > y.type) {
+    if ((x.info.typeLong || x.info.typeDouble) > (y.info.typeLong || y.info.typeDouble)) {
         push (s,x);
     }
     else push(s,y);
@@ -1211,9 +1206,9 @@ void ifThenElse (STACK *s) {
     pop(s,&y);
     pop(s,&z);
 
-    if (x.type == 0) {
+    if ((x.info.typeLong || x.info.typeDouble) == 0) {
         push(s,y);
     }
     else push(s,z);
 }
-//suck it 
+
