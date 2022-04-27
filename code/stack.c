@@ -1121,7 +1121,7 @@ void nao (STACK *s) {
 
     pop(s, &x);
 
-    if (x.type == 0) {
+    if ((x.info.typeLong || x.info.typeDouble) == 0) {
         push(s,v);
     }
     else push(s,f);
