@@ -38,7 +38,10 @@ void setupTable(DispatchFunc table[]){
     table['@'] = roda;
     table['$'] = copia;
     table['='] = igual;
-    //table - funções do Flávio
+    table['='] = igual;
+    table['<'] = menor;
+    table['>'] = maior;
+
     table['!'] = nao;
    // table['e&'] = eShortcut;
    // table['e|'] = ouShortcut;

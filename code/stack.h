@@ -340,7 +340,24 @@ void setupVar(ELEMENT var[]);
  */
 void igual(STACK *s);
 
-//assinaturas das funções do Flávio
+
+/**
+ * @brief Função menor
+ * 
+ * A função compara ambos os valores e returna 0 caso o segundo seja menor do que o primeiro
+ * 
+ * @param s 
+ */
+void menor (STACK *s);
+
+/**
+ * @brief Função maior
+ * 
+ * A função compara ambos os valores e returna 0 caso o segundo seja maior do que o primeiro
+ * 
+ * @param s 
+ */
+void maior (STACK *s);
 
 void nao (STACK *s );
 
