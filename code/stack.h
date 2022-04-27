@@ -281,24 +281,13 @@ void copia(STACK *s);
 
 /**
  * @brief Função de pop (sem devolução de valor)
- * 
+ *  
  * A função "pop2" retira o elemento do topo da stack sem guardar o seu valor, contrariamente à "pop" que retira o elemento e guarda o seu valor.
  * 
  * @param s
  */
 void pop2(STACK *s);
 
-void pushA (STACK *s);
-void pushB (STACK *s);
-void pushC (STACK *s);
-void pushD (STACK *s);
-void pushE (STACK *s);
-void pushF (STACK *s);
-void pushN (STACK *s);
-void pushS (STACK *s);
-void pushX (STACK *s);
-void pushY (STACK *s);
-void pushZ (STACK *s);
 
 /**
  * @brief Função convtoLong
@@ -338,8 +327,9 @@ void convToChar(STACK *s);
  */
 void convToString(STACK *s);
 
+void assign(STACK *s,char c,ELEMENT var[]);
 
-
+void setupVar(ELEMENT var[]); 
 
 /**
  * @brief Função Igual

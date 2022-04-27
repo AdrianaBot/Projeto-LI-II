@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "stack.h"
 
 
@@ -37,6 +38,7 @@ void readType (STACK* s, char h[]) {
         return;
     }
 }
+
 
 
 /**
@@ -75,7 +77,9 @@ void parser(STACK *s, DispatchFunc table[]) {
     DispatchType funcType4[4][4];
     DispatchType funcType5[4][4];
 
-
+    ELEMENT variables[26] = {0};
+    setupVar(variables);
+    
     setupSumArray(funcType1);
     setupSubArray(funcType2);
     setupMulArray(funcType3);
@@ -97,6 +101,8 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == 'l' && h[1] == '\0') readline(s);
+            else if (h[0] >= 'A' && h[0] <= 'z' && h[1] == '\0') push(s, variables[h[0]-'A']);
+            else if ((h[0] == ':' && h[2] == '\0')) assign(s,h[1], variables);
             else if (func(s, h[0], table) == 0);
             else
                 readType (s, h);

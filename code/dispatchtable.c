@@ -37,24 +37,13 @@ void setupTable(DispatchFunc table[]){
     table['\\'] = troca;
     table['@'] = roda;
     table['$'] = copia;
-    table['A'] = pushA;
-    table['B'] = pushB;
-    table['C'] = pushC;
-    table['D'] = pushD;
-    table['E'] = pushE;
-    table['F'] = pushF;
-    table['N'] = pushN;
-    table['S'] = pushS;
-    table['X'] = pushX;
-    table['Y'] = pushY;
-    table['Z'] = pushZ;
     table['='] = igual;
     //table - funções do Flávio
     table['!'] = nao;
-    table['e&'] = eShortcut;
-    table['e|'] = ouShortcut;
-    table['e<'] = menorDoisValores;
-    table['e>'] = maiorDoisValores;
+   // table['e&'] = eShortcut;
+   // table['e|'] = ouShortcut;
+   // table['e<'] = menorDoisValores;
+   // table['e>'] = maiorDoisValores;
     table['?'] = ifThenElse;
 }
 /**
@@ -135,6 +124,53 @@ void setupExpArray(DispatchType funcType[4][4]) {
     funcType[CHAR][LONG] = expCharLong;
     funcType[CHAR][DOUBLE] = expCharDouble;
     funcType[CHAR][CHAR] = expCharChar;
+}
+
+void setupVar(ELEMENT var[]) {
+    var['A'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 10,
+    };
+    var['B'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 11,
+    };
+    var['C'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 12,
+    };
+    var['D'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 13,
+    };
+    var['E'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 14,
+    };
+    var['F'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 15,
+    };
+    var['N'-'A'] = (ELEMENT) {
+        .type = CHAR, 
+        .info.typeChar = '\n',
+    };
+    var['S'-'A'] = (ELEMENT) {
+        .type = CHAR, 
+        .info.typeChar = ' ',
+    };
+    var['X'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
+    var['Y'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    var['Z'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 2,
+    };
 }
 
 int func(STACK *x, unsigned char c, DispatchFunc table[]) {
