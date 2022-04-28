@@ -121,4 +121,3 @@ void parser(STACK *s, DispatchFunc table[]) {
         }
     }
 }
-
