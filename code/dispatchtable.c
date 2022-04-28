@@ -176,7 +176,7 @@ void setupVar(ELEMENT var[]) {
 }
 
 int func(STACK *x, char* c, DispatchFunc table[]) {
-    if (strlen(c) == 1) {
+    if (c[1] == '\0') {
         unsigned char a = c[0];
         
         if(a > 126 || table[a] == NULL) {
@@ -185,7 +185,7 @@ int func(STACK *x, char* c, DispatchFunc table[]) {
 
         table[a](x);
     }
-    else if (strlen(c) == 2) {
+    else {
         unsigned char b = c[0] + c[1];
 
         if (b > 225 || table[b] == NULL) {

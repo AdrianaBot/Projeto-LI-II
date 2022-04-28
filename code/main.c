@@ -22,11 +22,12 @@
  * @brief A nossa Main 
  */
 int main() {
-    DispatchFunc table[127] = {0}; 
+    DispatchFunc table[226] = {0}; 
     STACK *s = newStack();
     setupTable(table);
 
     parser(s, table);
+    
     for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
 
