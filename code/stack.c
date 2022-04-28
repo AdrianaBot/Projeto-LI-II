@@ -1029,9 +1029,11 @@ void psd (STACK *s) {
 
 void igual (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v;
+    ELEMENT f, v, v1;
     f.info.typeLong = 0;
     v.info.typeLong = 1;
+    v1.info.typeDouble = 1.0;
+
 
     pop(s,&x);
     pop(s,&y);
@@ -1040,7 +1042,7 @@ void igual (STACK *s) {
         push(s,v);
     }
     else if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) {
-        push(s,v); 
+        push(s,v1); 
     }
     else if(x.type == LONG &&   y.type == LONG && x.info.typeLong == y.info.typeLong) {
         push(s,v);
@@ -1060,16 +1062,17 @@ void igual (STACK *s) {
  */
 void menor (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v;
+    ELEMENT f, v, v1;
     f.info.typeLong = 0;
     v.info.typeLong = 1;
+    v1.info.typeDouble = 1.0;
 
     pop(s,&x);
     pop(s,&y);
 
     
     if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble > y.info.typeDouble) {
-        push(s,v); 
+        push(s,v1); 
     }
     else if(x.type == LONG && y.type == LONG && x.info.typeLong > y.info.typeLong) {
         push(s,v);
@@ -1089,16 +1092,17 @@ void menor (STACK *s) {
  */
 void maior (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v;
+    ELEMENT f, v, v1;
     f.info.typeLong = 0;
     v.info.typeLong = 1;
+    v1.info.typeDouble = 1.0;
 
     pop(s,&x);
     pop(s,&y);
 
     
     if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble < y.info.typeDouble) {
-        push(s,v); 
+        push(s,v1); 
     }
     else if(x.type == LONG && y.type == LONG && x.info.typeLong < y.info.typeLong) {
         push(s,v);
