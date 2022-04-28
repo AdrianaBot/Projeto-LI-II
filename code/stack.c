@@ -1051,7 +1051,63 @@ void igual (STACK *s) {
     else push(s,f); 
 }
 
-//falta apenas as funções do Flávio :p
+/**
+ * @brief Função menor
+ * 
+ * Compara 2 elementos e devolve 1 caso o primeiro seja menor do que o segundo.
+ * 
+ * @param s 
+ */
+void menor (STACK *s) {
+    ELEMENT x, y;
+    ELEMENT f, v;
+    f.info.typeLong = 0;
+    v.info.typeLong = 1;
+
+    pop(s,&x);
+    pop(s,&y);
+
+    
+    if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble > y.info.typeDouble) {
+        push(s,v); 
+    }
+    else if(x.type == LONG && y.type == LONG && x.info.typeLong > y.info.typeLong) {
+        push(s,v);
+    }
+    else if(x.type == CHAR && y.type == CHAR && x.info.typeChar > y.info.typeChar) {
+        push(s,v);
+    }
+    else push(s,f); 
+}
+
+/**
+ * @brief Função maior
+ * 
+ * Compara 2 elementos e devolve 1 caso o primeiro seja maior do que o segundo.
+ * 
+ * @param s 
+ */
+void maior (STACK *s) {
+    ELEMENT x, y;
+    ELEMENT f, v;
+    f.info.typeLong = 0;
+    v.info.typeLong = 1;
+
+    pop(s,&x);
+    pop(s,&y);
+
+    
+    if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble < y.info.typeDouble) {
+        push(s,v); 
+    }
+    else if(x.type == LONG && y.type == LONG && x.info.typeLong < y.info.typeLong) {
+        push(s,v);
+    }
+    else if(x.type == CHAR && y.type == CHAR && x.info.typeChar < y.info.typeChar) {
+        push(s,v);
+    }
+    else push(s,f); 
+}
 
 /**
  * @brief Função de negação lógica (!): devolve o valor booleano oposto à declaração inicial

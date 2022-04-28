@@ -38,7 +38,9 @@ void setupTable(DispatchFunc table[]){
     table['@'] = roda;
     table['$'] = copia;
     table['='] = igual;
-    //table - funções do Flávio
+    table['='] = igual;
+    table['<'] = menor;
+    table['>'] = maior;
     table['!'] = nao;
     table[139] = eShortcut;
     table[225] = ouShortcut;
@@ -173,9 +175,15 @@ void setupVar(ELEMENT var[]) {
     };
 }
 
-int func(STACK *x, unsigned char c, DispatchFunc table[]) {
-    if(c > 126 || table[c] == 0){
-        return 1;
+int func(STACK *x, char* c, DispatchFunc table[]) {
+    if (strlen(c) == 1) {
+        unsigned char a = c[0];
+        
+        if(a > 126 || table[a] == NULL) {
+            return 1;
+        }
+
+        table[a](x);
     }
     else if (strlen(c) == 2) {
         unsigned char b = c[0] + c[1];
