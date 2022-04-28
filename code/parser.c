@@ -51,6 +51,7 @@ void readType (STACK* s, char h[]) {
 }
 
 
+
 /**
  * @brief readline function
  * 
@@ -87,7 +88,9 @@ void parser(STACK *s, DispatchFunc table[]) {
     DispatchType funcType4[4][4];
     DispatchType funcType5[4][4];
 
-
+    ELEMENT variables[26] = {0};
+    setupVar(variables);
+    
     setupSumArray(funcType1);
     setupSubArray(funcType2);
     setupMulArray(funcType3);

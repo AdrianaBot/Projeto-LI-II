@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -850,71 +851,13 @@ void pop2(STACK *s) {
     ELEMENT x;
     x.info.typeLong = 0;
     pop(s, &x);
-}
+}   
 
-void pushA (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 10;
-    push(s,x);
-}
-
-void pushB (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 11;
-    push(s,x);
-}
-
-void pushC (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 12;
-    push(s,x);
-}
-
-void pushD (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 13;
-    push(s,x);
-}
-
-void pushE (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 14;
-    push(s,x);
-}
-
-void pushF (STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 15;
-    push(s,x);
-}
-
-void pushN (STACK *s){
-    ELEMENT x;
-    x.info.typeChar = '\n';
-    push(s,x);
-}
-
-void pushS (STACK *s){
-    ELEMENT x;
-    x.info.typeChar = ' ';
-    push(s,x);
-}
-
-void pushX(STACK *s){
+void assign(STACK *s,char c,ELEMENT var[]){
     ELEMENT x;
     x.info.typeLong = 0;
-    push (s,x);
-}
-
-void pushY(STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 1;
-    push(s,x);
-}
-
-void pushZ(STACK *s){
-    ELEMENT x;
-    x.info.typeLong = 2;
+    pop(s,&x);
+    var[c-'A'] = x;
     push(s,x);
 }
 
@@ -1213,4 +1156,3 @@ void ifThenElse (STACK *s) {
     }
     else push(s,y);
 }
-

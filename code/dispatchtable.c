@@ -37,17 +37,6 @@ void setupTable(DispatchFunc table[]){
     table['\\'] = troca;
     table['@'] = roda;
     table['$'] = copia;
-    table['A'] = pushA;
-    table['B'] = pushB;
-    table['C'] = pushC;
-    table['D'] = pushD;
-    table['E'] = pushE;
-    table['F'] = pushF;
-    table['N'] = pushN;
-    table['S'] = pushS;
-    table['X'] = pushX;
-    table['Y'] = pushY;
-    table['Z'] = pushZ;
     table['='] = igual;
     //table - funções do Flávio
     table['!'] = nao;
@@ -137,15 +126,56 @@ void setupExpArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = expCharChar;
 }
 
-int func(STACK *x, char* c, DispatchFunc table[]) {
-    if (strlen(c) == 1) {
-        unsigned char a = c[0];
-        
-        if(a > 126 || table[a] == NULL) {
-            return 1;
-        }
+void setupVar(ELEMENT var[]) {
+    var['A'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 10,
+    };
+    var['B'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 11,
+    };
+    var['C'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 12,
+    };
+    var['D'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 13,
+    };
+    var['E'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 14,
+    };
+    var['F'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 15,
+    };
+    var['N'-'A'] = (ELEMENT) {
+        .type = CHAR, 
+        .info.typeChar = '\n',
+    };
+    var['S'-'A'] = (ELEMENT) {
+        .type = CHAR, 
+        .info.typeChar = ' ',
+    };
+    var['X'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
+    var['Y'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    var['Z'-'A'] = (ELEMENT) {
+        .type = LONG, 
+        .info.typeLong = 2,
+    };
+}
 
-        table[a](x);
+int func(STACK *x, unsigned char c, DispatchFunc table[]) {
+    if(c > 126 || table[c] == 0){
+        return 1;
     }
     else if (strlen(c) == 2) {
         unsigned char b = c[0] + c[1];
