@@ -73,22 +73,30 @@ void notBitwise (STACK* s) {
 
 void igual (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v, v1;
-    f.info.typeLong = 0;
-    v.info.typeLong = 1;
-    v1.info.typeDouble = 1.0;
-
-
+    ELEMENT v = {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    ELEMENT f = {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
+    
     pop(s,&x);
     pop(s,&y);
 
-    if(x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) push(s,v);
-    
-    else if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) push(s,v1); 
-    else if (x.type == DOUBLE && y.type == LONG && x.info.typeDouble == y.info.typeLong) push (s,v);
-    else if (x.type == LONG && y.type == DOUBLE && x.info.typeLong == y.info.typeDouble) push(s,v);
-    else if(x.type == LONG &&   y.type == LONG && x.info.typeLong == y.info.typeLong) push(s,v);
-    else if(x.type == STRING && y.type == STRING && x.info.typeString == y.info.typeString) push(s,v);  
+    if (x.type == LONG && y.type == LONG && x.info.typeLong == y.info.typeLong) push(s,v);
+    else if (x.type == LONG && y.type == DOUBLE && (double) x.info.typeLong == y.info.typeDouble) push(s,v);
+    else if (x.type == LONG && y.type == CHAR && x.info.typeLong == (long) y.info.typeChar) push(s,v);
+
+    else if (x.type == DOUBLE && y.type == LONG && x.info.typeDouble == (double) y.info.typeLong) push(s,v);
+    else if (x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble == y.info.typeDouble) push(s,v);
+    else if (x.type == DOUBLE && y.type == CHAR && x.info.typeDouble == (double) y.info.typeChar) push(s,v);
+
+    else if (x.type == CHAR && y.type == LONG && (long) x.info.typeChar == y.info.typeLong) push(s,v);
+    else if (x.type == CHAR && y.type == DOUBLE && (double) x.info.typeChar == y.info.typeDouble) push(s,v);
+    else if (x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) push(s,v);
+
     else push(s,f); 
 }
 
@@ -101,21 +109,30 @@ void igual (STACK *s) {
  */
 void menor (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v, v1;
-    f.info.typeLong = 0;
-    v.info.typeLong = 1;
-    v1.info.typeDouble = 1.0;
-
+    ELEMENT v = {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    ELEMENT f = {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
+    
     pop(s,&x);
     pop(s,&y);
 
-    
-    if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble > y.info.typeDouble) push(s,v1); 
+    if (x.type == LONG && y.type == LONG && x.info.typeLong > y.info.typeLong) push(s,v);
     else if (x.type == LONG && y.type == DOUBLE && x.info.typeLong > y.info.typeDouble) push(s,v);
+    else if (x.type == LONG && y.type == CHAR && x.info.typeLong > y.info.typeChar) push(s,v);
+
     else if (x.type == DOUBLE && y.type == LONG && x.info.typeDouble > y.info.typeLong) push(s,v);
-    else if(x.type == LONG && y.type == LONG && x.info.typeLong > y.info.typeLong) push(s,v);
-    else if(x.type == CHAR && y.type == CHAR && x.info.typeChar > y.info.typeChar) push(s,v);
-    
+    else if (x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble > y.info.typeDouble) push(s,v);
+    else if (x.type == DOUBLE && y.type == CHAR && x.info.typeDouble > y.info.typeChar) push(s,v);
+
+    else if (x.type == CHAR && y.type == LONG && x.info.typeChar > y.info.typeLong) push(s,v);
+    else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar > y.info.typeDouble) push(s,v);
+    else if (x.type == CHAR && y.type == CHAR && x.info.typeChar > y.info.typeChar) push(s,v);
+
     else push(s,f); 
 }
 
@@ -128,21 +145,30 @@ void menor (STACK *s) {
  */
 void maior (STACK *s) {
     ELEMENT x, y;
-    ELEMENT f, v, v1;
-    f.info.typeLong = 0;
-    v.info.typeLong = 1;
-    v1.info.typeDouble = 1.0;
-
+    ELEMENT v = {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    ELEMENT f = {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
+    
     pop(s,&x);
     pop(s,&y);
 
-    
-    if(x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble < y.info.typeDouble) push(s,v1); 
+    if (x.type == LONG && y.type == LONG && x.info.typeLong < y.info.typeLong) push(s,v);
     else if (x.type == LONG && y.type == DOUBLE && x.info.typeLong < y.info.typeDouble) push(s,v);
+    else if (x.type == LONG && y.type == CHAR && x.info.typeLong < y.info.typeChar) push(s,v);
+
     else if (x.type == DOUBLE && y.type == LONG && x.info.typeDouble < y.info.typeLong) push(s,v);
-    else if(x.type == LONG && y.type == LONG && x.info.typeLong < y.info.typeLong) push(s,v);
-    else if(x.type == CHAR && y.type == CHAR && x.info.typeChar < y.info.typeChar) push(s,v);
-    
+    else if (x.type == DOUBLE && y.type == DOUBLE && x.info.typeDouble < y.info.typeDouble) push(s,v);
+    else if (x.type == DOUBLE && y.type == CHAR && x.info.typeDouble < y.info.typeChar) push(s,v);
+
+    else if (x.type == CHAR && y.type == LONG && x.info.typeChar < y.info.typeLong) push(s,v);
+    else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar < y.info.typeDouble) push(s,v);
+    else if (x.type == CHAR && y.type == CHAR && x.info.typeChar < y.info.typeChar) push(s,v);
+
     else push(s,f); 
 }
 
@@ -152,17 +178,26 @@ void maior (STACK *s) {
  * @param s 
  */
 void nao (STACK *s) {
-    ELEMENT x, f, v;
-    f.info.typeLong = 0;
-    v.info.typeLong = 1;
+    ELEMENT x;
+    ELEMENT v = {
+        .type = LONG, 
+        .info.typeLong = 1,
+    };
+    ELEMENT f = {
+        .type = LONG, 
+        .info.typeLong = 0,
+    };
 
     pop(s, &x);
 
-
-    if ((x.info.typeLong || x.info.typeDouble) == 0) {
+    if (x.type == LONG && x.info.typeLong)
+        push(s,f);
+    else if (x.type == DOUBLE && x.info.typeDouble)
+        push(s,f);
+    else if (x.type == CHAR && x.info.typeChar)
+        push(s,f);
+    else 
         push(s,v);
-    }
-    else push(s,f);
 }
 /**
  * @brief Função de conjunção lógica com shortcut (e&): caso o primeiro elemento seja falso (0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
@@ -205,41 +240,38 @@ void ouShortcut (STACK *s) {
  */
 
 void menorDoisValores (STACK *s) {
-    ELEMENT x,y,final;
+    ELEMENT x,y;
 
     pop(s,&x);
     pop(s,&y);
 
     if (x.type == LONG && y.type == LONG) {
     
-        if (x.info.typeLong < y.info.typeLong) final.info.typeLong = x.info.typeLong;
-        
-        else final.info.typeLong = y.info.typeLong;  
-        
-        push(s,final);
+        if (x.info.typeLong < y.info.typeLong)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == DOUBLE && y.type == DOUBLE) {
         
-        if (x.info.typeDouble < y.info.typeDouble) final.info.typeDouble = x.info.typeDouble;
-            
-        else final.info.typeDouble = y.info.typeDouble; 
-        
-        push(s,final);
+        if (x.info.typeDouble < y.info.typeDouble)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == LONG && y.type == DOUBLE) {
        
-        if (x.info.typeLong < y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
-        
-        else final.info.typeDouble = y.info.typeDouble;  
-        push(s,final);
+        if (x.info.typeLong < y.info.typeDouble)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == DOUBLE && y.type == LONG) {
             
-        if (x.info.typeDouble < y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
-            
-        else final.info.typeLong = y.info.typeLong;
-  
-        push(s,final);
+        if (x.info.typeDouble < y.info.typeLong) 
+            push(s,x);
+        else 
+            push(s,y);
     }
 }
 
@@ -252,42 +284,38 @@ void menorDoisValores (STACK *s) {
  */
 
 void maiorDoisValores (STACK *s) {
-    ELEMENT x,y,final;
+    ELEMENT x,y;
 
     pop(s,&x);
     pop(s,&y);
 
     if (x.type == LONG && y.type == LONG) {
     
-        if (x.info.typeLong > y.info.typeLong) final.info.typeLong = x.info.typeLong;
-        
-        else final.info.typeLong = y.info.typeLong;
-    
-    push(s,final);
+        if (x.info.typeLong > y.info.typeLong)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == DOUBLE && y.type == DOUBLE) {
         
-        if (x.info.typeDouble>y.info.typeDouble) final.info.typeDouble = x.info.typeDouble;
-
-        else final.info.typeDouble = y.info.typeDouble;
-        
-        push(s,final);
+        if (x.info.typeDouble > y.info.typeDouble)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == LONG && y.type == DOUBLE) {
        
-        if (x.info.typeLong > y.info.typeDouble) final.info.typeDouble = x.info.typeDouble;
-        
-        else final.info.typeDouble = y.info.typeDouble;
-        
-        push(s,final);
+        if (x.info.typeLong > y.info.typeDouble)
+            push(s,x);
+        else 
+            push(s,y);
     }
     else if (x.type == DOUBLE && y.type == LONG) {
             
-        if (x.info.typeDouble > y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
-            
-        else final.info.typeLong = y.info.typeLong; 
-        
-        push(s,final);
+        if (x.info.typeDouble > y.info.typeLong) 
+            push(s,x);
+        else 
+            push(s,y);
     }
 }
 
@@ -304,9 +332,16 @@ void ifThenElse (STACK *s) {
     pop(s,&x);
     pop(s,&y);
     pop(s,&z);
-
-    if ((z.info.typeLong || z.info.typeDouble) == 0) {
-        push(s,x);
+    if (z.type == LONG) {
+        if (z.info.typeLong)
+            push(s,y);
+        else 
+            push(s,x);
     }
-    else push(s,y);
+    else if (z.type == DOUBLE) {
+        if (z.info.typeDouble)
+            push(s,y);
+        else 
+            push(s,x);
+    }
 }
