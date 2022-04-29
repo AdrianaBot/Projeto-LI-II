@@ -157,4 +157,3 @@ void convToString(STACK *s){
     push(s,converter);
     }   
 }
-
