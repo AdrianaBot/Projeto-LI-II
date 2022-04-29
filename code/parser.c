@@ -116,7 +116,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (func(s, h, table) == 0);
             else readType (s, h);
 
-//            psd(s);
+            psd(s);
             h = strtok(NULL, " ");
         }
     }

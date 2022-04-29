@@ -121,6 +121,7 @@ void convToChar(STACK *s){
     char h[BUFSIZ] = ""; 
     long v;   
     
+    
     if (sscanf(h,"%ld",&v) == 1)    converter.info.typeChar = v; 
 
     push(s,converter);

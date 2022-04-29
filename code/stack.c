@@ -35,7 +35,7 @@ int push (STACK *s, ELEMENT elem){
 */
 
 int pop(STACK *s, ELEMENT *x){
-    if (s->sp == 0) abort();    
+    if (s->sp == 0) return 1;    
     s->sp--;   
     *x = s->stack[s->sp];
     return 0;

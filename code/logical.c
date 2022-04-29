@@ -190,14 +190,13 @@ void nao (STACK *s) {
 
     pop(s, &x);
 
-    if (x.type == LONG && x.info.typeLong)
-        push(s,f);
-    else if (x.type == DOUBLE && x.info.typeDouble)
-        push(s,f);
-    else if (x.type == CHAR && x.info.typeChar)
-        push(s,f);
-    else 
-        push(s,v);
+
+    if (x.info.typeLong == 0) push(s,v); 
+    
+    else if (x.info.typeDouble == 0.0) push(s,v);
+    
+    else if (x.info.typeChar == '0') push(s,v);
+    else push(s,f);
 }
 /**
  * @brief Função de conjunção lógica com shortcut (e&): caso o primeiro elemento seja falso (0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
@@ -239,6 +238,7 @@ void ouShortcut (STACK *s) {
  * @param s 
  */
 
+
 void menorDoisValores (STACK *s) {
     ELEMENT x,y;
 
@@ -274,6 +274,8 @@ void menorDoisValores (STACK *s) {
             push(s,y);
     }
 }
+
+
 
 
 
@@ -318,7 +320,6 @@ void maiorDoisValores (STACK *s) {
             push(s,y);
     }
 }
-
 
 
 /**
