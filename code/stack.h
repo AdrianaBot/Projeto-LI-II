@@ -331,6 +331,8 @@ void assign(STACK *s,char c,ELEMENT var[]);
 
 void setupVar(ELEMENT var[]); 
 
+void valorLogico (STACK *s);
+
 /**
  * @brief Função Igual
  * 

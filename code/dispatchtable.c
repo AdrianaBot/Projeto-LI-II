@@ -38,7 +38,6 @@ void setupTable(DispatchFunc table[]){
     table['@'] = roda;
     table['$'] = copia;
     table['='] = igual;
-    table['='] = igual;
     table['<'] = menor;
     table['>'] = maior;
     table['!'] = nao;
@@ -47,6 +46,7 @@ void setupTable(DispatchFunc table[]){
     table[161] = menorDoisValores;
     table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
+    table[138] = valorLogico;
 }
 /**
  * @brief Setup Array para a Soma
@@ -175,7 +175,8 @@ void setupVar(ELEMENT var[]) {
     };
 }
 
-int func(STACK *x, char* c, DispatchFunc table[]) {
+int func(STACK *x, char* c, DispatchFunc table[]) 
+{
     if (strlen(c) == 1) {
         unsigned char a = c[0];
         

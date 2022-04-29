@@ -1027,6 +1027,25 @@ void psd (STACK *s) {
     putchar('\n'); 
 }
 
+/**
+ * @brief Função auxiliar das funções de lógica que determina o valor lógico do elemento dado (0 (falso) se x=0, 1 (verdadeiro) se qualquer outro número).
+ * 
+ * @param s 
+ */
+void valorLogico (STACK *s) {
+    ELEMENT x,f,v;
+    f.info.typeLong = 0;
+    v.info.typeLong = 1;
+
+    pop(s,&x);
+
+    if ((x.info.typeLong || x.info.typeDouble || x.info.typeChar) == 0) {
+        push(s,f);
+    }
+    else push(s,v);
+
+}
+
 void igual (STACK *s) {
     ELEMENT x, y;
     ELEMENT f, v;
@@ -1127,6 +1146,7 @@ void nao (STACK *s) {
     }
     else push(s,f);
 }
+
 /**
  * @brief Função de conjunção lógica com shortcut (e&): caso o primeiro elemento seja falso (0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
  * @param s 
@@ -1190,13 +1210,19 @@ void maiorDoisValores (STACK *s) {
     pop(s,&y);
 
     if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
-        push (s,y);
+        push(s,y);
     }
     else push(s,x);
 }
 
 /**
- * @brief Função if-then-else (se-então-de_outra_forma) (?) que, caso o primeiro elemento seja verdade (if), devolve o segundo (then). Caso contrário, dá o terceiro (else).
+ * @brief Função if-then-else (se-então-de_outra_forma) (?) que, caso o primeiro e if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
+        push (s,y);
+    }
+    else if ((x.info.typeLong || x.info.typeDouble) > (y.info.typeLong || y.info.typeDouble)) {
+        push (s,x);
+    }
+    else push(s,x);lemento seja verdade (if), devolve o segundo (then). Caso contrário, dá o terceiro (else).
  * 
  * @param s 
  */
@@ -1212,3 +1238,4 @@ void ifThenElse (STACK *s) {
     }
     else push(s,y);
 }
+
