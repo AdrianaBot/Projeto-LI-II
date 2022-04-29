@@ -4,9 +4,15 @@
 typedef enum {
     LONG, 
     DOUBLE, 
-    CHAR, 
+    CHAR,
     STRING 
 } VARTYPE;
+
+/**
+ * @brief Definição e conversão de tipos.
+ * 
+ */
+
 
 typedef struct {
     VARTYPE type;
@@ -17,12 +23,6 @@ typedef struct {
         char typeString[BUFSIZ]; 
     } info;
 } ELEMENT;
-
-/**
- * @brief Definição e conversão de tipos.
- * 
- */
-
 
 /**
 * @brief Definição da Stack

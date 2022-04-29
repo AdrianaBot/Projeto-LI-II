@@ -92,7 +92,7 @@ void igual (STACK *s) {
         push(s,v);
     }
     else if(x.type == STRING && y.type == STRING && x.info.typeString == y.info.typeString) {
-        push(s,v);
+        push(s,v);  
     }
     else push(s,f); 
 }
@@ -214,34 +214,95 @@ void ouShortcut (STACK *s) {
  * 
  * @param s 
  */
+
 void menorDoisValores (STACK *s) {
-    ELEMENT x,y;
+    ELEMENT x,y,final;
 
     pop(s,&x);
     pop(s,&y);
 
-    if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
-        push (s,x);
+    if (x.type == LONG && y.type == LONG) {
+    
+        if (x.info.typeLong < y.info.typeLong) final.info.typeLong = x.info.typeLong;
+        
+        else final.info.typeLong = y.info.typeLong;  
+        
+        push(s,final);
     }
-    else push(s,y);
+    else if (x.type == DOUBLE && y.type == DOUBLE) {
+        
+        if (x.info.typeDouble < y.info.typeDouble) final.info.typeDouble = x.info.typeDouble;
+            
+        else final.info.typeDouble = y.info.typeDouble; 
+        
+        push(s,final);
+    }
+    else if (x.type == LONG && y.type == DOUBLE) {
+       
+        if (x.info.typeLong < y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
+        
+        else final.info.typeDouble = y.info.typeDouble;  
+        push(s,final);
+    }
+    else if (x.type == DOUBLE && y.type == LONG) {
+            
+        if (x.info.typeDouble < y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
+            
+        else final.info.typeLong = y.info.typeLong;
+  
+        push(s,final);
+    }
 }
+
+
 
 /**
  * @brief Função que coloca o maior de dois valores na stack (e>).
  * 
  * @param s 
  */
+
 void maiorDoisValores (STACK *s) {
-    ELEMENT x,y;
+    ELEMENT x,y,final;
 
     pop(s,&x);
     pop(s,&y);
 
-    if ((y.info.typeLong || y.info.typeDouble) > (x.info.typeLong || x.info.typeDouble)) {
-        push (s,y);
+    if (x.type == LONG && y.type == LONG) {
+    
+        if (x.info.typeLong > y.info.typeLong) final.info.typeLong = x.info.typeLong;
+        
+        else final.info.typeLong = y.info.typeLong;
+    
+    push(s,final);
     }
-    else push(s,x);
+    else if (x.type == DOUBLE && y.type == DOUBLE) {
+        
+        if (x.info.typeDouble>y.info.typeDouble) final.info.typeDouble = x.info.typeDouble;
+
+        else final.info.typeDouble = y.info.typeDouble;
+        
+        push(s,final);
+    }
+    else if (x.type == LONG && y.type == DOUBLE) {
+       
+        if (x.info.typeLong > y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
+        
+        else final.info.typeDouble = y.info.typeDouble;
+        
+        push(s,final);
+    }
+    else if (x.type == DOUBLE && y.type == LONG) {
+            
+        if (x.info.typeDouble > y.info.typeLong) final.info.typeDouble = x.info.typeDouble;
+            
+        else final.info.typeLong = y.info.typeLong; 
+        
+        push(s,final);
+    }
 }
+
+
 
 /**
  * @brief Função if-then-else (se-então-de_outra_forma) (?) que, caso o primeiro elemento seja verdade (if), devolve o segundo (then). Caso contrário, dá o terceiro (else).
