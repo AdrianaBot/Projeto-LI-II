@@ -44,8 +44,6 @@ int func(STACK *x, char* c, DispatchFunc table[]);
 
 
 
-
-
 /**
 * @brief Utilização da Stack 
 */

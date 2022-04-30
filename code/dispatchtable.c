@@ -48,6 +48,28 @@ void setupTable(DispatchFunc table[]){
     table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
 }
+
+int func(STACK *x, char* c, DispatchFunc table[]) {
+    if (c[1] == '\0') {
+        unsigned char a = c[0];
+        
+        if(a > 126 || table[a] == 0) {
+            return 1;
+        }
+
+        table[a](x);
+    }
+    else {
+        unsigned char b = c[0] + c[1];
+
+        if (b > 225 || table[b] == 0) {
+            return 1;
+        }
+        table[b](x);
+    }
+    return 0;
+}
+
 /**
  * @brief Setup Array para a Soma
  * 
@@ -173,25 +195,4 @@ void setupVar(ELEMENT var[]) {
         .type = LONG, 
         .info.typeLong = 2,
     };
-}
-
-int func(STACK *x, char* c, DispatchFunc table[]) {
-    if (c[1] == '\0') {
-        unsigned char a = c[0];
-        
-        if(a > 126 || table[a] == NULL) {
-            return 1;
-        }
-
-        table[a](x);
-    }
-    else {
-        unsigned char b = c[0] + c[1];
-
-        if (b > 225 || table[b] == NULL) {
-            return 1;
-        }
-        table[b](x);
-    }
-    return 0;
 }

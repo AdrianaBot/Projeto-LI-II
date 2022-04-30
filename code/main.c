@@ -17,7 +17,6 @@
 #include "stack.h"
 #include "parser.h"
 
-
 /**
  * @brief A nossa Main 
  */
