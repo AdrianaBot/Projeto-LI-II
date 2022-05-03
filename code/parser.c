@@ -50,27 +50,6 @@ void readType (STACK* s, char h[]) {
     push(s,a);
 }
 
-
-
-/**
- * @brief readline function
- * 
- * Lê uma linha
- * 
- * @param s 
- */
-void readline(STACK *s) {
-    char line[BUFSIZ];
-    char h[BUFSIZ];
-
-    if (fgets (line, BUFSIZ, stdin) != NULL) {
-        while (sscanf(line, "%s%[^\n]", h, line) == 2) { 
-            readType(s, h);
-        }
-        readType(s, h);
-    }
-}
-
 /**
  * @brief Parser
  * 
@@ -111,7 +90,6 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '*' && h[1] == '\0') multiplicacao(s, funcType3);
             else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
-            else if (h[0] == 'l' && h[1] == '\0') readline(s);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
             else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table);

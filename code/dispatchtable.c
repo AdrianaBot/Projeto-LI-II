@@ -32,6 +32,7 @@ void setupTable(DispatchFunc table[]){
     table['f'] = convToDouble;
     table['c'] = convToChar;
     table['s'] = convToString;
+    table['l'] = readline;
     table['_'] = duplicacao;
     table[';'] = pop2;
     table['\\'] = troca;

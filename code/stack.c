@@ -185,7 +185,23 @@ void assign(STACK *s,char c,ELEMENT var[]){
     push(s,x);
 }
 
+/**
+ * @brief readline function
+ * 
+ * Lê uma linha
+ * 
+ * @param s 
+ */
+void readline(STACK *s) {
+    char line[BUFSIZ];
 
+    if (fgets (line, BUFSIZ, stdin) != NULL) {
+        ELEMENT a;
+        a.type = STRING;
+        strcpy (a.info.typeString, line);
+        push(s,a);
+    }
+}
 
 void psd (STACK *s) {
      for (int i = 0; i < s->sp; i++) {

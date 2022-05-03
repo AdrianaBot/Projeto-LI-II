@@ -40,8 +40,7 @@ void convToLong(STACK *s){
 
     else if (x.type == STRING){
     long v;   
-    char h[BUFSIZ] = "";
-    if (sscanf(h,"%ld",&v) == 1) converter.info.typeLong = v; 
+    if (sscanf(x.info.typeString,"%ld",&v) == 1) converter.info.typeLong = v; 
 
     push(s,converter);
     }
@@ -76,11 +75,8 @@ void convToDouble(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ] = ""; 
     double v;   
-    
-    
-    if (sscanf(h,"%lf",&v) == 1) converter.info.typeDouble = v; 
+    if (sscanf(x.info.typeString,"%lf",&v) == 1) converter.info.typeDouble = v; 
 
     push(s,converter);
     }
@@ -118,11 +114,8 @@ void convToChar(STACK *s){
     }
 
     else if (x.type == STRING){
-    char h[BUFSIZ] = ""; 
-    long v;   
-    
-    
-    if (sscanf(h,"%ld",&v) == 1)    converter.info.typeChar = v; 
+    char v;   
+    if (sscanf(x.info.typeString,"%c",&v) == 1)   converter.info.typeChar = v; 
 
     push(s,converter);
     }

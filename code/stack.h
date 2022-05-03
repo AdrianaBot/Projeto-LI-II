@@ -379,6 +379,8 @@ void setupDivArray(DispatchType funcType[4][4]);
 
 void setupExpArray(DispatchType funcType[4][4]);
 
+void readline(STACK *s);
+
 void psd(STACK *s);
 
 
