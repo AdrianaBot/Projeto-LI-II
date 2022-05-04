@@ -5,15 +5,28 @@ typedef enum {
     LONG, 
     DOUBLE, 
     CHAR,
-    STRING 
+    STRING,
+    ARRAY
 } VARTYPE;
+
+typedef struct {
+    VARTYPE typeA;
+    union {
+        long typeLongA;
+        double typeDoubleA;
+        char typeCharA; 
+    } infoA;
+} ELEMARRAY;
+
+typedef struct {
+    ELEMARRAY array[BUFSIZ];
+    int size;
+} ARRAYD;
 
 /**
  * @brief Definição e conversão de tipos.
  * 
  */
-
-
 typedef struct {
     VARTYPE type;
     union {
@@ -21,13 +34,13 @@ typedef struct {
         double typeDouble;
         char typeChar; 
         char typeString[BUFSIZ]; 
+        ARRAYD typeArray;
     } info;
 } ELEMENT;
 
 /**
 * @brief Definição da Stack
 */
-
 typedef struct {
     ELEMENT stack[BUFSIZ];
     int sp;
@@ -41,7 +54,6 @@ typedef void (*DispatchType) (STACK*, ELEMENT, ELEMENT);
 void setupTable(DispatchFunc table[]);
 
 int func(STACK *x, char* c, DispatchFunc table[]);
-
 
 
 /**
@@ -72,6 +84,14 @@ int push(STACK *s, ELEMENT elem);
  */
 
 int pop(STACK *s, ELEMENT* x);
+
+void newArray (STACK* s);
+
+void addToArray(STACK* s, char h[]);
+
+void printArray(STACK* s, int n);
+
+
 /**
  * @brief Função da soma
  * 

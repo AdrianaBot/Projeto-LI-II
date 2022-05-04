@@ -41,6 +41,64 @@ int pop(STACK *s, ELEMENT *x){
     return 0;
 }
 
+//ARRAY
+
+void newArray (STACK* s){
+    ELEMENT a = {
+        .type = ARRAY
+    };
+    push(s,a);
+}
+
+void addToArray(STACK* s, char h[]) {
+    ELEMENT m;
+    pop(s, &m);
+
+    if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
+        ELEMARRAY a = {
+            .typeA = CHAR, 
+            .infoA.typeCharA = h[0],
+        };
+        m.info.typeArray.array[m.info.typeArray.size] = a;
+        m.info.typeArray.size++;
+        push(s,m);
+        return;
+    }
+    char* endptr;
+    long num = strtol(h,&endptr,10);
+    if (*endptr == '\0') {
+        ELEMARRAY a = {
+            .typeA = LONG, 
+            .infoA.typeLongA = num,
+        };
+        m.info.typeArray.array[m.info.typeArray.size] = a;
+        m.info.typeArray.size++;
+        push(s,m);
+        return;
+    }
+    double b = strtod(h,&endptr);
+    if (*endptr == '\0') {
+        ELEMARRAY a = {
+            .typeA = DOUBLE, 
+            .infoA.typeDoubleA = b,
+        };
+        m.info.typeArray.array[m.info.typeArray.size] = a;
+        m.info.typeArray.size++;
+        push(s,m);
+        return;
+    }
+}
+
+void printArray(STACK* s, int n) {
+    ELEMENT a = s->stack[n];
+
+    for (int i = 0; i < a.info.typeArray.size; i++) {
+        ELEMARRAY x = a.info.typeArray.array[i];
+        if (x.typeA == LONG) printf ("%ld", x.infoA.typeLongA);
+        else if (x.typeA == DOUBLE) printf ("%g", x.infoA.typeDoubleA);
+        else if (x.typeA == CHAR) printf ("%c", x.infoA.typeCharA);
+    }
+}
 
 /**
  * @brief Definição da operação de decrementação ( ( ).
@@ -203,12 +261,13 @@ void readline(STACK *s) {
     }
 }
 
+
 void psd (STACK *s) {
      for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
 
         if (x.type == LONG) printf ("l: %ld ", x.info.typeLong);
-        else if (x.type == DOUBLE) printf ("f: %.1lf ", x.info.typeDouble);
+        else if (x.type == DOUBLE) printf ("f: %lf ", x.info.typeDouble);
         else if (x.type == CHAR) printf ("c: %c ", x.info.typeChar);
         else if (x.type == STRING) printf ("s: '%s' ", x.info.typeString); 
     }
