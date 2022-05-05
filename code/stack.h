@@ -23,6 +23,7 @@ typedef struct {
     int size;
 } ARRAYD;
 
+
 /**
  * @brief Definição e conversão de tipos.
  * 

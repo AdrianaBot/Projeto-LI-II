@@ -88,7 +88,6 @@ void pushin (STACK *s){
 
 
 
-
 /**
  * @brief NewArray é uma função que cria novos arrays.
  * 
@@ -199,6 +198,7 @@ void printArray(STACK* s, int n) {
         else if (x.typeA == CHAR) printf ("%c", x.infoA.typeCharA);
     }
 }
+
 
 
 // Operacoes  com a Stack
