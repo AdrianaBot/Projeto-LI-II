@@ -92,6 +92,8 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == '[' && h[1] == '\0') {f = 1; newArray(s);}
             else if (h[0] == ']' && h[1] == '\0') f = 0;
+            else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
+            else if (h[0] == '"' && h[1] == '\0') f = 0;
             else if (f == 1) addToArray(s, h);
             else if (h[0] == ',' && h[1] == '\0') size(s);
             else if (h[0] == '~' && h[1] == '\0') pushin(s);

@@ -181,11 +181,13 @@ void addToArray(STACK* s, char h[]) {
     }
 }
 
+
+
 /**
  * @brief printArray é uma função que mostra o array
  * 
  * @param s -> pointer da stack
- * @param n -> ask Luis about this
+ * @param n -> É a posição do Array na STACK
  */
 
 void printArray(STACK* s, int n) {
@@ -199,6 +201,22 @@ void printArray(STACK* s, int n) {
     }
 }
 
+void newString(STACK *s) {
+     ELEMENT x = {
+            .type = ARRAY, 
+        };
+        push(s,x);
+}
+
+void printString (STACK* s, int n) {
+    ELEMENT a = s->stack[n];
+
+    for (int i  = 0; i < a.info.typeArray.size; i++) {
+        ELEMARRAY x = a.info.typeArray.array[i];
+        printf("%c", x.infoA.typeCharA);
+
+    }
+}
 
 
 // Operacoes  com a Stack

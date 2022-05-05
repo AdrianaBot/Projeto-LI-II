@@ -96,6 +96,10 @@ void addToArray(STACK* s, char h[]);
 
 void printArray(STACK* s, int n);
 
+void newString (STACK* s);
+
+void printString (STACK* s, int n);
+
 
 /**
  * @brief Função da soma
