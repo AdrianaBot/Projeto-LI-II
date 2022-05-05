@@ -43,6 +43,58 @@ int pop(STACK *s, ELEMENT *x){
 
 //ARRAY
 
+// it don't work ... it aint broke, it just wont bussssst
+
+void pushin (STACK *s){
+    ELEMENT m;
+    pop(s,&m);
+
+    if (m.type == ARRAY){
+        
+        for (int i = 0; i < m.info.typeArray.size;i++){
+           ELEMARRAY a = m.info.typeArray.array[i];
+           if (a.typeA == LONG){
+                
+                ELEMENT x = {
+                    .type = LONG,
+                    .info.typeLong = a.infoA.typeLongA
+                };
+               push(s, x);}
+           else if (a.typeA == CHAR){
+            
+               ELEMENT x = {
+                   .type = CHAR,
+                   .info.typeChar = a.infoA.typeCharA
+               };
+               push(s,x);
+           } 
+         else if (a.typeA == DOUBLE){
+               
+               ELEMENT x = {
+                   .type = DOUBLE,
+                   .info.typeDouble = a.infoA.typeDoubleA
+               };
+               push(s,x);
+           }
+        }
+
+
+
+        }
+
+
+    }
+
+
+
+
+
+/**
+ * @brief NewArray é uma função que cria novos arrays.
+ * 
+ * @param s -> Pointer da Stack
+ */
+
 void newArray (STACK* s){
     ELEMENT a = {
         .type = ARRAY
@@ -50,9 +102,50 @@ void newArray (STACK* s){
     push(s,a);
 }
 
+/**
+ * @brief size será a função respetiva ao character (,) que procura
+ * o tamanho de um array/string e da-nos o seu tamanho ou o range.
+ * 
+ * 
+ * @param s -> pointer da Stack 
+ */
+
+void size(STACK* s){ 
+    ELEMENT m;
+    pop(s,&m);
+
+    if (m.type == ARRAY){
+        ELEMENT x = {
+            .type = LONG,
+            .info.typeLong = m.info.typeArray.size
+        };
+        push(s,x); 
+    }    
+    else if (m.type == LONG){
+        ELEMENT x = {
+            .type = ARRAY
+        };  
+        for (int i = 0; i < m.info.typeLong ;i++){
+             ELEMARRAY a = {
+                .typeA = LONG, 
+                .infoA.typeLongA = i,
+            };
+            x.info.typeArray.array[x.info.typeArray.size] = a;
+            x.info.typeArray.size++;
+        } 
+        push(s,x);    
+    }
+}
+
+/**
+ * @brief addToArray é uma função que adiciona um elemento de qualquer tipo para um Array!
+ * 
+ * @param s -> pointer da Stack 
+ * @param h 
+ */
 void addToArray(STACK* s, char h[]) {
     ELEMENT m;
-    pop(s, &m);
+    pop(s,&m);
 
     if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
         ELEMARRAY a = {
@@ -89,6 +182,13 @@ void addToArray(STACK* s, char h[]) {
     }
 }
 
+/**
+ * @brief printArray é uma função que mostra o array
+ * 
+ * @param s -> pointer da stack
+ * @param n -> ask Luis about this
+ */
+
 void printArray(STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
@@ -100,6 +200,8 @@ void printArray(STACK* s, int n) {
     }
 }
 
+
+// Operacoes  com a Stack
 /**
  * @brief Definição da operação de decrementação ( ( ).
  * A decrementação diminui o inteiro em 1.

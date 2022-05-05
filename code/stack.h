@@ -55,7 +55,7 @@ void setupTable(DispatchFunc table[]);
 
 int func(STACK *x, char* c, DispatchFunc table[]);
 
-
+ 
 /**
 * @brief Utilização da Stack 
 */
@@ -86,6 +86,10 @@ int push(STACK *s, ELEMENT elem);
 int pop(STACK *s, ELEMENT* x);
 
 void newArray (STACK* s);
+
+void pushin (STACK *s);
+
+void size(STACK* s);
 
 void addToArray(STACK* s, char h[]);
 
