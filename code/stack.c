@@ -157,6 +157,7 @@ void printArray(STACK* s, int n) {
 void newString(STACK *s) {
      ELEMENT x = {
             .type = STRING, 
+            .info.typeString = calloc(sizeof(char*),1)
         };
         push(s,x);
 }
@@ -164,9 +165,11 @@ void newString(STACK *s) {
 void printString (STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
-    for (int i  = 0; i < a.info.typeArray->sp; i++) {
-        ELEMENT x = a.info.typeArray->stack[i];
+    for (int i  = 0; i < strlen(a.info.typeString); i++) { //tenho que aceder ao tamanho da string 
+        ELEMENT x = a.info.typeString->stack[i]; //tenho que aceder ao conteúdo da string 
         if (x.type == CHAR) printf("%c", x.info.typeChar);
+        else if (x.type == LONG) printf("%ld", x.info.typeLong);
+        else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
     }
 }
 

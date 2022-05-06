@@ -94,8 +94,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == ']' && h[1] == '\0') f = 0;
             else if (f == 1) addToArray(s, h);
             /*else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
-            else if (h[0] == '"' && h[1] == '\0') f = 0;
-            else if (f == 1) addToArray(s,h);*/
+            else if (h[0] == '"' && h[1] == '\0') f = 0;*/
             else if (h[0] == ',' && h[1] == '\0') size(s);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
