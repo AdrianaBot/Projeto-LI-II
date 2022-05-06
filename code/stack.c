@@ -47,7 +47,11 @@ int pop(STACK *s, ELEMENT *x){
  * @param s -> Pointer da Stack
  */
 
-void newArray (STACK* s){
+void newArray (STACK* s, int f){
+
+    for (int i = 1; i < f; i++) 
+        s = s->stack[s->sp-1].info.typeArray;
+
     ELEMENT a = {
         .type = ARRAY,
         .info.typeArray = newStack()
@@ -96,7 +100,11 @@ void size(STACK* s){
  * @param s -> pointer da Stack 
  * @param h 
  */
-void addToArray(STACK* s, char h[]) {
+void addToArray(STACK* s, char h[], int f) {
+
+    for (int i = 1; i < f; i++) 
+        s = s->stack[s->sp-1].info.typeArray;
+
     ELEMENT m;
     pop(s,&m);
 
@@ -142,7 +150,6 @@ void addToArray(STACK* s, char h[]) {
  * @param s -> pointer da stack
  * @param n -> É a posição do Array na STACK
  */
-
 void printArray(STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
@@ -151,6 +158,7 @@ void printArray(STACK* s, int n) {
         if (x.type == LONG) printf ("%ld", x.info.typeLong);
         else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
+        else if (x.type == ARRAY) printArray(a.info.typeArray,i);
     }
 }
 
@@ -166,10 +174,8 @@ void printString (STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
     for (int i  = 0; i < strlen(a.info.typeString); i++) { //tenho que aceder ao tamanho da string 
-        ELEMENT x = a.info.typeString->stack[i]; //tenho que aceder ao conteúdo da string 
-        if (x.type == CHAR) printf("%c", x.info.typeChar);
-        else if (x.type == LONG) printf("%ld", x.info.typeLong);
-        else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
+        char x = a.info.typeString[i]; //tenho que aceder ao conteúdo da string 
+        putchar(x);
     }
 }
 
@@ -345,6 +351,7 @@ void psd (STACK *s) {
         else if (x.type == DOUBLE) printf ("f: %lf ", x.info.typeDouble);
         else if (x.type == CHAR) printf ("c: %c ", x.info.typeChar);
         else if (x.type == STRING) printf ("s: '%s' ", x.info.typeString); 
+        else if (x.type == ARRAY) {printf ("a: "); printArray(s,i); putchar(' ');} 
     }
     putchar('\n'); 
 }

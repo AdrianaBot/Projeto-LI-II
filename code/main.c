@@ -34,7 +34,7 @@ int main() {
         else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
         else if (x.type == STRING) printf ("%s", x.info.typeString);
-        else if (x.type == ARRAY) {printf ("a: "); printArray(s,i); putchar(' ');} 
+        else if (x.type == ARRAY) printArray(s,i);
     }
     putchar('\n'); 
     free(s);

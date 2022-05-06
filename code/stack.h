@@ -73,11 +73,11 @@ int push(STACK *s, ELEMENT elem);
 
 int pop(STACK *s, ELEMENT* x);
 
-void newArray (STACK* s);
+void newArray (STACK* s, int f);
 
 void size(STACK* s);
 
-void addToArray(STACK* s, char h[]);
+void addToArray(STACK* s, char h[], int f);
 
 void printArray(STACK* s, int n);
 

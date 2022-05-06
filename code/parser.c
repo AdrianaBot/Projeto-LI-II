@@ -90,9 +90,9 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '*' && h[1] == '\0') multiplicacao(s, funcType3);
             else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
-            else if (h[0] == '[' && h[1] == '\0') {f = 1; newArray(s);}
-            else if (h[0] == ']' && h[1] == '\0') f = 0;
-            else if (f == 1) addToArray(s, h);
+            else if (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
+            else if (h[0] == ']' && h[1] == '\0') f--;
+            else if (f != 0) addToArray(s, h, f);
             /*else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
             else if (h[0] == '"' && h[1] == '\0') f = 0;*/
             else if (h[0] == ',' && h[1] == '\0') size(s);
