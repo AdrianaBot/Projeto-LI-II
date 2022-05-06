@@ -15,14 +15,14 @@
 #include <string.h>
 #include "stack.h"
 
-void readType (STACK* s, char h[]) {
+int readType (STACK* s, char h[]) {
     if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
         ELEMENT a = {
             .type = CHAR, 
             .info.typeChar = h[0],
         };
         push(s,a);
-        return;
+        return 0;
     }
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -32,7 +32,7 @@ void readType (STACK* s, char h[]) {
             .info.typeLong = num,
         };
         push(s,a);
-        return;
+        return 0 ;
     }
     double b = strtod(h,&endptr);
     if (*endptr == '\0') {
@@ -41,13 +41,9 @@ void readType (STACK* s, char h[]) {
             .info.typeDouble = b,
         };
         push(s,a);
-        return;
+        return 0;
     }
-    ELEMENT a = {
-        .type = STRING, 
-    };
-    strcpy (a.info.typeString, h);
-    push(s,a);
+    return 1;
 }
 
 /**
@@ -92,16 +88,25 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
             else if (h[0] == ']' && h[1] == '\0') f--;
-            else if (f != 0) addToArray(s, h, f);
-            /*else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
+            else if (f != 0) {
+                if (addToArray(s, h, f) == 0);
+                else {
+                    STACK *x = s;
+                    for (int i = 0; i < f; i++) 
+                        x = x->stack[s->sp-1].info.typeArray;
+            
+                    func(x, h, table);
+                }
+            }
+            /*else if (h[0] == '"' && s->stack[s->sp-1].info.typeArray;h[1] == '\0') {f = 1; newString(s);}
             else if (h[0] == '"' && h[1] == '\0') f = 0;*/
             else if (h[0] == ',' && h[1] == '\0') size(s);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
-            else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table);
-            else readType (s, h);
+            else if (readType (s, h) == 0);
+            else func(s, h, table);
 
-            psd(s);
+            //psd(s);
             h = strtok(NULL, " ");
         }
     }

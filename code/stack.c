@@ -69,6 +69,8 @@ void newArray (STACK* s, int f){
 
 void size(STACK* s){ 
     ELEMENT m;
+    m.type = LONG;
+    m.info.typeArray = NULL;
     pop(s,&m);
 
     if (m.type == ARRAY){
@@ -80,10 +82,11 @@ void size(STACK* s){
     }    
     else if (m.type == LONG){
         ELEMENT x = {
-            .type = ARRAY
+            .type = ARRAY,
+            .info.typeArray = newStack()
         };  
         for (int i = 0; i < m.info.typeLong ;i++){
-             ELEMENT a = {
+            ELEMENT a = {
                 .type = LONG, 
                 .info.typeLong = i,
             };
@@ -100,7 +103,7 @@ void size(STACK* s){
  * @param s -> pointer da Stack 
  * @param h 
  */
-void addToArray(STACK* s, char h[], int f) {
+int addToArray(STACK* s, char h[], int f) {
 
     for (int i = 1; i < f; i++) 
         s = s->stack[s->sp-1].info.typeArray;
@@ -116,7 +119,7 @@ void addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return;
+        return 0;
     }
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -128,7 +131,7 @@ void addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return;
+        return 0;
     }
     double b = strtod(h,&endptr);
     if (*endptr == '\0') {
@@ -139,8 +142,9 @@ void addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return;
+        return 0;
     }
+    return 1;
 }
 
 
@@ -173,7 +177,7 @@ void newString(STACK *s) {
 void printString (STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
-    for (int i  = 0; i < strlen(a.info.typeString); i++) { //tenho que aceder ao tamanho da string 
+    for (int i  = 0; i < (int)strlen(a.info.typeString); i++) { //tenho que aceder ao tamanho da string 
         char x = a.info.typeString[i]; //tenho que aceder ao conteúdo da string 
         putchar(x);
     }

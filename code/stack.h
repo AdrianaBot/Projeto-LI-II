@@ -1,5 +1,5 @@
-#ifndef FLAVIO
-#define FLAVIO
+#ifndef STACK_H
+#define STACK_H
 
 typedef struct stack STACK;
 
@@ -77,7 +77,7 @@ void newArray (STACK* s, int f);
 
 void size(STACK* s);
 
-void addToArray(STACK* s, char h[], int f);
+int addToArray(STACK* s, char h[], int f);
 
 void printArray(STACK* s, int n);
 
