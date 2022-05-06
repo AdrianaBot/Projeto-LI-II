@@ -92,18 +92,21 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
             else if (h[0] == '[' && h[1] == '\0') {f = 1; newArray(s);}
             else if (h[0] == ']' && h[1] == '\0') f = 0;
-            else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
-            else if (h[0] == '"' && h[1] == '\0') f = 0;
             else if (f == 1) addToArray(s, h);
+            /*else if (h[0] == '"' && h[1] == '\0') {f = 1; newString(s);}
+            else if (h[0] == '"' && h[1] == '\0') f = 0;
+            else if (f == 1) addToArray(s,h);*/
             else if (h[0] == ',' && h[1] == '\0') size(s);
-            else if (h[0] == '~' && h[1] == '\0') pushin(s);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
             else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table);
             else readType (s, h);
 
-        //    psd(s);
+            psd(s);
             h = strtok(NULL, " ");
         }
     }
 }
+
+
+

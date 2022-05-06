@@ -41,53 +41,6 @@ int pop(STACK *s, ELEMENT *x){
     return 0;
 }
 
-//ARRAY
-
-// it don't work ... it aint broke, it just wont bussssst
-
-void pushin (STACK *s){
-    ELEMENT m;
-    pop(s,&m);
-
-    if (m.type == ARRAY){
-        
-        for (int i = 0; i < m.info.typeArray.size;i++){
-           ELEMARRAY a = m.info.typeArray.array[i];
-           if (a.typeA == LONG){
-                
-                ELEMENT x = {
-                    .type = LONG,
-                    .info.typeLong = a.infoA.typeLongA
-                };
-               push(s, x);}
-           else if (a.typeA == CHAR){
-            
-               ELEMENT x = {
-                   .type = CHAR,
-                   .info.typeChar = a.infoA.typeCharA
-               };
-               push(s,x);
-           } 
-         else if (a.typeA == DOUBLE){
-               
-               ELEMENT x = {
-                   .type = DOUBLE,
-                   .info.typeDouble = a.infoA.typeDoubleA
-               };
-               push(s,x);
-           }
-        }
-
-
-
-        }
-
-
-    }
-
-
-
-
 /**
  * @brief NewArray é uma função que cria novos arrays.
  * 
@@ -96,7 +49,8 @@ void pushin (STACK *s){
 
 void newArray (STACK* s){
     ELEMENT a = {
-        .type = ARRAY
+        .type = ARRAY,
+        .info.typeArray = newStack()
     };
     push(s,a);
 }
@@ -116,7 +70,7 @@ void size(STACK* s){
     if (m.type == ARRAY){
         ELEMENT x = {
             .type = LONG,
-            .info.typeLong = m.info.typeArray.size
+            .info.typeLong = m.info.typeArray->sp
         };
         push(s,x); 
     }    
@@ -125,12 +79,12 @@ void size(STACK* s){
             .type = ARRAY
         };  
         for (int i = 0; i < m.info.typeLong ;i++){
-             ELEMARRAY a = {
-                .typeA = LONG, 
-                .infoA.typeLongA = i,
+             ELEMENT a = {
+                .type = LONG, 
+                .info.typeLong = i,
             };
-            x.info.typeArray.array[x.info.typeArray.size] = a;
-            x.info.typeArray.size++;
+            x.info.typeArray->stack[x.info.typeArray->sp] = a;
+            x.info.typeArray->sp++;
         } 
         push(s,x);    
     }
@@ -147,40 +101,39 @@ void addToArray(STACK* s, char h[]) {
     pop(s,&m);
 
     if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
-        ELEMARRAY a = {
-            .typeA = CHAR, 
-            .infoA.typeCharA = h[0],
+        ELEMENT a = {
+            .type = CHAR, 
+            .info.typeChar = h[0],
         };
-        m.info.typeArray.array[m.info.typeArray.size] = a;
-        m.info.typeArray.size++;
+        m.info.typeArray->stack[m.info.typeArray->sp] = a;
+        m.info.typeArray->sp++;
         push(s,m);
         return;
     }
     char* endptr;
     long num = strtol(h,&endptr,10);
     if (*endptr == '\0') {
-        ELEMARRAY a = {
-            .typeA = LONG, 
-            .infoA.typeLongA = num,
+        ELEMENT a = {
+            .type = LONG, 
+            .info.typeLong = num,
         };
-        m.info.typeArray.array[m.info.typeArray.size] = a;
-        m.info.typeArray.size++;
+        m.info.typeArray->stack[m.info.typeArray->sp] = a;
+        m.info.typeArray->sp++;
         push(s,m);
         return;
     }
     double b = strtod(h,&endptr);
     if (*endptr == '\0') {
-        ELEMARRAY a = {
-            .typeA = DOUBLE, 
-            .infoA.typeDoubleA = b,
+        ELEMENT a = {
+            .type = DOUBLE, 
+            .info.typeDouble = b,
         };
-        m.info.typeArray.array[m.info.typeArray.size] = a;
-        m.info.typeArray.size++;
+        m.info.typeArray->stack[m.info.typeArray->sp] = a;
+        m.info.typeArray->sp++;
         push(s,m);
         return;
     }
 }
-
 
 
 /**
@@ -193,17 +146,17 @@ void addToArray(STACK* s, char h[]) {
 void printArray(STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
-    for (int i = 0; i < a.info.typeArray.size; i++) {
-        ELEMARRAY x = a.info.typeArray.array[i];
-        if (x.typeA == LONG) printf ("%ld", x.infoA.typeLongA);
-        else if (x.typeA == DOUBLE) printf ("%g", x.infoA.typeDoubleA);
-        else if (x.typeA == CHAR) printf ("%c", x.infoA.typeCharA);
+    for (int i = 0; i < a.info.typeArray->sp; i++) {
+        ELEMENT x = a.info.typeArray->stack[i];
+        if (x.type == LONG) printf ("%ld", x.info.typeLong);
+        else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
+        else if (x.type == CHAR) printf ("%c", x.info.typeChar);
     }
 }
 
 void newString(STACK *s) {
      ELEMENT x = {
-            .type = ARRAY, 
+            .type = STRING, 
         };
         push(s,x);
 }
@@ -211,10 +164,9 @@ void newString(STACK *s) {
 void printString (STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
-    for (int i  = 0; i < a.info.typeArray.size; i++) {
-        ELEMARRAY x = a.info.typeArray.array[i];
-        printf("%c", x.infoA.typeCharA);
-
+    for (int i  = 0; i < a.info.typeArray->sp; i++) {
+        ELEMENT x = a.info.typeArray->stack[i];
+        if (x.type == CHAR) printf("%c", x.info.typeChar);
     }
 }
 

@@ -65,7 +65,11 @@ void notBitwise (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
     x.info.typeLong = 0;
-    pop(s, &x); 
+    pop(s, &x);
+
+    if (x.type == ARRAY) {
+        push(s,x);
+    } 
     final.info.typeLong = ~ x.info.typeLong;
     push(s, final);
 }
