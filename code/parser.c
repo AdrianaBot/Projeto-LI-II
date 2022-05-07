@@ -57,20 +57,9 @@ int readType (STACK* s, char h[]) {
  */
 void parser(STACK *s, DispatchFunc table[]) {
     char line[BUFSIZ];
-    DispatchType funcType1[4][4];
-    DispatchType funcType2[4][4];
-    DispatchType funcType3[4][4];
-    DispatchType funcType4[4][4];
-    DispatchType funcType5[4][4];
 
     ELEMENT variables[26] = {0};
     setupVar(variables);
-
-    setupSumArray(funcType1);
-    setupSubArray(funcType2);
-    setupMulArray(funcType3);
-    setupDivArray(funcType4);
-    setupExpArray(funcType5);
 
     if (fgets (line, BUFSIZ, stdin) != NULL) {
         for (int i = 0; line[i] != '\0'; i++)
@@ -81,12 +70,7 @@ void parser(STACK *s, DispatchFunc table[]) {
         int f = 0;
 
         while (h != NULL) {
-            if      (h[0] == '+' && h[1] == '\0') soma(s, funcType1);
-            else if (h[0] == '-' && h[1] == '\0') subtracao(s, funcType2);
-            else if (h[0] == '*' && h[1] == '\0') multiplicacao(s, funcType3);
-            else if (h[0] == '/' && h[1] == '\0') divisao(s, funcType4);
-            else if (h[0] == '#' && h[1] == '\0') exponenciacao(s, funcType5);
-            else if (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
+            if      (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
             else if (h[0] == ']' && h[1] == '\0') f--;
             else if (f != 0) {
                 if (addToArray(s, h, f) == 0);
@@ -98,9 +82,7 @@ void parser(STACK *s, DispatchFunc table[]) {
                     func(x, h, table);
                 }
             }
-            /*else if (h[0] == '"' && s->stack[s->sp-1].info.typeArray;h[1] == '\0') {f = 1; newString(s);}
-            else if (h[0] == '"' && h[1] == '\0') f = 0;*/
-            else if (h[0] == ',' && h[1] == '\0') size(s);
+            else if (h[0] == '"') newString(s, h);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
             else if (readType (s, h) == 0);

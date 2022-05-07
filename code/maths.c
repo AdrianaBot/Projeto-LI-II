@@ -9,11 +9,15 @@
  *  
  * @param s -> pointer da STACK 
  */
-void soma(STACK* s, DispatchType somaArray[4][4]) {
+void soma(STACK* s) {
     ELEMENT x, y;
+
+    DispatchType funcType[6][6];
+    setupSumArray(funcType);
+
     pop(s,&x); 
     pop(s,&y);
-    somaArray[x.type][y.type](s,x,y);
+    funcType[x.type][y.type](s,x,y);
 }
 
 /**
@@ -124,16 +128,53 @@ void somaCharChar(STACK *s, ELEMENT x, ELEMENT y){
     push(s,final);
 }
 
+void somaElemArray(STACK *s, ELEMENT x, ELEMENT y){
+        
+    y.info.typeArray->stack[x.info.typeArray->sp] = x;
+    y.info.typeArray->sp++;
+
+    push(s,y);
+}
+
+void somaArrayElem(STACK *s, ELEMENT x, ELEMENT y){
+    newArray(s, 0);
+
+    ELEMENT m;
+    pop(s,&m);
+
+    m.info.typeArray->stack[m.info.typeArray->sp] = y;
+    m.info.typeArray->sp++;
+
+    for (int i = 0; i < x.info.typeArray->sp; i++) {
+        m.info.typeArray->stack[i+1] = x.info.typeArray->stack[i];
+        m.info.typeArray->sp++;
+    }
+    push(s,m);
+}
+
+void somaArrayArray(STACK *s, ELEMENT x, ELEMENT y){
+    int aux = y.info.typeArray->sp;
+    for (int j = 0; j <  x.info.typeArray->sp; j++) {
+        y.info.typeArray->stack[j + aux] = x.info.typeArray->stack[j];
+        y.info.typeArray->sp++;
+    }
+    push(s,y);
+}
+
 /**
  * @brief Definição da operação de subtração (-).
  * 
  * @param s -> pointer da STACK 
  */
-void subtracao(STACK *s, DispatchType subtracaoArray[4][4]){
+void subtracao(STACK *s){
     ELEMENT x, y;
+
+    DispatchType funcType[4][4];
+    setupSubArray(funcType);
+
     pop(s,&x); 
     pop(s,&y);
-    subtracaoArray[y.type][x.type] (s,y,x);
+    funcType[y.type][x.type] (s,y,x);
 }
 
 /**
@@ -249,11 +290,16 @@ void subtracaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
  * 
  * @param s -> pointer da STACK 
  */
-void multiplicacao(STACK *s, DispatchType multiplicacaoArray[4][4]){
+void multiplicacao(STACK *s){
     ELEMENT x, y;
+
+    DispatchType funcType[4][4];
+    setupMulArray(funcType);
+
+
     pop(s,&x); 
     pop(s,&y);
-    multiplicacaoArray[x.type][y.type] (s,x,y);
+    funcType[x.type][y.type] (s,x,y);
 }
 
 /**
@@ -369,11 +415,15 @@ void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
  * 
  * @param s -> pointer da STACK 
  */
-void divisao(STACK *s, DispatchType divisaoArray[4][4]){
+void divisao(STACK *s){
     ELEMENT x, y;
+
+    DispatchType funcType[4][4];
+    setupDivArray(funcType);
+
     pop(s,&x); 
     pop(s,&y);
-    divisaoArray[y.type][x.type] (s,y,x);
+    funcType[y.type][x.type] (s,y,x);
 }
 
 /**
@@ -489,11 +539,15 @@ void divisaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
  * 
  * @param s -> pointer da STACK 
  */
-void exponenciacao(STACK* s, DispatchType expArray[4][4]) {
+void exponenciacao(STACK* s) {
     ELEMENT x, y;
+
+    DispatchType funcType[4][4];
+    setupExpArray(funcType);
+
     pop(s,&x); 
     pop(s,&y);
-    expArray[y.type][x.type](s,y,x);
+    funcType[y.type][x.type](s,y,x);
 }
 
 /**

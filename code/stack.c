@@ -166,21 +166,13 @@ void printArray(STACK* s, int n) {
     }
 }
 
-void newString(STACK *s) {
-     ELEMENT x = {
-            .type = STRING, 
-            .info.typeString = calloc(sizeof(char*),1)
-        };
-        push(s,x);
-}
-
-void printString (STACK* s, int n) {
-    ELEMENT a = s->stack[n];
-
-    for (int i  = 0; i < (int)strlen(a.info.typeString); i++) { //tenho que aceder ao tamanho da string 
-        char x = a.info.typeString[i]; //tenho que aceder ao conteúdo da string 
-        putchar(x);
-    }
+void newString(STACK *s, char h[]) {
+    h[strlen(h)-1] = '\0';
+    ELEMENT x = {
+        .type = STRING, 
+        .info.typeString = ++h
+    };
+    push(s,x);
 }
 
 

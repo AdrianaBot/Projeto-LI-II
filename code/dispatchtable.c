@@ -21,6 +21,11 @@
  * 
  */
 void setupTable(DispatchFunc table[]){
+    table['+'] = soma;
+    table['-'] = subtracao;
+    table['*'] = multiplicacao;
+    table['/'] = divisao;
+    table['#'] = exponenciacao;
     table['('] = decrementacao;
     table[')'] = incrementacao;
     table['%'] = modulo;
@@ -48,6 +53,7 @@ void setupTable(DispatchFunc table[]){
     table[161] = menorDoisValores;
     table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
+    table[','] = size;
 }
 
 int func(STACK *x, char* c, DispatchFunc table[]) {
@@ -76,7 +82,7 @@ int func(STACK *x, char* c, DispatchFunc table[]) {
  * 
  * @param funcType 
  */
-void setupSumArray(DispatchType funcType[4][4]) {
+void setupSumArray(DispatchType funcType[6][6]) {
     funcType[LONG][LONG] = somaLongLong;
     funcType[LONG][DOUBLE] = somaLongDouble;
     funcType[LONG][CHAR] = somaLongChar;
@@ -86,6 +92,13 @@ void setupSumArray(DispatchType funcType[4][4]) {
     funcType[CHAR][LONG] = somaCharLong;
     funcType[CHAR][DOUBLE] = somaCharDouble;
     funcType[CHAR][CHAR] = somaCharChar;
+    funcType[LONG][ARRAY] = somaElemArray;
+    funcType[DOUBLE][ARRAY] = somaElemArray;
+    funcType[CHAR][ARRAY] = somaElemArray;
+    funcType[ARRAY][LONG] = somaArrayElem;
+    funcType[ARRAY][DOUBLE] = somaArrayElem;
+    funcType[ARRAY][CHAR] = somaArrayElem;
+    funcType[ARRAY][ARRAY] = somaArrayArray;
 }
 
 /**

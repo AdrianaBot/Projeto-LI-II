@@ -81,10 +81,7 @@ int addToArray(STACK* s, char h[], int f);
 
 void printArray(STACK* s, int n);
 
-void newString (STACK* s);
-
-void printString (STACK* s, int n);
-
+void newString (STACK* s, char h[]);
 
 
 /**
@@ -95,7 +92,7 @@ void printString (STACK* s, int n);
  * @param s 
  */
 
-void soma (STACK *s, DispatchType somaArray[4][4]);
+void soma (STACK *s);
 void somaLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void somaLongDouble(STACK *s, ELEMENT x, ELEMENT y);
 void somaLongChar(STACK *s, ELEMENT x, ELEMENT y);
@@ -105,6 +102,9 @@ void somaDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharChar(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharDouble(STACK *s, ELEMENT x, ELEMENT y);
 void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
+void somaElemArray(STACK *s, ELEMENT x, ELEMENT y);
+void somaArrayElem(STACK *s, ELEMENT x, ELEMENT y);
+void somaArrayArray(STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de subtração
@@ -114,7 +114,7 @@ void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
  * @param s
  */
 
-void subtracao(STACK *s, DispatchType subtracaoArray[4][4]);
+void subtracao(STACK *s);
 void subtracaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
 void subtracaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
@@ -133,7 +133,7 @@ void subtracaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
  * @param s 
  */
 
-void multiplicacao(STACK *s, DispatchType multiplicacaoArray[4][4]);
+void multiplicacao(STACK *s);
 void multiplicacaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void multiplicacaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
 void multiplicacaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
@@ -151,7 +151,7 @@ void multiplicacaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
  * 
  * @param s 
  */
-void divisao(STACK *s, DispatchType divisaoArray[4][4]);
+void divisao(STACK *s);
 void divisaoLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void divisaoLongDouble(STACK *s, ELEMENT x, ELEMENT y);
 void divisaoLongChar(STACK *s, ELEMENT x, ELEMENT y);
@@ -169,7 +169,7 @@ void divisaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
  * 
  * @param s 
  */
-void exponenciacao(STACK *s, DispatchType divisaoArray[4][4]);
+void exponenciacao(STACK *s);
 void expLongLong(STACK *s, ELEMENT x, ELEMENT y);
 void expLongDouble(STACK *s, ELEMENT x, ELEMENT y);
 void expLongChar(STACK *s, ELEMENT x, ELEMENT y);
@@ -384,7 +384,7 @@ void maiorDoisValores (STACK *s);
 
 void ifThenElse (STACK *s);
 
-void setupSumArray(DispatchType funcType[4][4]);
+void setupSumArray(DispatchType funcType[6][6]);
 
 void setupSubArray(DispatchType funcType[4][4]);
 
