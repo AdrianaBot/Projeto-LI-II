@@ -79,7 +79,14 @@ void size(STACK* s){
             .info.typeLong = m.info.typeArray->sp
         };
         push(s,x); 
-    }    
+    }  
+    else if (m.type == STRING){
+        ELEMENT x = {
+            .type = LONG,
+            .info.typeLong = strlen(m.info.typeString)
+        };
+        push(s,x); 
+    }   
     else if (m.type == LONG){
         ELEMENT x = {
             .type = ARRAY,
@@ -199,13 +206,20 @@ void decrementacao (STACK* s) {
     pop(s,&x);
     if (x.type == LONG) final.info.typeLong = x.info.typeLong -1;            
     
-    if (x.type == ARRAY){
+    else if (x.type == ARRAY){
 
         final = x.info.typeArray->stack[0];
         for (int i = 0; i < x.info.typeArray->sp;i++){
             x.info.typeArray->stack[i] = x.info.typeArray->stack [i + 1];
         }
         x.info.typeArray->sp--;
+        push(s,x);
+    }
+    else if (x.type == STRING){
+        final.type = CHAR;
+        final.info.typeChar = x.info.typeString[0];
+
+        x.info.typeString++;
         push(s,x);
     }
     push (s,final);
@@ -223,9 +237,16 @@ void incrementacao (STACK* s) {
     x.info.typeLong = 0;                              
     pop(s,&x);
     if (x.type == LONG) final.info.typeLong = x.info.typeLong + 1;
-    if (x.type == ARRAY){
+    else if (x.type == ARRAY){
         final = x.info.typeArray->stack[x.info.typeArray->sp - 1];
         x.info.typeArray->sp--;
+        push (s,x);
+    }
+    else if (x.type == STRING){
+        final.type = CHAR;
+        final.info.typeChar = x.info.typeString[strlen(x.info.typeString)-1];
+
+        x.info.typeString[strlen(x.info.typeString)-1] = '\0';
         push (s,x);
     }
     push(s,final);

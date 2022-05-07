@@ -85,10 +85,10 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (h[0] == '"') newString(s, h);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
             else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
-            else if ((h[0] < 48 || h[0] > 57) && h[1] == '\0') func(s, h, table);
+            else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table);
             else readType (s, h);
 
-            psd(s);
+            //psd(s);
             h = strtok(NULL, " ");
         }
     }

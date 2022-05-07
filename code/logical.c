@@ -106,6 +106,13 @@ void igual (STACK *s) {
     else if (x.type == LONG && y.type == ARRAY){
         push(s,y.info.typeArray->stack[x.info.typeLong]);
     }
+    else if (x.type == LONG && y.type == STRING){
+        ELEMENT a = {
+            .type = CHAR,
+            .info.typeChar = y.info.typeString[x.info.typeLong]
+        };
+        push(s,a);
+    }
     else push(s,f); 
 }
 
@@ -142,11 +149,11 @@ void menor (STACK *s) {
     else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar > y.info.typeDouble) push(s,v);
     else if (x.type == CHAR && y.type == CHAR && x.info.typeChar > y.info.typeChar) push(s,v);
 
-    else if (y.type == ARRAY && x.type == LONG){
+    else if (y.type == ARRAY && x.type == LONG)
         for (int i = 0;i < x.info.typeLong;i++){
          push(s,y.info.typeArray->stack[i]);    
         }
-    }
+    else if (x.type == STRING && y.type == STRING && (strcmp(x.info.typeString, y.info.typeString) > 0)) push(s,v);
     else push(s,f); 
 }
 
@@ -183,11 +190,12 @@ void maior (STACK *s) {
     else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar < y.info.typeDouble) push(s,v);
     else if (x.type == CHAR && y.type == CHAR && x.info.typeChar < y.info.typeChar) push(s,v);
 
-    else if (y.type == ARRAY && x.type == LONG){
+    else if (y.type == ARRAY && x.type == LONG)
         for (int i = x.info.typeLong;i < y.info.typeArray->sp;i++){
          push(s,y.info.typeArray->stack[i]);    
         }
-    }
+    
+    else if (x.type == STRING && y.type == STRING && (strcmp(x.info.typeString, y.info.typeString) < 0)) push(s,v);
     
     else push(s,f); 
 }
@@ -293,6 +301,13 @@ void menorDoisValores (STACK *s) {
         else 
             push(s,y);
     }
+    else if (x.type == STRING && y.type == STRING) {
+        
+        if (strcmp(x.info.typeString, y.info.typeString) < 0)
+            push(s,x);
+        else 
+            push(s,y);
+    }
 }
 
 
@@ -333,6 +348,13 @@ void maiorDoisValores (STACK *s) {
     else if (x.type == DOUBLE && y.type == LONG) {
             
         if (x.info.typeDouble > y.info.typeLong) 
+            push(s,x);
+        else 
+            push(s,y);
+    }
+    else if (x.type == STRING && y.type == STRING) {
+        
+        if (strcmp(x.info.typeString, y.info.typeString) > 0)
             push(s,x);
         else 
             push(s,y);
