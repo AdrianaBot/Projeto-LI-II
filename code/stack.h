@@ -83,6 +83,8 @@ void printArray(STACK* s, int n);
 
 void newString (STACK* s, char h[]);
 
+void pushArray(STACK *s);
+
 
 /**
  * @brief Função da soma

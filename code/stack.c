@@ -147,6 +147,16 @@ int addToArray(STACK* s, char h[], int f) {
     return 1;
 }
 
+void pushArray(STACK *s) {
+    ELEMENT m;
+    m.type = LONG;
+    m.info.typeArray = NULL;
+    pop(s,&m);
+
+    for (int i = 0; i < m.info.typeArray->sp; i++) {
+        push(s, m.info.typeArray->stack[i]);
+    }
+}
 
 /**
  * @brief printArray é uma função que mostra o array

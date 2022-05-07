@@ -53,6 +53,7 @@ void setupTable(DispatchFunc table[]){
     table[161] = menorDoisValores;
     table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
+    table['~'] = pushArray;
     table[','] = size;
 }
 
