@@ -397,3 +397,15 @@ void psd (STACK *s) {
     }
     putchar('\n'); 
 }
+
+void funcT(STACK *s) {
+    char line[BUFSIZ];
+    for(int i = 1; i != 0 ; i--) {
+        if (fgets (line, BUFSIZ, stdin) != NULL) {
+            ELEMENT a;
+            a.type = STRING;
+            a.info.typeString = line;
+            push(s,a);
+            }
+    }
+}

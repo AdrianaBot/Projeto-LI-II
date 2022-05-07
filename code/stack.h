@@ -403,5 +403,7 @@ void readline(STACK *s);
 
 void psd(STACK *s);
 
+void funcT(STACK *s);
+
 
 #endif 

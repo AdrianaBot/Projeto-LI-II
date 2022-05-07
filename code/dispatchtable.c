@@ -55,6 +55,7 @@ void setupTable(DispatchFunc table[]){
     table['?'] = ifThenElse;
     table['~'] = pushArray;
     table[','] = size;
+    table['t'] = funcT;
 }
 
 int func(STACK *x, char* c, DispatchFunc table[]) {
