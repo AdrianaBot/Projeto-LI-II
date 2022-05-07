@@ -100,6 +100,13 @@ void setupSumArray(DispatchType funcType[6][6]) {
     funcType[ARRAY][DOUBLE] = somaArrayElem;
     funcType[ARRAY][CHAR] = somaArrayElem;
     funcType[ARRAY][ARRAY] = somaArrayArray;
+    funcType[LONG][STRING] = somaElemString;
+    funcType[DOUBLE][STRING] = somaElemString;
+    funcType[CHAR][STRING] = somaElemString;
+    funcType[STRING][LONG] = somaStringElem;
+    funcType[STRING][DOUBLE] = somaStringElem;
+    funcType[STRING][CHAR] = somaStringElem;
+    funcType[STRING][STRING] = somaStringString;
 }
 
 /**
@@ -124,7 +131,7 @@ void setupSubArray(DispatchType funcType[4][4]) {
  * 
  * @param funcType 
  */
-void setupMulArray(DispatchType funcType[4][4]) {
+void setupMulArray(DispatchType funcType[6][6]) {
     funcType[LONG][LONG] = multiplicacaoLongLong;
     funcType[LONG][DOUBLE] = multiplicacaoLongDouble;
     funcType[LONG][CHAR] = multiplicacaoLongChar;

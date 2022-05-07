@@ -186,9 +186,8 @@ void newString(STACK *s, char h[]) {
 }
 
 
-// Operacoes  com a Stack
 /**
- * @brief Definição da operação de decrementação ( ( ).
+ * @brief Definição da operação de decrementação ( '(' ).
  * A decrementação diminui o inteiro em 1.
  * 
  * @param s -> pointer da STACK 
@@ -198,12 +197,22 @@ void decrementacao (STACK* s) {
     x.type = LONG;
     x.info.typeLong = 0;
     pop(s,&x);
-    final.info.typeLong = x.info.typeLong - 1;           
-    push(s, final);
+    if (x.type == LONG) final.info.typeLong = x.info.typeLong -1;            
+    
+    if (x.type == ARRAY){
+
+        final = x.info.typeArray->stack[0];
+        for (int i = 0; i < x.info.typeArray->sp;i++){
+            x.info.typeArray->stack[i] = x.info.typeArray->stack [i + 1];
+        }
+        x.info.typeArray->sp--;
+        push(s,x);
+    }
+    push (s,final);
 }
 
 /**
- * @brief Definição da operação de incrementação ( ) ).
+ * @brief Definição da operação de incrementação ( ')' ) .
  * A incrementação aumenta o inteiro em 1.
  * 
  * @param s -> pointer da STACK 
@@ -213,7 +222,12 @@ void incrementacao (STACK* s) {
     x.type = LONG;
     x.info.typeLong = 0;                              
     pop(s,&x);
-    final.info.typeLong = x.info.typeLong + 1;                    
+    if (x.type == LONG) final.info.typeLong = x.info.typeLong + 1;
+    if (x.type == ARRAY){
+        final = x.info.typeArray->stack[x.info.typeArray->sp - 1];
+        x.info.typeArray->sp--;
+        push (s,x);
+    }
     push(s,final);
 }
 
@@ -343,7 +357,8 @@ void readline(STACK *s) {
     if (fgets (line, BUFSIZ, stdin) != NULL) {
         ELEMENT a;
         a.type = STRING;
-        strcpy (a.info.typeString, line);
+        a.info.typeString = line;
+        //strcpy (a.info.typeString, line);
         push(s,a);
     }
 }

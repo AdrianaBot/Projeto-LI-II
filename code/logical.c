@@ -100,7 +100,10 @@ void igual (STACK *s) {
     else if (x.type == CHAR && y.type == LONG && (long) x.info.typeChar == y.info.typeLong) push(s,v);
     else if (x.type == CHAR && y.type == DOUBLE && (double) x.info.typeChar == y.info.typeDouble) push(s,v);
     else if (x.type == CHAR && y.type == CHAR && x.info.typeChar == y.info.typeChar) push(s,v);
-
+    
+    else if (x.type == LONG && y.type == ARRAY){
+        push(s,y.info.typeArray->stack[x.info.typeLong]);
+    }
     else push(s,f); 
 }
 
@@ -137,6 +140,11 @@ void menor (STACK *s) {
     else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar > y.info.typeDouble) push(s,v);
     else if (x.type == CHAR && y.type == CHAR && x.info.typeChar > y.info.typeChar) push(s,v);
 
+    else if (y.type == ARRAY && x.type == LONG){
+        for (int i = 0;i < x.info.typeLong;i++){
+         push(s,y.info.typeArray->stack[i]);    
+        }
+    }
     else push(s,f); 
 }
 
@@ -173,6 +181,12 @@ void maior (STACK *s) {
     else if (x.type == CHAR && y.type == DOUBLE && x.info.typeChar < y.info.typeDouble) push(s,v);
     else if (x.type == CHAR && y.type == CHAR && x.info.typeChar < y.info.typeChar) push(s,v);
 
+    else if (y.type == ARRAY && x.type == LONG){
+        for (int i = x.info.typeLong;i < y.info.typeArray->sp;i++){
+         push(s,y.info.typeArray->stack[i]);    
+        }
+    }
+    
     else push(s,f); 
 }
 

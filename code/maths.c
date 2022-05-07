@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "stack.h"
 
 
@@ -161,6 +162,49 @@ void somaArrayArray(STACK *s, ELEMENT x, ELEMENT y){
     push(s,y);
 }
 
+void somaElemString(STACK *s, ELEMENT x, ELEMENT y){
+    char a[BUFSIZ];
+    ELEMENT converter;
+    converter.type = STRING;
+    converter.info.typeString = a;
+
+    if (x.type == LONG)
+        sprintf(converter.info.typeString,"%ld",x.info.typeLong);
+
+    else if (x.type == DOUBLE)
+        sprintf(converter.info.typeString,"%lf",x.info.typeDouble);
+
+    else if (x.type == CHAR)
+        sprintf(converter.info.typeString,"%c",x.info.typeChar);
+
+    strcat(y.info.typeString, converter.info.typeString);
+    push(s,y);
+}
+
+void somaStringElem(STACK *s, ELEMENT x, ELEMENT y){
+    char a[BUFSIZ];
+    ELEMENT converter;
+    converter.type = STRING;
+    converter.info.typeString = a;
+
+    if (y.type == LONG)
+        sprintf(converter.info.typeString,"%ld",y.info.typeLong);
+
+    else if (y.type == DOUBLE)
+        sprintf(converter.info.typeString,"%lf",y.info.typeDouble);
+
+    else if (y.type == CHAR)
+        sprintf(converter.info.typeString,"%c",y.info.typeChar);
+
+    strcat(converter.info.typeString, x.info.typeString);
+    push(s,converter);
+}
+
+void somaStringString(STACK *s, ELEMENT x, ELEMENT y){
+    strcat(y.info.typeString, x.info.typeString);
+    push(s,y);
+}
+
 /**
  * @brief Definição da operação de subtração (-).
  * 
@@ -293,7 +337,7 @@ void subtracaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
 void multiplicacao(STACK *s){
     ELEMENT x, y;
 
-    DispatchType funcType[4][4];
+    DispatchType funcType[6][6];
     setupMulArray(funcType);
 
 
@@ -409,6 +453,11 @@ void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
     final.info.typeChar = x.info.typeChar * y.info.typeChar;
     push(s,final);
 }
+/*
+void multiplicacaoLongArray(STACK *s, ELEMENT x, ELEMENT y){
+    ELEMENT x;
+    pop(s, &x);
+}*/
 
 /**
  * @brief Definição da operação de divisão(/).

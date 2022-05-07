@@ -107,6 +107,9 @@ void somaCharLong (STACK *s, ELEMENT x, ELEMENT y);
 void somaElemArray(STACK *s, ELEMENT x, ELEMENT y);
 void somaArrayElem(STACK *s, ELEMENT x, ELEMENT y);
 void somaArrayArray(STACK *s, ELEMENT x, ELEMENT y);
+void somaElemString(STACK *s, ELEMENT x, ELEMENT y);
+void somaStringElem(STACK *s, ELEMENT x, ELEMENT y);
+void somaStringString(STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de subtração
@@ -390,7 +393,7 @@ void setupSumArray(DispatchType funcType[6][6]);
 
 void setupSubArray(DispatchType funcType[4][4]);
 
-void setupMulArray(DispatchType funcType[4][4]);
+void setupMulArray(DispatchType funcType[6][6]);
 
 void setupDivArray(DispatchType funcType[4][4]);
 
