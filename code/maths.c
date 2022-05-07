@@ -457,8 +457,9 @@ void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
 void multiplicacaoLongArray(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT x;
     pop(s, &x);
-}*/
 
+}
+*/
 /**
  * @brief Definição da operação de divisão(/).
  * 
