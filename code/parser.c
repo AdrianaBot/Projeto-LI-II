@@ -88,7 +88,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             else if (readType (s, h) == 0);
             else func(s, h, table);
 
-            //psd(s);
+            psd(s);
             h = strtok(NULL, " ");
         }
     }

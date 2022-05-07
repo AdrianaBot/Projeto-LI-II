@@ -130,7 +130,7 @@ void somaCharChar(STACK *s, ELEMENT x, ELEMENT y){
 
 void somaElemArray(STACK *s, ELEMENT x, ELEMENT y){
         
-    y.info.typeArray->stack[x.info.typeArray->sp] = x;
+    y.info.typeArray->stack[y.info.typeArray->sp] = x;
     y.info.typeArray->sp++;
 
     push(s,y);
