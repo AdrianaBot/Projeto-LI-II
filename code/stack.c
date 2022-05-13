@@ -110,7 +110,7 @@ void size(STACK* s){
  * @param s -> pointer da Stack 
  * @param h 
  */
-int addToArray(STACK* s, char h[], int f) {
+void addToArray(STACK* s, char h[], int f) {
 
     for (int i = 1; i < f; i++) 
         s = s->stack[s->sp-1].info.typeArray;
@@ -126,7 +126,7 @@ int addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return 0;
+        return;
     }
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -138,7 +138,7 @@ int addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return 0;
+        return;
     }
     double b = strtod(h,&endptr);
     if (*endptr == '\0') {
@@ -149,9 +149,16 @@ int addToArray(STACK* s, char h[], int f) {
         m.info.typeArray->stack[m.info.typeArray->sp] = a;
         m.info.typeArray->sp++;
         push(s,m);
-        return 0;
+        return;
     }
-    return 1;
+    ELEMENT a;
+    char l[BUFSIZ] = " ";
+    a.type = STRING;
+    a.info.typeString = l;
+    strcat (a.info.typeString,h);
+    m.info.typeArray->stack[m.info.typeArray->sp] = a;
+    m.info.typeArray->sp++;
+    push(s,m);
 }
 
 void pushArray(STACK *s) {
@@ -179,17 +186,30 @@ void printArray(STACK* s, int n) {
         if (x.type == LONG) printf ("%ld", x.info.typeLong);
         else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
+        else if (x.type == STRING) printf ("%s", x.info.typeString);
         else if (x.type == ARRAY) printArray(a.info.typeArray,i);
     }
 }
 
-void newString(STACK *s, char h[]) {
-    h[strlen(h)-1] = '\0';
+void newString(STACK *s, char h[], int f) {
+    for (int i = 1; i < f; i++) 
+        s = s->stack[s->sp-1].info.typeArray;
+
+    //h[strlen(h)-1] = '\0';
+    char *a = strdup(h);
     ELEMENT x = {
         .type = STRING, 
-        .info.typeString = ++h
+        .info.typeString = ++a
     };
-    push(s,x);
+    if (f != 0) {
+        ELEMENT m;
+        pop(s,&m);
+
+        m.info.typeArray->stack[m.info.typeArray->sp] = x;
+        m.info.typeArray->sp++;
+        push(s,m);
+    }
+    else push(s,x);
 }
 
 
@@ -204,8 +224,11 @@ void decrementacao (STACK* s) {
     x.type = LONG;
     x.info.typeLong = 0;
     pop(s,&x);
-    if (x.type == LONG) final.info.typeLong = x.info.typeLong -1;            
-    
+
+    if (x.type == LONG) {
+        final.type = LONG;
+        final.info.typeLong = x.info.typeLong - 1;
+    }
     else if (x.type == ARRAY){
 
         final = x.info.typeArray->stack[0];
@@ -236,7 +259,10 @@ void incrementacao (STACK* s) {
     x.type = LONG;
     x.info.typeLong = 0;                              
     pop(s,&x);
-    if (x.type == LONG) final.info.typeLong = x.info.typeLong + 1;
+    if (x.type == LONG) {
+        final.type = LONG;
+        final.info.typeLong = x.info.typeLong + 1;
+    }
     else if (x.type == ARRAY){
         final = x.info.typeArray->stack[x.info.typeArray->sp - 1];
         x.info.typeArray->sp--;
@@ -357,7 +383,10 @@ void pop2(STACK *s) {
     pop(s, &x);
 }   
 
-void assign(STACK *s,char c,ELEMENT var[]){
+void assign(STACK *s,char c,ELEMENT var[], int f){
+    for (int i = 1; i <= f; i++) 
+        s = s->stack[s->sp-1].info.typeArray;
+
     ELEMENT x;
     x.info.typeLong = 0;
     pop(s,&x);
@@ -384,6 +413,17 @@ void readline(STACK *s) {
     }
 }
 
+void funcT(STACK *s) {
+    char line[BUFSIZ];
+    for(int i = 1; i != 0 ; i--) {
+        if (fgets (line, BUFSIZ, stdin) != NULL) {
+            ELEMENT a;
+            a.type = STRING;
+            a.info.typeString = line;
+            push(s,a);
+            }
+    }
+}
 
 void psd (STACK *s) {
      for (int i = 0; i < s->sp; i++) {
@@ -396,16 +436,4 @@ void psd (STACK *s) {
         else if (x.type == ARRAY) {printf ("a: "); printArray(s,i); putchar(' ');} 
     }
     putchar('\n'); 
-}
-
-void funcT(STACK *s) {
-    char line[BUFSIZ];
-    for(int i = 1; i != 0 ; i--) {
-        if (fgets (line, BUFSIZ, stdin) != NULL) {
-            ELEMENT a;
-            a.type = STRING;
-            a.info.typeString = line;
-            push(s,a);
-            }
-    }
 }

@@ -15,14 +15,14 @@
 #include <string.h>
 #include "stack.h"
 
-int readType (STACK* s, char h[]) {
+void readType (STACK* s, char *h) {
     if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
         ELEMENT a = {
             .type = CHAR, 
             .info.typeChar = h[0],
         };
         push(s,a);
-        return 0;
+        return;
     }
     char* endptr;
     long num = strtol(h,&endptr,10);
@@ -32,7 +32,7 @@ int readType (STACK* s, char h[]) {
             .info.typeLong = num,
         };
         push(s,a);
-        return 0 ;
+        return;
     }
     double b = strtod(h,&endptr);
     if (*endptr == '\0') {
@@ -41,9 +41,22 @@ int readType (STACK* s, char h[]) {
             .info.typeDouble = b,
         };
         push(s,a);
-        return 0;
+        return;
     }
-    return 1;
+}
+
+int count(char *line, char *h) {
+    int f = 0, c = 1, i;
+
+    for (i = 0; i < (int)strlen(line); i++) {
+        if (line[i] == ' ' && f == 0) {h[i] = '\0'; return c;}
+        else if (line[i] == '"' && f != 0) {h[i] = '\0'; return c+1;}
+        else if (line[i] == '"') f++; 
+        h[i] = line[i];
+        c++;
+    }
+    h[i] = '\0';
+    return c;
 }
 
 /**
@@ -56,7 +69,7 @@ int readType (STACK* s, char h[]) {
  * @param c -> array de characteres
  */
 void parser(STACK *s, DispatchFunc table[]) {
-    char line[BUFSIZ];
+    char *line = malloc(BUFSIZ*sizeof(char));
 
     ELEMENT variables[26] = {0};
     setupVar(variables);
@@ -65,34 +78,35 @@ void parser(STACK *s, DispatchFunc table[]) {
         for (int i = 0; line[i] != '\0'; i++)
             if (line[i] == '\n') 
                 line[i] = '\0';
-            
-        char *h = strtok(line, " ");
+        
         int f = 0;
+        
+        int c,t = strlen(line);
+        char *h = malloc(BUFSIZ*sizeof(char));
 
-        while (h != NULL) {
+        c = count(line, h);
+        line += c;
+
+        while (t > 0) {
             if      (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
             else if (h[0] == ']' && h[1] == '\0') f--;
+            else if (h[0] == '"') newString(s, h, f);
             else if (f != 0) {
-                if (addToArray(s, h, f) == 0);
-                else {
-                    STACK *x = s;
-                    for (int i = 0; i < f; i++) 
-                        x = x->stack[s->sp-1].info.typeArray;
-            
-                    func(x, h, table);
-                }
+                if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table, f);
+                else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
+                else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables, f);
+                else addToArray(s, h, f);
             }
-            else if (h[0] == '"') newString(s, h);
             else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
-            else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables);
-            else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table);
-            else readType (s, h);
+            else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables, f);
+            else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table, f);
+            else readType (s, h); 
+
 
             //psd(s);
-            h = strtok(NULL, " ");
+            t -= c;
+            c = count(line, h);
+            line += c;
         }
     }
 }
-
-
-

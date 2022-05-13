@@ -58,7 +58,10 @@ void setupTable(DispatchFunc table[]){
     table['t'] = funcT;
 }
 
-int func(STACK *x, char* c, DispatchFunc table[]) {
+int func(STACK *x, char* c, DispatchFunc table[], int f) {
+    for (int i = 1; i <= f; i++) 
+        x = x->stack[x->sp-1].info.typeArray;
+
     if (c[1] == '\0') {
         unsigned char a = c[0];
         

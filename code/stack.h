@@ -41,7 +41,7 @@ typedef void (*DispatchType) (STACK*, ELEMENT, ELEMENT);
 
 void setupTable(DispatchFunc table[]);
 
-int func(STACK *x, char* c, DispatchFunc table[]);
+int func(STACK *x, char* c, DispatchFunc table[], int f);
 
  
 /**
@@ -77,11 +77,11 @@ void newArray (STACK* s, int f);
 
 void size(STACK* s);
 
-int addToArray(STACK* s, char h[], int f);
+void addToArray(STACK* s, char h[], int f);
 
 void printArray(STACK* s, int n);
 
-void newString (STACK* s, char h[]);
+void newString (STACK* s, char h[], int f);
 
 void pushArray(STACK *s);
 
@@ -345,7 +345,7 @@ void convToChar(STACK *s);
  */
 void convToString(STACK *s);
 
-void assign(STACK *s,char c,ELEMENT var[]);
+void assign(STACK *s,char c,ELEMENT var[], int f);
 
 void setupVar(ELEMENT var[]); 
 
