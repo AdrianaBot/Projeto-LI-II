@@ -44,7 +44,6 @@ void setupTable(DispatchFunc table[]){
     table['@'] = roda;
     table['$'] = copia;
     table['='] = igual;
-    table['='] = igual;
     table['<'] = menor;
     table['>'] = maior;
     table['!'] = nao;
@@ -53,7 +52,6 @@ void setupTable(DispatchFunc table[]){
     table[161] = menorDoisValores;
     table[163] = maiorDoisValores;
     table['?'] = ifThenElse;
-    table['~'] = pushArray;
     table[','] = size;
     table['t'] = funcT;
 }

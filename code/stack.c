@@ -41,6 +41,36 @@ int pop(STACK *s, ELEMENT *x){
     return 0;
 }
 
+void readType (STACK* s, char *h) {
+    if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
+        ELEMENT a = {
+            .type = CHAR, 
+            .info.typeChar = h[0],
+        };
+        push(s,a);
+        return;
+    }
+    char* endptr;
+    long num = strtol(h,&endptr,10);
+    if (*endptr == '\0') {
+        ELEMENT a = {
+            .type = LONG, 
+            .info.typeLong = num,
+        };
+        push(s,a);
+        return;
+    }
+    double b = strtod(h,&endptr);
+    if (*endptr == '\0') {
+        ELEMENT a = {
+            .type = DOUBLE, 
+            .info.typeDouble = b,
+        };
+        push(s,a);
+        return;
+    }
+}
+
 /**
  * @brief NewArray é uma função que cria novos arrays.
  * 
@@ -161,17 +191,6 @@ void addToArray(STACK* s, char h[], int f) {
     push(s,m);
 }
 
-void pushArray(STACK *s) {
-    ELEMENT m;
-    m.type = LONG;
-    m.info.typeArray = NULL;
-    pop(s,&m);
-
-    for (int i = 0; i < m.info.typeArray->sp; i++) {
-        push(s, m.info.typeArray->stack[i]);
-    }
-}
-
 /**
  * @brief printArray é uma função que mostra o array
  * 
@@ -200,6 +219,26 @@ void newString(STACK *s, char h[], int f) {
     ELEMENT x = {
         .type = STRING, 
         .info.typeString = ++a
+    };
+    if (f != 0) {
+        ELEMENT m;
+        pop(s,&m);
+
+        m.info.typeArray->stack[m.info.typeArray->sp] = x;
+        m.info.typeArray->sp++;
+        push(s,m);
+    }
+    else push(s,x);
+}
+
+void newBlock(STACK *s, char h[], int f) {
+    for (int i = 1; i < f; i++) 
+        s = s->stack[s->sp-1].info.typeArray;
+
+    char *a = strdup(h);
+    ELEMENT x = {
+        .type = BLOCK, 
+        .info.typeString = a
     };
     if (f != 0) {
         ELEMENT m;
@@ -433,6 +472,7 @@ void psd (STACK *s) {
         else if (x.type == DOUBLE) printf ("f: %lf ", x.info.typeDouble);
         else if (x.type == CHAR) printf ("c: %c ", x.info.typeChar);
         else if (x.type == STRING) printf ("s: '%s' ", x.info.typeString); 
+        else if (x.type == BLOCK) printf ("b: '%s' ", x.info.typeString); 
         else if (x.type == ARRAY) {printf ("a: "); printArray(s,i); putchar(' ');} 
     }
     putchar('\n'); 

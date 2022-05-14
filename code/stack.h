@@ -8,7 +8,8 @@ typedef enum {
     DOUBLE, 
     CHAR,
     STRING,
-    ARRAY
+    ARRAY,
+    BLOCK
 } VARTYPE;
 
 /**
@@ -43,7 +44,7 @@ void setupTable(DispatchFunc table[]);
 
 int func(STACK *x, char* c, DispatchFunc table[], int f);
 
- 
+void readType (STACK* s, char *h);
 /**
 * @brief Utilização da Stack 
 */
@@ -82,6 +83,8 @@ void addToArray(STACK* s, char h[], int f);
 void printArray(STACK* s, int n);
 
 void newString (STACK* s, char h[], int f);
+
+void newBlock(STACK *s, char h[], int f);
 
 void pushArray(STACK *s);
 

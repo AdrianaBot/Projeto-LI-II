@@ -9,6 +9,6 @@
 
 
 
-void parser(STACK *s, DispatchFunc table[]);
+void parser(STACK *s);
 
 #endif

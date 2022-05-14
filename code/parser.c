@@ -15,43 +15,15 @@
 #include <string.h>
 #include "stack.h"
 
-void readType (STACK* s, char *h) {
-    if (h[0] >= 'a' && h[0] <= 'z' && h[1] == '\0') {
-        ELEMENT a = {
-            .type = CHAR, 
-            .info.typeChar = h[0],
-        };
-        push(s,a);
-        return;
-    }
-    char* endptr;
-    long num = strtol(h,&endptr,10);
-    if (*endptr == '\0') {
-        ELEMENT a = {
-            .type = LONG, 
-            .info.typeLong = num,
-        };
-        push(s,a);
-        return;
-    }
-    double b = strtod(h,&endptr);
-    if (*endptr == '\0') {
-        ELEMENT a = {
-            .type = DOUBLE, 
-            .info.typeDouble = b,
-        };
-        push(s,a);
-        return;
-    }
-}
-
 int count(char *line, char *h) {
-    int f = 0, c = 1, i;
+    int f = 0, b = 0, c = 1, i;
 
     for (i = 0; i < (int)strlen(line); i++) {
-        if (line[i] == ' ' && f == 0) {h[i] = '\0'; return c;}
+        if (line[i] == ' ' && f == 0 && b == 0) {h[i] = '\0'; return c;}
         else if (line[i] == '"' && f != 0) {h[i] = '\0'; return c+1;}
-        else if (line[i] == '"') f++; 
+        else if (line[i] == '"') f++;
+        else if (line[i] == '}' && b != 0) {h[i] = line[i]; h[i+1] = '\0'; return c;}
+        else if (line[i] == '{') b++;
         h[i] = line[i];
         c++;
     }
@@ -68,8 +40,11 @@ int count(char *line, char *h) {
  * @param s -> pointer da stack
  * @param c -> array de characteres
  */
-void parser(STACK *s, DispatchFunc table[]) {
+void parser(STACK *s) {
     char *line = malloc(BUFSIZ*sizeof(char));
+
+    DispatchFunc table[226] = {0}; 
+    setupTable(table);
 
     ELEMENT variables[26] = {0};
     setupVar(variables);
@@ -91,6 +66,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             if      (h[0] == '[' && h[1] == '\0') newArray(s, ++f);
             else if (h[0] == ']' && h[1] == '\0') f--;
             else if (h[0] == '"') newString(s, h, f);
+            else if (h[0] == '{') newBlock(s, h, f);
             else if (f != 0) {
                 if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table, f);
                 else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
@@ -103,7 +79,7 @@ void parser(STACK *s, DispatchFunc table[]) {
             else readType (s, h); 
 
 
-            //psd(s);
+            psd(s);
             t -= c;
             c = count(line, h);
             line += c;

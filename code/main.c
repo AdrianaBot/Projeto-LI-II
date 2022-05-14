@@ -21,11 +21,9 @@
  * @brief A nossa Main 
  */
 int main() {
-    DispatchFunc table[226] = {0}; 
     STACK *s = newStack();
-    setupTable(table);
 
-    parser(s, table);
+    parser(s);
     
     for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
@@ -34,6 +32,7 @@ int main() {
         else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
         else if (x.type == STRING) printf ("%s", x.info.typeString);
+        else if (x.type == BLOCK) printf ("%s", x.info.typeString);
         else if (x.type == ARRAY) printArray(s,i);
     }
     putchar('\n'); 

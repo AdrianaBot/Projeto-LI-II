@@ -52,7 +52,7 @@ void xorBitwise (STACK* s) {
      
     pop(s,&x);
     pop(s,&y);
-    final.info.typeLong = x.info.typeLong ^ x.info.typeLong;
+    final.info.typeLong = x.info.typeLong ^ y.info.typeLong;
     push(s,final);
 }
 
@@ -67,11 +67,35 @@ void notBitwise (STACK* s) {
     x.info.typeLong = 0;
     pop(s, &x);
 
-    if (x.type == ARRAY) {
-        push(s,x);
-    } 
-    final.info.typeLong = ~ x.info.typeLong;
-    push(s, final);
+    if (x.type == LONG) {
+        final.info.typeLong = ~ x.info.typeLong;
+        push(s, final);
+        printf("estive aqui4\n");
+    }
+    else if (x.type == ARRAY) {
+        for (int i = 0; i < x.info.typeArray->sp; i++)
+            push(s, x.info.typeArray->stack[i]);
+        printf("estive aqui3\n");
+    }
+    else if (x.type == BLOCK) {
+        char *a = strdup(x.info.typeString);
+
+        DispatchFunc table[226] = {0}; 
+        setupTable(table);
+
+        int f = 0;
+        char *h = strtok(a, " ");
+
+        while (h != NULL) {
+            if (h[0] == '{' || h[0] == '{');
+            else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table, f);
+            else readType (s, h); 
+
+            h = strtok(NULL, " ");
+        }
+    }
+    printf("estive aqui\n");
+    
 }
 
 
