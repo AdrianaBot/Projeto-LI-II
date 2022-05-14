@@ -22,7 +22,7 @@ int count(char *line, char *h) {
         if (line[i] == ' ' && f == 0 && b == 0) {h[i] = '\0'; return c;}
         else if (line[i] == '"' && f != 0) {h[i] = '\0'; return c+1;}
         else if (line[i] == '"') f++;
-        else if (line[i] == '}' && b != 0) {h[i] = line[i]; h[i+1] = '\0'; return c;}
+        else if (line[i] == '}' && b != 0) {h[i] = line[i]; h[i+1] = '\0'; return c+1;}
         else if (line[i] == '{') b++;
         h[i] = line[i];
         c++;

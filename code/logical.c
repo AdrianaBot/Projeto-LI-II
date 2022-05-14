@@ -70,12 +70,10 @@ void notBitwise (STACK* s) {
     if (x.type == LONG) {
         final.info.typeLong = ~ x.info.typeLong;
         push(s, final);
-        printf("estive aqui4\n");
     }
     else if (x.type == ARRAY) {
         for (int i = 0; i < x.info.typeArray->sp; i++)
             push(s, x.info.typeArray->stack[i]);
-        printf("estive aqui3\n");
     }
     else if (x.type == BLOCK) {
         char *a = strdup(x.info.typeString);
@@ -94,7 +92,6 @@ void notBitwise (STACK* s) {
             h = strtok(NULL, " ");
         }
     }
-    printf("estive aqui\n");
     
 }
 
