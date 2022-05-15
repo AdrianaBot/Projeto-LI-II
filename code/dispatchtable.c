@@ -143,6 +143,7 @@ void setupMulArray(DispatchType funcType[6][6]) {
     funcType[CHAR][LONG] = multiplicacaoCharLong;
     funcType[CHAR][DOUBLE] = multiplicacaoCharDouble;
     funcType[CHAR][CHAR] = multiplicacaoCharChar;
+    funcType[BLOCK][ARRAY] = multiplicacaoBlockArray;
 }
 
 /**

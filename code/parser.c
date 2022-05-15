@@ -79,7 +79,7 @@ void parser(STACK *s) {
             else readType (s, h); 
 
 
-            psd(s);
+            //psd(s);
             t -= c;
             c = count(line, h);
             line += c;

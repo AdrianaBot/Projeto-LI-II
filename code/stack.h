@@ -151,6 +151,7 @@ void multiplicacaoDoubleChar(STACK *s, ELEMENT x, ELEMENT y);
 void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y);
 void multiplicacaoCharDouble(STACK *s, ELEMENT x, ELEMENT y);
 void multiplicacaoCharLong (STACK *s, ELEMENT x, ELEMENT y);
+void multiplicacaoBlockArray(STACK *s, ELEMENT x, ELEMENT y);
 
 /**
  * @brief Função de divisão

@@ -81,11 +81,16 @@ void notBitwise (STACK* s) {
         DispatchFunc table[226] = {0}; 
         setupTable(table);
 
+        ELEMENT variables[26] = {0};
+        setupVar(variables);
+
         int f = 0;
         char *h = strtok(a, " ");
 
         while (h != NULL) {
-            if (h[0] == '{' || h[0] == '{');
+            if (h[0] == '{' || h[0] == '}');
+            else if (h[0] >= 'A' && h[0] <= 'Z' && h[1] == '\0') push(s, variables[h[0]-'A']);
+            else if (h[0] == ':' && h[2] == '\0') assign(s,h[1], variables, f);
             else if (((h[0] < 48 || h[0] > 57) && h[1] == '\0') || (h[0] == 'e' && h[2] == '\0')) func(s, h, table, f);
             else readType (s, h); 
 

@@ -453,6 +453,16 @@ void multiplicacaoCharChar(STACK *s, ELEMENT x, ELEMENT y){
     final.info.typeChar = x.info.typeChar * y.info.typeChar;
     push(s,final);
 }
+
+
+void multiplicacaoBlockArray(STACK *s, ELEMENT x, ELEMENT y){
+    while (y.info.typeArray->sp >= 2) {
+        push(y.info.typeArray, x);
+        notBitwise(y.info.typeArray);
+    }
+    push(s, y);
+}
+
 /*
 void multiplicacaoLongArray(STACK *s, ELEMENT x, ELEMENT y){
     ELEMENT x;

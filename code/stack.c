@@ -181,14 +181,6 @@ void addToArray(STACK* s, char h[], int f) {
         push(s,m);
         return;
     }
-    ELEMENT a;
-    char l[BUFSIZ] = " ";
-    a.type = STRING;
-    a.info.typeString = l;
-    strcat (a.info.typeString,h);
-    m.info.typeArray->stack[m.info.typeArray->sp] = a;
-    m.info.typeArray->sp++;
-    push(s,m);
 }
 
 /**
@@ -206,6 +198,7 @@ void printArray(STACK* s, int n) {
         else if (x.type == DOUBLE) printf ("%g", x.info.typeDouble);
         else if (x.type == CHAR) printf ("%c", x.info.typeChar);
         else if (x.type == STRING) printf ("%s", x.info.typeString);
+        else if (x.type == BLOCK) printf ("%s", x.info.typeString);
         else if (x.type == ARRAY) printArray(a.info.typeArray,i);
     }
 }
@@ -268,6 +261,10 @@ void decrementacao (STACK* s) {
         final.type = LONG;
         final.info.typeLong = x.info.typeLong - 1;
     }
+    else if (x.type == CHAR) {
+        final.type = CHAR;
+        final.info.typeChar = x.info.typeChar - 1;
+    }
     else if (x.type == ARRAY){
 
         final = x.info.typeArray->stack[0];
@@ -302,6 +299,10 @@ void incrementacao (STACK* s) {
         final.type = LONG;
         final.info.typeLong = x.info.typeLong + 1;
     }
+    else if (x.type == CHAR) {
+        final.type = CHAR;
+        final.info.typeChar = x.info.typeChar + 1;
+    }
     else if (x.type == ARRAY){
         final = x.info.typeArray->stack[x.info.typeArray->sp - 1];
         x.info.typeArray->sp--;
@@ -331,8 +332,52 @@ void modulo (STACK* s) {
     y.info.typeLong = 0;
     pop(s,&x);
     pop(s,&y); 
-    final.info.typeLong = y.info.typeLong % x.info.typeLong;    
-    push(s,final);
+    if (x.type == LONG){
+        final.info.typeLong = y.info.typeLong % x.info.typeLong;    
+        push(s,final);
+    }
+    else if (x.type == BLOCK && y.type == STRING) {
+        int i;
+        char aux[BUFSIZ];
+        ELEMENT ch;
+        ch.info.typeChar = 0;
+
+        for(i = 0; i < (int)strlen(y.info.typeString)-1; i++) {
+            ELEMENT c = {
+                .type = CHAR,
+                .info.typeChar = y.info.typeString[i]
+            };
+            push(s,c);
+            push(s,x);
+            notBitwise(s);
+            
+            pop(s, &ch);
+            aux[i] = ch.info.typeChar;
+
+        }
+        aux[i] = '\0';
+
+        ELEMENT st = {
+            .type = STRING,
+            .info.typeString = strdup(aux)
+        };
+        push(s,st);
+    }
+    else if (x.type == BLOCK && y.type == ARRAY) {
+        int i;
+        //ELEMENT ch;
+        //ch.info.typeChar = 0;
+
+        for(i = 0; i < y.info.typeArray->sp; i++) {
+            push(s,y.info.typeArray->stack[i]);
+            push(s,x);
+            notBitwise(s);
+            
+            //pop(s, &ch);
+            //y.info.typeArray->stack[i] = ch;
+        }
+        //push(s, y);
+    }
 }
 
 
