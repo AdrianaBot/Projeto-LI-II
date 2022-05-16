@@ -4,12 +4,6 @@
 #include <string.h>
 #include "stack.h"
 
-
-/**
- * @brief Definição da operação de "e" (bitwise) para inteiros (&).
- * 
- * @param s -> pointer da STACK 
- */
 void eBitwise (STACK* s) {
     ELEMENT x,y,final;
     x.type = LONG;
@@ -22,11 +16,6 @@ void eBitwise (STACK* s) {
     push(s,final);
 }
 
-/**
- * @brief Definição da operação de "ou" (bitwise) para inteiros (|).
- * 
- * @param s -> pointer da STACK 
- */
 void ouBitwise (STACK* s) {
     ELEMENT x,y,final;
     x.type = LONG;
@@ -39,12 +28,6 @@ void ouBitwise (STACK* s) {
     push(s, final);
 }
 
-/**
- * @brief Definição da operação de "xor" (bitwise) para inteiros (^).
- * O xor é o ou exclusivo.
- * 
- * @param s -> pointer da STACK 
- */
 void xorBitwise (STACK* s) {
     ELEMENT x,y,final;
     x.type = LONG;
@@ -56,11 +39,6 @@ void xorBitwise (STACK* s) {
     push(s,final);
 }
 
-/**
- * @brief Definição da operação de "not" (bitwise) para inteiros (~).
- * 
- * @param s -> pointer da STACK 
- */
 void notBitwise (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
@@ -99,7 +77,6 @@ void notBitwise (STACK* s) {
     }
     
 }
-
 
 void igual (STACK *s) {
     ELEMENT x, y;
@@ -142,13 +119,6 @@ void igual (STACK *s) {
     else push(s,f); 
 }
 
-/**
- * @brief Função menor
- * 
- * Compara 2 elementos e devolve 1 caso o primeiro seja menor do que o segundo.
- * 
- * @param s 
- */
 void menor (STACK *s) {
     ELEMENT x, y;
     ELEMENT v = {
@@ -183,13 +153,6 @@ void menor (STACK *s) {
     else push(s,f); 
 }
 
-/**
- * @brief Função maior
- * 
- * Compara 2 elementos e devolve 1 caso o primeiro seja maior do que o segundo.
- * 
- * @param s 
- */
 void maior (STACK *s) {
     ELEMENT x, y;
     ELEMENT v = {
@@ -226,11 +189,6 @@ void maior (STACK *s) {
     else push(s,f); 
 }
 
-/**
- * @brief Função de negação lógica (!): devolve o valor booleano oposto à declaração inicial
- * 
- * @param s 
- */
 void nao (STACK *s) {
     ELEMENT x;
     ELEMENT v = {
@@ -253,10 +211,7 @@ void nao (STACK *s) {
     else 
         push(s,v);
 }
-/**
- * @brief Função de conjunção lógica com shortcut (e&): caso o primeiro elemento seja falso (0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
- * @param s 
- */
+
 void eShortcut (STACK *s) {
     ELEMENT x, y;
 
@@ -270,11 +225,6 @@ void eShortcut (STACK *s) {
 
 }
 
-/**
- * @brief Função de disjunção lógica com shortcut (e|): caso o primeiro seja verdadeiro (diferente de 0), já não verifica o segundo e dá, portanto, o primeiro. Caso contrário, dá o segundo.
- * 
- * @param s 
- */
 void ouShortcut (STACK *s) {
     ELEMENT x,y;
 
@@ -286,12 +236,6 @@ void ouShortcut (STACK *s) {
     }
     else push(s,y);
 }
-
-/**
- * @brief Função que coloca o menor de dois valores na stack (e<).
- * 
- * @param s 
- */
 
 void menorDoisValores (STACK *s) {
     ELEMENT x,y;
@@ -336,14 +280,6 @@ void menorDoisValores (STACK *s) {
     }
 }
 
-
-
-/**
- * @brief Função que coloca o maior de dois valores na stack (e>).
- * 
- * @param s 
- */
-
 void maiorDoisValores (STACK *s) {
     ELEMENT x,y;
 
@@ -387,13 +323,6 @@ void maiorDoisValores (STACK *s) {
     }
 }
 
-
-
-/**
- * @brief Função if-then-else (se-então-de_outra_forma) (?) que, caso o primeiro elemento seja verdade (if), devolve o segundo (then). Caso contrário, dá o terceiro (else).
- * 
- * @param s 
- */
 void ifThenElse (STACK *s) {
     ELEMENT x,y,z;
 
@@ -414,4 +343,3 @@ void ifThenElse (STACK *s) {
     }
 }
 
-//ll

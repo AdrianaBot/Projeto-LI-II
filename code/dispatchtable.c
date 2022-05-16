@@ -13,13 +13,6 @@
 #include "stack.h"
 #include <string.h> 
 
-/**
- * @brief Dispatch table.
- * 
- * Esta função criada terá o propósito de tornar a escolha
- * da operação o mais eficiente possivel.
- * 
- */
 void setupTable(DispatchFunc table[]){
     table['+'] = soma;
     table['-'] = subtracao;
@@ -80,11 +73,7 @@ int func(STACK *x, char* c, DispatchFunc table[], int f) {
     return 0;
 }
 
-/**
- * @brief Setup Array para a Soma
- * 
- * @param funcType 
- */
+
 void setupSumArray(DispatchType funcType[6][6]) {
     funcType[LONG][LONG] = somaLongLong;
     funcType[LONG][DOUBLE] = somaLongDouble;
@@ -111,11 +100,7 @@ void setupSumArray(DispatchType funcType[6][6]) {
     funcType[STRING][STRING] = somaStringString;
 }
 
-/**
- * @brief Setup Array para a Subtração
- * 
- * @param funcType 
- */
+
 void setupSubArray(DispatchType funcType[4][4]) {
     funcType[LONG][LONG] = subtracaoLongLong;
     funcType[LONG][DOUBLE] = subtracaoLongDouble;
@@ -128,11 +113,6 @@ void setupSubArray(DispatchType funcType[4][4]) {
     funcType[CHAR][CHAR] = subtracaoCharChar;
 }
 
-/**
- * @brief Setup Array para a Multiplicação
- * 
- * @param funcType 
- */
 void setupMulArray(DispatchType funcType[6][6]) {
     funcType[LONG][LONG] = multiplicacaoLongLong;
     funcType[LONG][DOUBLE] = multiplicacaoLongDouble;
@@ -146,11 +126,6 @@ void setupMulArray(DispatchType funcType[6][6]) {
     funcType[BLOCK][ARRAY] = multiplicacaoBlockArray;
 }
 
-/**
- * @brief Setup Array para a Divisão
- * 
- * @param funcType 
- */
 void setupDivArray(DispatchType funcType[4][4]) {
     funcType[LONG][LONG] = divisaoLongLong;
     funcType[LONG][DOUBLE] = divisaoLongDouble;

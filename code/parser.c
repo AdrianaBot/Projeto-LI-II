@@ -31,15 +31,6 @@ int count(char *line, char *h) {
     return c;
 }
 
-/**
- * @brief Parser
- * 
- * A função __parser__,quando executada, identifica qual a operação que deverá ser aplicada. 
- * Caso não seja uma operação, simplesmente adiciona à stack.
- * 
- * @param s -> pointer da stack
- * @param c -> array de characteres
- */
 void parser(STACK *s) {
     char *line = malloc(BUFSIZ*sizeof(char));
 
@@ -79,7 +70,7 @@ void parser(STACK *s) {
             else readType (s, h); 
 
 
-            //psd(s);
+            psdebugger(s);
             t -= c;
             c = count(line, h);
             line += c;

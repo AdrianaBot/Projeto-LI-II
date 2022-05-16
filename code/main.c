@@ -18,7 +18,11 @@
 #include "parser.h"
 
 /**
- * @brief A nossa Main 
+ * @brief A nossa Main.
+ * 
+ * Esta vai primeiramente criar uma Stack, logo asseguir vai correr o parser, para depois colocar os resultados 
+ * obtidos para ser impresso no Terminal.
+ * 
  */
 int main() {
     STACK *s = newStack();

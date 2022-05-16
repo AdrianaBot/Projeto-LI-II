@@ -4,17 +4,6 @@
 #include <string.h>
 #include "stack.h"
 
-//CONVERSÕES
-
-
-/**
- * @brief convToLong converte tipos para Long.
- * 
- * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
- * elemento para Long.
- * 
- * @param s -> pointer da STACK 
- */
 void convToLong(STACK *s){
     ELEMENT x, converter;
     x.type = LONG;
@@ -45,14 +34,7 @@ void convToLong(STACK *s){
     push(s,converter);
     }
 }
-/**
- * @brief convToDouble converte tipos para Double.
- * 
- * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
- * elemento para Double.
- * 
- * @param s -> pointer da STACK 
- */
+
 void convToDouble(STACK *s){
     ELEMENT x, converter;
     x.type = LONG;
@@ -82,14 +64,6 @@ void convToDouble(STACK *s){
     }
 }
 
-/**
- * @brief convToChar converte tipos para Char.
- * 
- * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
- * elemento para Char.
- * 
- * @param s -> pointer da STACK 
- */
 void convToChar(STACK *s){
     
     ELEMENT x, converter;
@@ -121,14 +95,6 @@ void convToChar(STACK *s){
     }
 }
 
-/**
- * @brief convToString converte tipos para String.
- * 
- * Esta função recebe um elemento de qualquer tipo e converte esse mesmo 
- * elemento para String.
- * 
- * @param s -> pointer da STACK 
- */
 void convToString(STACK *s){
     ELEMENT x, converter;
     x.type = LONG;

@@ -11,28 +11,12 @@ STACK *newStack (){
     return calloc(sizeof(STACK),1);
 }
 
-/**
-* @brief Função Push
-*
-* @param s -> pointer da STACK 
-*
-* @return faz push a um número (caso dê erro, retorna 1) 
-*/
-
 int push (STACK *s, ELEMENT elem){
     if (s->sp == BUFSIZ) abort();
     s->stack[s->sp] = elem;
     s->sp++;
     return 0;
 }
-
-/**
-* @brief Função Pop:
-*
-* @param s -> pointer da STACK 
-*
-* @return faz pop a um número (caso dê erro, retorna 1) 
-*/
 
 int pop(STACK *s, ELEMENT *x){
     if (s->sp == 0) return 1;    
@@ -71,12 +55,6 @@ void readType (STACK* s, char *h) {
     }
 }
 
-/**
- * @brief NewArray é uma função que cria novos arrays.
- * 
- * @param s -> Pointer da Stack
- */
-
 void newArray (STACK* s, int f){
 
     for (int i = 1; i < f; i++) 
@@ -88,14 +66,6 @@ void newArray (STACK* s, int f){
     };
     push(s,a);
 }
-
-/**
- * @brief size será a função respetiva ao character (,) que procura
- * o tamanho de um array/string e da-nos o seu tamanho ou o range.
- * 
- * 
- * @param s -> pointer da Stack 
- */
 
 void size(STACK* s){ 
     ELEMENT m;
@@ -134,12 +104,6 @@ void size(STACK* s){
     }
 }
 
-/**
- * @brief addToArray é uma função que adiciona um elemento de qualquer tipo para um Array!
- * 
- * @param s -> pointer da Stack 
- * @param h 
- */
 void addToArray(STACK* s, char h[], int f) {
 
     for (int i = 1; i < f; i++) 
@@ -183,12 +147,6 @@ void addToArray(STACK* s, char h[], int f) {
     }
 }
 
-/**
- * @brief printArray é uma função que mostra o array
- * 
- * @param s -> pointer da stack
- * @param n -> É a posição do Array na STACK
- */
 void printArray(STACK* s, int n) {
     ELEMENT a = s->stack[n];
 
@@ -244,13 +202,6 @@ void newBlock(STACK *s, char h[], int f) {
     else push(s,x);
 }
 
-
-/**
- * @brief Definição da operação de decrementação ( '(' ).
- * A decrementação diminui o inteiro em 1.
- * 
- * @param s -> pointer da STACK 
- */
 void decrementacao (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
@@ -284,12 +235,6 @@ void decrementacao (STACK* s) {
     push (s,final);
 }
 
-/**
- * @brief Definição da operação de incrementação ( ')' ) .
- * A incrementação aumenta o inteiro em 1.
- * 
- * @param s -> pointer da STACK 
- */
 void incrementacao (STACK* s) {
     ELEMENT x,final;
     x.type = LONG;
@@ -318,12 +263,6 @@ void incrementacao (STACK* s) {
     push(s,final);
 }
 
-/**
- * @brief Definição da operação de módulo (%).
- * O módulo é o resto da divisão inteira de x por y.
- * 
- * @param s -> pointer da STACK 
- */
 void modulo (STACK* s) {
     ELEMENT x, y,final; 
     x.type = LONG;
@@ -380,14 +319,6 @@ void modulo (STACK* s) {
     }
 }
 
-
-
-/**
- * @brief Definição da operação de duplicação (_).
- * 
- * @param s -> pointer da STACK 
- */
- 
 void duplicacao (STACK* s){
     ELEMENT x;
     x.info.typeLong = 0;
@@ -396,11 +327,6 @@ void duplicacao (STACK* s){
     push(s, x);
 }
 
-/**
- * @brief Definição da operação de troca de dois elementos no topo da stack (\).
- * 
- * @param s -> pointer da STACK 
- */
 void troca (STACK* s) {
     ELEMENT x,y;
     x.info.typeLong = 0;
@@ -411,12 +337,6 @@ void troca (STACK* s) {
     push(s, y);
 }
 
-
-/**
- * @brief Definição da operação de rodagem de três elementos no topo da stack (@).
- *
- * @param s -> pointer da STACK 
- */
 void roda (STACK* s) {
     ELEMENT x,y,z;
     x.info.typeLong = 0;
@@ -430,20 +350,11 @@ void roda (STACK* s) {
     push(s, z);
 }
 
-/**
- * @brief Definição de uma função auxiliar para a função "copia"
- * 
- * @param s -> pointer da STACK 
- */
 void nesimo(STACK *s, ELEMENT* x, long n){                                      
     *x = s->stack[s->sp - n - 1];   
 }
 
-/**
- * @brief Definição da operação de cópia do n-ésimo elemento para o topo da stack, no qual 0 é o topo da stack (n $, em que n é a posição na stack).
- * 
- * @param s -> pointer da STACK 
- */
+
 void copia (STACK* s) {
     ELEMENT n;
     n.info.typeLong = 0;                                              
@@ -456,11 +367,7 @@ void copia (STACK* s) {
 }
 
 
-/**
- * @brief Definição da operação de pop sem salvaguarda de valores (;).
- *  
- * @param s -> pointer da STACK 
- */
+
 void pop2(STACK *s) {
     ELEMENT x;
     x.info.typeLong = 0;
@@ -478,13 +385,7 @@ void assign(STACK *s,char c,ELEMENT var[], int f){
     push(s,x);
 }
 
-/**
- * @brief readline function
- * 
- * Lê uma linha
- * 
- * @param s 
- */
+
 void readline(STACK *s) {
     char line[BUFSIZ];
 
@@ -499,17 +400,17 @@ void readline(STACK *s) {
 
 void funcT(STACK *s) {
     char line[BUFSIZ];
-    for(int i = 1; i != 0 ; i--) {
-        if (fgets (line, BUFSIZ, stdin) != NULL) {
-            ELEMENT a;
-            a.type = STRING;
-            a.info.typeString = line;
-            push(s,a);
-            }
+    char aux[BUFSIZ];
+    while (fgets (line, BUFSIZ, stdin) != NULL) {
+            strcat(aux,line);
     }
+    ELEMENT a;
+    a.type = STRING;
+    a.info.typeString = strdup(aux);
+    push(s,a);
 }
 
-void psd (STACK *s) {
+void psdebugger (STACK *s) {
      for (int i = 0; i < s->sp; i++) {
         ELEMENT x = s->stack[i];
 
