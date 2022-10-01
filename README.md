@@ -1,4 +1,4 @@
-# Projeto-LI-II
+# Laboratórios de Informática II: projeto 
 
 Projeto desenvolvido no âmbito da cadeira de Laboratórios de Informática II. Criou-se um interpretador da linguagem $OM (linguagem criada especificamente para esta cadeira), usando C. Através de uma stack, implementaram-se variadas funções (pop, push, matemáticas, lógicas) e tipos (longs, doubles, strings, chars, arrays e blocos).
 
